@@ -30,8 +30,8 @@ export default {
 .allfilters {
   display: grid;
   grid-template-columns: repeat(2, 180px);
-  grid-column-gap: 20px;
-  grid-row-gap: 10px;
+  grid-column-gap: 100px;
+  grid-row-gap: 50px;
 }
 .field {
   display: flex;
