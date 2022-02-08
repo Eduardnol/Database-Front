@@ -2,7 +2,7 @@
   <div class="component">
     <Search />
 
-    <ul class="person_grid">
+    <ul class="person_grid scrollable">
       <li class="list_item" v-for="person in persons" :key="person.id">
         <Person
           :id="person.id"
@@ -55,5 +55,9 @@ export default {
   grid-template-columns: repeat(2, 450px);
   grid-column-gap: 20px;
   grid-row-gap: 10px;
+}
+.scrollable {
+  height: 700px; /* or any value */
+  overflow-y: auto;
 }
 </style>
