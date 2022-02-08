@@ -78,7 +78,7 @@ export default {
   margin: 15px;
   height: 100px;
   width: 100px;
-  background-color: #bbb;
+  background-color: var(--orange);
   border-radius: 50%;
   display: inline-block;
 }
