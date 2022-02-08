@@ -51,6 +51,9 @@ export default {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
+.logo {
+  grid-area: 1 / 1 / 2 / 2;
+}
 .filters {
   grid-area: 2 / 5 / 6 / 6;
 }
