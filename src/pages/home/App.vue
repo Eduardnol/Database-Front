@@ -52,7 +52,7 @@ export default {
 }
 .person_grid {
   display: grid;
-  grid-template-columns: repeat(2,450px);
+  grid-template-columns: repeat(2, 450px);
   grid-column-gap: 20px;
   grid-row-gap: 10px;
 }

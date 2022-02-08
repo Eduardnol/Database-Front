@@ -1,5 +1,6 @@
 <template>
   <div id="keyword">
+    <button id="searchButton" @click="getall">ALL</button>
     <button id="searchButton" @click="search">SEARCH</button>
     <input v-model="keyword" placeholder="Search..." @keypress.enter="search" />
   </div>
@@ -18,6 +19,12 @@ export default {
     search() {
       let search = new MongoDBconn();
       search.searchValue(this.keyword).then((data) => {
+        console.log(data), (this.$root.persons = data);
+      });
+    },
+    getall() {
+      let search = new MongoDBconn();
+      search.getAllPeople().then((data) => {
         console.log(data), (this.$root.persons = data);
       });
     },
