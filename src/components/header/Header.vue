@@ -10,7 +10,7 @@ export default {
 <style scoped>
 header {
   background: var(--orange);
-  padding: 60px;
+  padding: 50px;
   text-align: center;
   color: white;
   font-size: 30px;
