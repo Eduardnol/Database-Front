@@ -8,6 +8,8 @@
 
     <p>Fecha</p>
     <input v-model="dateSaint" type="date" />
+    <p>Posicion</p>
+    <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
   </div>
 </template>
 
@@ -19,6 +21,7 @@ export default {
       beginDateBirthday: "",
       endDateBirthday: "",
       dateSaint: "",
+      tags: "",
     };
   },
 };
