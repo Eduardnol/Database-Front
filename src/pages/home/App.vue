@@ -1,7 +1,8 @@
 <template>
   <div class="component">
     <Search />
-    <ul>
+
+    <ul class="person_grid">
       <li class="list_item" v-for="person in persons" :key="person.id">
         <Person
           :id="person.id"
@@ -48,5 +49,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.person_grid {
+  display: grid;
+  grid-template-columns: repeat(2,450px);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 </style>

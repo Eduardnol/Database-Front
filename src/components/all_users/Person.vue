@@ -57,7 +57,6 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
   width: 450px;
   height: 135px;
-  margin: 30px;
 }
 .icon {
   margin: 15px;
