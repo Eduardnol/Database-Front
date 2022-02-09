@@ -5,9 +5,8 @@
     <div class="search">
       <Search />
     </div>
-    <div class="filters">
-      <Filters />
-    </div>
+    <AddUser />
+    <div class="filters"><Filters /></div>
     <ul class="person_grid scrollable">
       <li class="list_item" v-for="person in persons" :key="person.id">
         <Person
@@ -28,6 +27,7 @@ import Person from "../../components/all_users/Person.vue";
 import Search from "../../components/all_users/Search.vue";
 import Filters from "../../components/all_users/Filters.vue";
 import Header from "../../components/header/Header.vue";
+import AddUser from "../../components/add_user/AddUser.vue";
 
 export default {
   name: "AllUsers",
@@ -41,6 +41,7 @@ export default {
     Search,
     Filters,
     Header,
+    AddUser,
   },
 };
 </script>
