@@ -12,9 +12,11 @@
     <input v-model="saint" type="date" />
     <p>Posicion</p>
     <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
+    <AddUserFieldsCustom />
   </div>
 </template>
 <script>
+import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
 export default {
   name: "AddUserFields",
   data() {
@@ -26,6 +28,9 @@ export default {
       saint: "",
       tags: "",
     };
+  },
+  components: {
+    AddUserFieldsCustom,
   },
 };
 </script>
