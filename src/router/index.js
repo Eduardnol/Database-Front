@@ -4,13 +4,13 @@ import UserSpecific from "../pages/user_specific/UserSpecific.vue"
 const routes = [
     {
         path: '/',
-        name: AllUsers,
+        name: 'AllUsers',
         component: AllUsers,
     },
 
     {
         path: '/user-specific',
-        name: UserSpecific,
+        name: 'UserSpecific',
         component: UserSpecific,
     },
 ]

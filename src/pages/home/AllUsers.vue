@@ -7,7 +7,12 @@
     <div class="adduser"><AddUser /></div>
     <div class="filters"><Filters /></div>
     <ul class="person_grid scrollable">
-      <li class="list_item" v-for="person in allPerson" :key="person.id">
+      <li
+        class="list_item"
+        v-for="person in allPerson"
+        :key="person.id"
+        @click="getToPage"
+      >
         <Person
           :id="person.id"
           :nombre="person.nombre"
@@ -39,6 +44,11 @@ export default {
     Search,
     Filters,
     AddUser,
+  },
+  methods: {
+    getToPage() {
+      this.$router.push({ name: 'UserSpecific', params: { id: this.id } });
+    },
   },
 };
 </script>

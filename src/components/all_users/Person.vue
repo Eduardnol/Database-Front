@@ -1,5 +1,5 @@
 <template>
-  <div class="person" @click="goToDetail">
+  <div class="person">
     <div class="icon"></div>
     <div class="textinfo">
       <div class="basic">
@@ -25,12 +25,6 @@ export default {
     birthday: Date,
     saint: Date,
     dni: String,
-  },
-  methods: {
-    goToDetail() {
-      //TODO send the information of the actual user and retrieve any necessary information from the database
-      this.$router.push("/user-specific");
-    },
   },
 };
 </script>
