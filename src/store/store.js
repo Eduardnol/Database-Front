@@ -28,7 +28,7 @@ export const store = createStore({
     },
     getters: {
         getArrItem: (state) => (id) => {
-            return state.items.find(item => item.id === id);
+            return state.persons.find(item => item.id === id);
         }
     },
     mutations: {

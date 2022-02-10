@@ -9,7 +9,7 @@ export default {
   components: { AddUserFields },
   computed: {
     getPerson() {
-      return this.$store.state.getArrItem(this.$route.params.id);
+      return this.$store.getters.getArrItem(this.$route.params.id);
     },
   },
 };
