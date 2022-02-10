@@ -7,7 +7,7 @@
         <p id="surname">{{ apellido }}</p>
         <p id="surname">Apellido2</p>
       </div>
-      <p id="email">{{ email }}</p>
+      <input type="email" id="email" />{{ email }}>
       <p id="birthday">{{ birthday }}</p>
     </div>
   </div>

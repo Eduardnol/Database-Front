@@ -10,6 +10,8 @@
     <input v-model="birthday" type="date" />
     <p>Fecha</p>
     <input v-model="saint" type="date" />
+    <p>Email</p>
+    <input type="email" id="email" v-model="email" />
     <p>Posicion</p>
     <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
     <AddUserFieldsCustom />
@@ -25,6 +27,7 @@ export default {
       surname: "",
       surname2: "",
       birthday: "",
+      email: "",
       saint: "",
       tags: "",
     };

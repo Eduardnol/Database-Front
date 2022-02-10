@@ -8,6 +8,7 @@
     <option disabled value="">Seleccionar Tipo</option>
     <option value="text">Texto</option>
     <option value="date">Fecha</option>
+    <option value="tel">Teléfono</option>
   </select>
   <input :type="selected" v-model="name" :placeholder="selected" />
 </template>
