@@ -5,7 +5,7 @@
       <div class="basic">
         <p id="name">{{ nombre }}</p>
         <p id="surname">{{ apellido }}</p>
-        <p id="surname">Apellido2</p>
+        <p id="surname">{{ apellido2 }}</p>
       </div>
       <p id="email">{{ email }}</p>
       <p id="birthday">{{ birthday }}</p>
