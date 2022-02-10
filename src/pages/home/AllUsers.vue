@@ -5,7 +5,7 @@
     <div class="search">
       <Search />
     </div>
-    <AddUser />
+    <div class="adduser"><AddUser /></div>
     <div class="filters"><Filters /></div>
     <ul class="person_grid scrollable">
       <li class="list_item" v-for="person in persons" :key="person.id">
@@ -71,6 +71,9 @@ body {
 }
 .search {
   grid-area: 1 / 5 / 2 / 6;
+}
+.adduser {
+  grid-area: 1 / 3 / 2 / 4;
 }
 #app {
   font-family: Montserrat, sans-serif;
