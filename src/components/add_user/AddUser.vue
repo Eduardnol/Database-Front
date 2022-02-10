@@ -72,7 +72,6 @@ export default {
   },
   methods: {
     sendNewUserToDatabase() {
-      AddUserFields.data
       let conn = new MongoDBconn();
       conn.postPerson(this.person);
     },

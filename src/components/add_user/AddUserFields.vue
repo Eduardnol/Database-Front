@@ -9,7 +9,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="name"
+            v-model="person.name"
             placeholder="Nombre"
           />
         </div>
@@ -22,7 +22,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="surname"
+            v-model="person.surname"
             placeholder="Apellido"
           />
         </div>
@@ -35,7 +35,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="surname2"
+            v-model="person.surname2"
             placeholder="Apellido2"
           />
         </div>
@@ -45,7 +45,7 @@
           <p>Cumpleaños</p>
         </div>
         <div class="col-auto">
-          <input v-model="birthday" class="form-control" type="date" />
+          <input v-model="person.birthday" class="form-control" type="date" />
         </div>
       </div>
       <div class="row mt-3">
@@ -53,7 +53,7 @@
           <p>Fecha</p>
         </div>
         <div class="col-auto">
-          <input v-model="saint" class="form-control" type="date" />
+          <input v-model="person.saint" class="form-control" type="date" />
         </div>
       </div>
       <div class="row mt-3">
@@ -65,7 +65,7 @@
             class="form-control"
             type="email"
             id="email"
-            v-model="email"
+            v-model="person.email"
             placeholder="ejemplo@email.com"
           />
         </div>
@@ -78,7 +78,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="tags"
+            v-model="person.tags"
             placeholder="tag1, tag2, tag3"
           />
         </div>
@@ -93,19 +93,18 @@
 import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
 export default {
   name: "AddUserFields",
-  data() {
-    return {
-      name: "",
-      surname: "",
-      surname2: "",
-      birthday: "",
-      email: "",
-      saint: "",
-      tags: "",
-    };
-  },
   components: {
     AddUserFieldsCustom,
+  },
+  computed: {
+    person: {
+      get() {
+        return this.$store.state.person;
+      },
+      set(value) {
+        this.$store.commit("updateMessage", value);
+      },
+    },
   },
 };
 </script>
