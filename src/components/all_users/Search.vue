@@ -25,13 +25,13 @@ export default {
     search() {
       let search = new MongoDBconn();
       search.searchValue(this.keyword).then((data) => {
-        console.log(data), (this.$root.persons = data);
+        console.log(data), (this.$parent.persons = data);
       });
     },
     getall() {
       let search = new MongoDBconn();
       search.getAllPeople().then((data) => {
-        console.log(data), (this.$root.persons = data);
+        console.log(data), (this.$parent.persons = data);
       });
     },
   },
