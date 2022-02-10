@@ -11,7 +11,7 @@
         class="list_item"
         v-for="person in allPerson"
         :key="person.id"
-        @click="getToPage"
+        @click="getToPage(person.id)"
       >
         <Person
           :id="person.id"
@@ -46,8 +46,11 @@ export default {
     AddUser,
   },
   methods: {
-    getToPage() {
-      this.$router.push({ name: 'UserSpecific', params: { id: this.id } });
+    getToPage(identificator) {
+      this.$router.push({
+        name: "UserSpecific",
+        params: { id: identificator },
+      });
     },
   },
 };

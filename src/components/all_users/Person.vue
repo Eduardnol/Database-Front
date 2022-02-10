@@ -9,6 +9,7 @@
       </div>
       <p id="email">{{ email }}</p>
       <p id="birthday">{{ birthday }}</p>
+      <p>{{id}}</p>
     </div>
   </div>
 </template>
