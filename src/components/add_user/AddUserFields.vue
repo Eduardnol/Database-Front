@@ -61,7 +61,7 @@
           <p>Email</p>
         </div>
         <div class="col-auto">
-          <input class="form-control" type="email" id="email" v-model="email" />
+          <input class="form-control" type="email" id="email" v-model="email" placeholder="ejemplo@email.com" />
         </div>
       </div>
       <div class="row mt-3">

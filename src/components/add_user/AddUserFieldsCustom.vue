@@ -1,6 +1,6 @@
 <template>
   <div class="col-auto me-auto">
-    <input type="text" class="form-control" v-model="name" placeholder="Nombre" />
+    <input type="text" class="form-control" v-model="name" placeholder="Etiqueta" />
   </div>
 
   <div class="col-auto me-auto">
