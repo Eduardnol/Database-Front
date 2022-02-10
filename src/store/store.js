@@ -24,7 +24,10 @@ export const store = createStore({
             state.person.nombre = "",
                 state.person.apellido = "",
                 state.person.apellido2 = "",
-                state.person.email = ""
+                state.person.email = "",
+                state.person.birthday = "",
+                state.person.saint = "",
+                state.person.dni = ""
         }
     }
 }
