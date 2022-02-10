@@ -45,7 +45,13 @@
           >
             Cerrar
           </button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="sendNewUserToDatabase"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
@@ -53,10 +59,23 @@
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
+import MongoDBconn from "../../services/MongoDBconn";
+import PersonVue from "../all_users/Person.vue";
 export default {
-  setup() {},
+  data() {
+    return {
+      person: PersonVue,
+    };
+  },
   components: {
     AddUserFields,
+  },
+  methods: {
+    sendNewUserToDatabase() {
+      AddUserFields.data
+      let conn = new MongoDBconn();
+      conn.postPerson(this.person);
+    },
   },
 };
 </script>
