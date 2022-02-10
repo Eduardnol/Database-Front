@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <!-- <router-link to="/">All Users</router-link>-->
     <!-- Page rendered by router -->
     <router-view />
@@ -7,13 +8,16 @@
 </template>
 
 <script>
+import Header from "/src/components/header/Header.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 export default {
   name: "App",
   data() {
     return {};
   },
-  components: {},
+  components: {
+    Header,
+  },
 };
 </script>
 

@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="component">
     <h2>Usuarios Registrados</h2>
     <div class="search">
@@ -26,7 +25,6 @@
 import Person from "../../components/all_users/Person.vue";
 import Search from "../../components/all_users/Search.vue";
 import Filters from "../../components/all_users/Filters.vue";
-import Header from "../../components/header/Header.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
 
 export default {
@@ -40,7 +38,6 @@ export default {
     Person,
     Search,
     Filters,
-    Header,
     AddUser,
   },
 };
