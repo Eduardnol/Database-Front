@@ -43,9 +43,9 @@
             class="btn btn-secondary"
             data-bs-dismiss="modal"
           >
-            Close
+            Cerrar
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
