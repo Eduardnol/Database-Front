@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/">All Users</router-link>
+    <!-- <router-link to="/">All Users</router-link>-->
     <!-- Page rendered by router -->
     <router-view />
   </div>

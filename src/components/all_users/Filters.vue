@@ -1,15 +1,20 @@
 <template>
   <div class="allfilters">
     <p>Fecha Inicial</p>
-    <input v-model="beginDateBirthday" type="date" />
+    <input v-model="beginDateBirthday" class="form-control" type="date" />
 
     <p>Fecha Final</p>
-    <input v-model="endDateBirthday" type="date" />
+    <input v-model="endDateBirthday" class="form-control" type="date" />
 
     <p>Fecha</p>
-    <input v-model="dateSaint" type="date" />
+    <input v-model="dateSaint" class="form-control" type="date" />
     <p>Posicion</p>
-    <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
+    <input
+      type="text"
+      v-model="tags"
+      class="form-control"
+      placeholder="tag1, tag2, tag3"
+    />
   </div>
 </template>
 

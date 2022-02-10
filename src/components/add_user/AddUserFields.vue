@@ -6,7 +6,12 @@
           <p>Nombre</p>
         </div>
         <div class="col-auto">
-          <input type="text" v-model="name" placeholder="Nombre" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="name"
+            placeholder="Nombre"
+          />
         </div>
       </div>
       <div class="row mt-3">
@@ -14,7 +19,12 @@
           <p>Apellido1</p>
         </div>
         <div class="col-auto">
-          <input type="text" v-model="surname" placeholder="Apellido" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="surname"
+            placeholder="Apellido"
+          />
         </div>
       </div>
       <div class="row mt-3">
@@ -22,7 +32,12 @@
           <p>Apellido2</p>
         </div>
         <div class="col-auto">
-          <input type="text" v-model="surname2" placeholder="Apellido2" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="surname2"
+            placeholder="Apellido2"
+          />
         </div>
       </div>
       <div class="row mt-3">
@@ -30,7 +45,7 @@
           <p>Cumpleaños</p>
         </div>
         <div class="col-auto">
-          <input v-model="birthday" type="date" />
+          <input v-model="birthday" class="form-control" type="date" />
         </div>
       </div>
       <div class="row mt-3">
@@ -38,7 +53,7 @@
           <p>Fecha</p>
         </div>
         <div class="col-auto">
-          <input v-model="saint" type="date" />
+          <input v-model="saint" class="form-control" type="date" />
         </div>
       </div>
       <div class="row mt-3">
@@ -46,7 +61,7 @@
           <p>Email</p>
         </div>
         <div class="col-auto">
-          <input type="email" id="email" v-model="email" />
+          <input class="form-control" type="email" id="email" v-model="email" />
         </div>
       </div>
       <div class="row mt-3">
@@ -54,7 +69,12 @@
           <p>Posicion</p>
         </div>
         <div class="col-auto">
-          <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="tags"
+            placeholder="tag1, tag2, tag3"
+          />
         </div>
       </div>
       <div class="row mt-3">

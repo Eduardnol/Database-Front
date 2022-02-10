@@ -2,7 +2,13 @@
   <div id="keyword">
     <button id="searchButton" @click="getall">ALL</button>
     <button id="searchButton" @click="search">SEARCH</button>
-    <input type="search" v-model="keyword" placeholder="Search..." @keypress.enter="search" />
+    <input
+      type="search"
+      class="form-control"
+      v-model="keyword"
+      placeholder="Search..."
+      @keypress.enter="search"
+    />
   </div>
 </template>
 <script>

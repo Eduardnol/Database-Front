@@ -6,7 +6,7 @@
     data-bs-toggle="modal"
     data-bs-target="#staticBackdrop"
   >
-    Launch demo modal
+    Añadir Nuevo Usuario
   </button>
 
   <!-- Modal -->
@@ -33,7 +33,9 @@
           ></button>
         </div>
         <div class="modal-body">
-          <AddUserFields />
+          <form>
+            <AddUserFields />
+          </form>
         </div>
         <div class="modal-footer">
           <button
