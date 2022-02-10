@@ -29,6 +29,7 @@ export default {
   methods: {
     goToDetail() {
       console.log("Go to detail " + this.nombre);
+      this.$router.push("/user-specific");
     },
   },
 };

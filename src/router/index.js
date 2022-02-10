@@ -1,10 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AllUsers from "../pages/home/AllUsers.vue"
+import UserSpecific from "../pages/user_specific/UserSpecific.vue"
 const routes = [
     {
         path: '/',
         name: AllUsers,
         component: AllUsers,
+    },
+
+    {
+        path: '/user-specific',
+        name: UserSpecific,
+        component: UserSpecific,
     },
 ]
 
