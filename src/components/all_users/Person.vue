@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     goToDetail() {
-      console.log("Go to detail " + this.nombre);
+      //TODO send the information of the actual user and retrieve any necessary information from the database
       this.$router.push("/user-specific");
     },
   },
