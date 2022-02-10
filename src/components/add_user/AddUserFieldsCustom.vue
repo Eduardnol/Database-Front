@@ -1,6 +1,11 @@
 <template>
   <div class="col-auto me-auto">
-    <input type="text" class="form-control" v-model="name" placeholder="Etiqueta" />
+    <input
+      type="text"
+      class="form-control"
+      v-model="name"
+      placeholder="Etiqueta"
+    />
   </div>
 
   <div class="col-auto me-auto">
@@ -17,7 +22,12 @@
   </div>
 
   <div class="col-auto">
-    <input :type="selected" class="form-control" v-model="name" :placeholder="selected" />
+    <input
+      :type="selected"
+      class="form-control"
+      v-model="name"
+      :placeholder="selected"
+    />
   </div>
 </template>
 <script>
@@ -27,6 +37,7 @@ export default {
   data() {
     return {
       selected: "",
+      name: "",
     };
   },
 };
