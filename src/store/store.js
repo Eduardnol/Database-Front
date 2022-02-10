@@ -17,9 +17,12 @@ export const store = createStore({
 
     },
     mutations: {
-        updateMessage(state, person) {
+        insertUser(state, person) {
             state.person = person
-        }
+        },
+        /*deleteUser(state) {
+            state.person = state.person
+        }*/
     }
 }
 );

@@ -30,6 +30,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="cancelUser"
           ></button>
         </div>
         <div class="modal-body">
@@ -41,6 +42,7 @@
           <button
             type="button"
             class="btn btn-secondary"
+            @click="cancelUser"
             data-bs-dismiss="modal"
           >
             Cerrar
@@ -74,6 +76,9 @@ export default {
     sendNewUserToDatabase() {
       let conn = new MongoDBconn();
       conn.postPerson(this.person);
+    },
+    cancelUser() {
+      this.$store.commit("deleteUser");
     },
   },
 };
