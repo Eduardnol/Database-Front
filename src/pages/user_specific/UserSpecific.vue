@@ -12,6 +12,9 @@ export default {
       return this.$store.getters.getArrItem(this.$route.params.id);
     },
   },
+  beforeMount() {
+    this.$store.commit("insertUser", this.getPerson);
+  },
 };
 </script>
 <style lang="stylus" scoped></style>
