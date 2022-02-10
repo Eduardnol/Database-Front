@@ -92,7 +92,7 @@ body {
 }
 h2 {
   font-weight: bold;
-  max-width: 300px;
+  max-width: 600px;
   margin: 0px;
   align-self: center;
 }
