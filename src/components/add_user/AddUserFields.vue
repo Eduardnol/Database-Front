@@ -1,20 +1,66 @@
 <template>
   <div class="allfilters">
-    <p>Nombre</p>
-    <input type="text" v-model="name" placeholder="Nombre" />
-    <p>Apellido1</p>
-    <input type="text" v-model="surname" placeholder="Apellido" />
-    <p>Apellido2</p>
-    <input type="text" v-model="surname2" placeholder="Apellido2" />
-    <p>Cumpleaños</p>
-    <input v-model="birthday" type="date" />
-    <p>Fecha</p>
-    <input v-model="saint" type="date" />
-    <p>Email</p>
-    <input type="email" id="email" v-model="email" />
-    <p>Posicion</p>
-    <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
-    <AddUserFieldsCustom />
+    <div class="container-md">
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Nombre</p>
+        </div>
+        <div class="col-auto">
+          <input type="text" v-model="name" placeholder="Nombre" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Apellido1</p>
+        </div>
+        <div class="col-auto">
+          <input type="text" v-model="surname" placeholder="Apellido" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Apellido2</p>
+        </div>
+        <div class="col-auto">
+          <input type="text" v-model="surname2" placeholder="Apellido2" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Cumpleaños</p>
+        </div>
+        <div class="col-auto">
+          <input v-model="birthday" type="date" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Fecha</p>
+        </div>
+        <div class="col-auto">
+          <input v-model="saint" type="date" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Email</p>
+        </div>
+        <div class="col-auto">
+          <input type="email" id="email" v-model="email" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p>Posicion</p>
+        </div>
+        <div class="col-auto">
+          <input type="text" v-model="tags" placeholder="tag1, tag2, tag3" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <AddUserFieldsCustom />
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -38,12 +84,6 @@ export default {
 };
 </script>
 <style scoped>
-.allfilters {
-  display: grid;
-  grid-template-columns: repeat(2, 180px);
-  grid-column-gap: 100px;
-  grid-row-gap: 50px;
-}
 .field {
   display: flex;
   flex-direction: row;
