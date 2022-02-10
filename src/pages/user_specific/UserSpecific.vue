@@ -1,6 +1,6 @@
 <template>
   <div><AddUserFields /></div>
-  <p>{{ getPerson }}</p>
+  <button @click="save">SAVE</button>
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
@@ -10,6 +10,11 @@ export default {
   computed: {
     getPerson() {
       return this.$store.getters.getArrItem(this.$route.params.id);
+    },
+    save() {
+      //update database user throught api and automatically the array
+      this.$store.commit("deleteUser");
+      return null;
     },
   },
   beforeMount() {
