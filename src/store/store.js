@@ -12,7 +12,17 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
-            }
+            },
+            persons: [{
+                id: "",
+                nombre: "",
+                apellido: "",
+                apellido2: "",
+                email: "",
+                birthday: "",
+                saint: "",
+                dni: "",
+            }]
         }
 
     },
@@ -28,8 +38,10 @@ export const store = createStore({
                 state.person.birthday = "",
                 state.person.saint = "",
                 state.person.dni = ""
+        },
+        addUser(state, person) {
+            state.persons.addUser(person)
         }
     }
 }
 );
-

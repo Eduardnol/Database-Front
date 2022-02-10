@@ -7,7 +7,7 @@
     <div class="adduser"><AddUser /></div>
     <div class="filters"><Filters /></div>
     <ul class="person_grid scrollable">
-      <li class="list_item" v-for="person in persons" :key="person.id">
+      <li class="list_item" v-for="person in allPerson" :key="person.id">
         <Person
           :id="person.id"
           :nombre="person.nombre"
@@ -29,10 +29,10 @@ import AddUser from "../../components/add_user/AddUser.vue";
 
 export default {
   name: "AllUsers",
-  data() {
-    return {
-      persons: [],
-    };
+  computed: {
+    allPerson() {
+      return this.$store.state.persons;
+    },
   },
   components: {
     Person,

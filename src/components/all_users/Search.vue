@@ -25,13 +25,13 @@ export default {
     search() {
       let search = new MongoDBconn();
       search.searchValue(this.keyword).then((data) => {
-        console.log(data), (this.$parent.persons = data);
+        console.log(data), (this.$store.state.persons = data);
       });
     },
     getall() {
       let search = new MongoDBconn();
       search.getAllPeople().then((data) => {
-        console.log(data), (this.$parent.persons = data);
+        console.log(data), (this.$store.state.persons = data);
       });
     },
   },
@@ -54,7 +54,6 @@ export default {
   margin-left: 10px;
   border-radius: 5px;
 }
-
 
 #searchButton:active {
   color: white;
