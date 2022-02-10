@@ -38,14 +38,11 @@ export default class MongoDBconn {
         }
 
     }
-    async postPerson(string) {
-        let keyword = {
-            key: string,
-        };
+    async postPerson(person) {
         const response = await fetch(`http://localhost:8080/api/v1/people`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },//important to specify the headers as a JSON
-            body: JSON.stringify(keyword), //We pass into a JSON string the parameters to the api
+            body: JSON.stringify(person), //We pass into a JSON string the parameters to the api
         })
         const data = response.json(); //The data fetched by the api is converted into json data
 
