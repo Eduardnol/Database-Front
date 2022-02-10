@@ -55,15 +55,7 @@ export default {
   border-radius: 5px;
 }
 
-#searchButton {
-  background-color: orange;
-  height: 40px;
-  width: 80px;
-  border-radius: 5px;
-  border: none;
-  transition: all 0.3s;
-  box-shadow: 3px 3px 5px gray;
-}
+
 #searchButton:active {
   color: white;
   background-color: darkorange;
