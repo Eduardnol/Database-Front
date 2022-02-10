@@ -26,6 +26,11 @@ export const store = createStore({
         }
 
     },
+    getters: {
+        getArrItem: (state) => (id) => {
+            return state.items.find(item => item.id === id);
+        }
+    },
     mutations: {
         insertUser(state, person) {
             state.person = person
@@ -41,7 +46,8 @@ export const store = createStore({
         },
         addUser(state, person) {
             state.persons.addUser(person)
-        }
+        },
+
     }
 }
 );
