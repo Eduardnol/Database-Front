@@ -62,23 +62,22 @@
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn";
-import PersonVue from "../all_users/Person.vue";
 export default {
-  data() {
-    return {
-      person: PersonVue,
-    };
-  },
   components: {
     AddUserFields,
   },
   methods: {
     sendNewUserToDatabase() {
       let conn = new MongoDBconn();
-      conn.postPerson(this.person);
+      conn.postPerson(this.person_ret);
     },
     cancelUser() {
       this.$store.commit("deleteUser");
+    },
+  },
+  computed: {
+    person_ret() {
+      return this.$store.state.person;
     },
   },
 };

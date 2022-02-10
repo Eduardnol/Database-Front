@@ -9,7 +9,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="person.name"
+            v-model="person.nombre"
             placeholder="Nombre"
           />
         </div>
@@ -22,7 +22,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="person.surname"
+            v-model="person.apellido"
             placeholder="Apellido"
           />
         </div>
@@ -35,7 +35,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="person.surname2"
+            v-model="person.apellido2"
             placeholder="Apellido2"
           />
         </div>
