@@ -1,5 +1,5 @@
 <template>
-  <div class="person">
+  <div class="person" @click="goToDetail">
     <div class="icon"></div>
     <div class="textinfo">
       <div class="basic">
@@ -25,6 +25,11 @@ export default {
     birthday: Date,
     saint: Date,
     dni: String,
+  },
+  methods: {
+    goToDetail() {
+      console.log("Go to detail " + this.nombre);
+    },
   },
 };
 </script>
