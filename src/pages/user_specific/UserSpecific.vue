@@ -19,6 +19,9 @@ export default {
       return this.$store.getters.getArrItem(this.$route.params.id);
     },
     save() {
+      let update = new MongoDBconn();
+      update.updatePerson(this.$store.state.person);
+      this.$store.commit("deleteUser");
       return null;
     },
     deleteuser() {
