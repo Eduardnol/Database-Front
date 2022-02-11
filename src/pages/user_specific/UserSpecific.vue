@@ -2,8 +2,27 @@
   <div><AddUserFields /></div>
 
   <div class="button-group">
-    <button @click="save" type="button" class="btn btn-primary">Guardar</button>
-    <button type="button" class="btn btn-danger" @click="deleteuser">
+    <button
+      @click="
+        save;
+        getToPage;
+      "
+      type="button"
+      class="btn btn-primary"
+    >
+      Guardar
+    </button>
+    <button @click="getToPage" type="button" class="btn btn-primary">
+      HOME
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      @click="
+        deleteuser;
+        getToPage;
+      "
+    >
       Eliminar
     </button>
   </div>
@@ -21,16 +40,21 @@ export default {
     save() {
       let update = new MongoDBconn();
       update.updatePerson(this.$store.state.person);
-      this.$store.commit("deleteUser");
-      return null;
+      return this.$store.commit("deleteUser");
     },
     deleteuser() {
       //update database user throught api and automatically the array
       let deletion = new MongoDBconn();
       deletion.deletePerson(this.$store.state.person.id);
       this.$store.commit("deleteFromArray", this.getPerson);
-      this.$store.commit("deleteUser");
-      return null;
+      return this.$store.commit("deleteUser");
+    },
+  },
+  methods: {
+    getToPage() {
+      this.$router.push({
+        name: "AllUsers",
+      });
     },
   },
   beforeMount() {
