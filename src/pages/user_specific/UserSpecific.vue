@@ -1,6 +1,9 @@
 <template>
   <div><AddUserFields /></div>
-  <button @click="save">SAVE</button>
+  <button @click="save" type="button" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-danger" @click="deleteUser">
+    Eliminar
+  </button>
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
@@ -14,6 +17,9 @@ export default {
     save() {
       //update database user throught api and automatically the array
       this.$store.commit("deleteUser");
+      return null;
+    },
+    delteuser() {
       return null;
     },
   },
