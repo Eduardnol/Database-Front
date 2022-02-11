@@ -55,4 +55,23 @@ export default class MongoDBconn {
             return data;
         }
     }
+    async deletePerson(personId) {
+        const response = await fetch(`http://localhost:8080/api/v1/people/deletebyid`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },//important to specify the headers as a JSON
+            params: { id : personId }
+            //We pass into a JSON string the parameters to the api
+        })
+        const data = response.json(); //The data fetched by the api is converted into json data
+
+        //Now its time to check the error codes
+        if (response.status == 500) {
+            return "Bad Parameters";
+        }
+        if (response.status == 200) {
+            //Process response
+            return data;
+        }
+
+    }
 }

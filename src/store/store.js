@@ -47,6 +47,11 @@ export const store = createStore({
         addUser(state, person) {
             state.persons.addUser(person)
         },
+        deleteFromArray(state, person) {
+            const i = state.persons.map(item => item.id).indexOf(person.id);
+            state.someArrayofObjects.splice(i, 1);
+        }
+
 
     }
 }

@@ -3,7 +3,7 @@
     <div class="container-md">
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Nombre</p>
+          <p class="form">Nombre</p>
         </div>
         <div class="col-auto">
           <input
@@ -16,7 +16,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Apellido1</p>
+          <p class="form">Apellido1</p>
         </div>
         <div class="col-auto">
           <input
@@ -29,7 +29,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Apellido2</p>
+          <p class="form">Apellido2</p>
         </div>
         <div class="col-auto">
           <input
@@ -42,7 +42,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Cumpleaños</p>
+          <p class="form">Cumpleaños</p>
         </div>
         <div class="col-auto">
           <input v-model="person.birthday" class="form-control" type="date" />
@@ -50,7 +50,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Fecha</p>
+          <p class="form">Fecha</p>
         </div>
         <div class="col-auto">
           <input v-model="person.saint" class="form-control" type="date" />
@@ -58,7 +58,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Email</p>
+          <p class="form">Email</p>
         </div>
         <div class="col-auto">
           <input
@@ -72,7 +72,7 @@
       </div>
       <div class="row mt-3">
         <div class="col-auto me-auto">
-          <p>Posicion</p>
+          <p class="form">Posición</p>
         </div>
         <div class="col-auto">
           <input
@@ -109,6 +109,9 @@ export default {
 };
 </script>
 <style scoped>
+.form {
+  font-weight: bold;
+}
 .field {
   display: flex;
   flex-direction: row;

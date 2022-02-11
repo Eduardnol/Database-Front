@@ -1,12 +1,16 @@
 <template>
   <div><AddUserFields /></div>
-  <button @click="save" type="button" class="btn btn-primary">Guardar</button>
-  <button type="button" class="btn btn-danger" @click="deleteUser">
-    Eliminar
-  </button>
+
+  <div class="button-group">
+    <button @click="save" type="button" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-danger" @click="deleteuser">
+      Eliminar
+    </button>
+  </div>
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
+import MongoDBconn from "../../services/MongoDBconn.js";
 export default {
   name: "UserSpecific",
   components: { AddUserFields },
@@ -15,11 +19,14 @@ export default {
       return this.$store.getters.getArrItem(this.$route.params.id);
     },
     save() {
-      //update database user throught api and automatically the array
-      this.$store.commit("deleteUser");
       return null;
     },
-    delteuser() {
+    deleteuser() {
+      //update database user throught api and automatically the array
+      let deletion = new MongoDBconn();
+      deletion.deletePerson(this.$store.state.person.id);
+      this.$store.commit("deleteFromArray", this.getPerson);
+      this.$store.commit("deleteUser");
       return null;
     },
   },
@@ -28,4 +35,8 @@ export default {
   },
 };
 </script>
-<style lang="stylus" scoped></style>
+<style scoped>
+.button-group {
+  margin: 60px;
+}
+</style>
