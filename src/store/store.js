@@ -49,7 +49,7 @@ export const store = createStore({
         },
         deleteFromArray(state, person) {
             const i = state.persons.map(item => item.id).indexOf(person.id);
-            state.someArrayofObjects.splice(i, 1);
+            state.persons.splice(i, 1);
         }
 
 
