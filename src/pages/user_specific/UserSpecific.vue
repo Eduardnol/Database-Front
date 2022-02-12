@@ -63,6 +63,12 @@ export default {
 };
 </script>
 <style scoped>
+body {
+  background-image: url("../../assets/bg-footer-transparent.png");
+  background-color: var(--light_blue);
+  background-size: 20%;
+  color: white;
+}
 .button-group {
   margin: 60px;
 }
