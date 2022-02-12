@@ -1,5 +1,5 @@
 <template>
-  <div><AddUserFields /></div>
+  <div class="userfields"><AddUserFields /></div>
 
   <div class="button-group">
     <button
@@ -71,5 +71,30 @@ body {
 }
 .button-group {
   margin: 60px;
+}
+.userfields {
+  background: rgba(255, 255, 255, 0.45);
+  /*box-shadow: 0 8px 7px 0 var(--white);*/
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+@media (max-width: 600px) {
+  .userfields {
+    margin-right: 2%;
+    margin-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+}
+
+@media (min-width: 600px) {
+  .userfields {
+    margin-right: 20%;
+    margin-left: 20%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
 }
 </style>
