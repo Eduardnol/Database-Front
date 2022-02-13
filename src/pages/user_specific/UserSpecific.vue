@@ -73,7 +73,7 @@ body {
   margin: 60px;
 }
 .userfields {
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--card-white);
   /*box-shadow: 0 8px 7px 0 var(--white);*/
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);

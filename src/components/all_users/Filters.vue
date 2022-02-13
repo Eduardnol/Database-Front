@@ -33,6 +33,12 @@ export default {
 </script>
 <style scoped>
 .allfilters {
+  background: var(--card-white);
+  /*box-shadow: 0 8px 7px 0 var(--white);*/
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   display: grid;
   grid-template-columns: repeat(2, 180px);
   grid-column-gap: 100px;
