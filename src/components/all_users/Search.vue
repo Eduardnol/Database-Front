@@ -6,7 +6,7 @@
       type="search"
       class="form-control"
       v-model="keyword"
-      placeholder="Search..."
+      placeholder="Search... "
       @keypress.enter="search"
     />
   </div>

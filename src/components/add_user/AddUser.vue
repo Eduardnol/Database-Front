@@ -2,13 +2,14 @@
   <!-- Button trigger modal -->
   <button
     type="button"
+    class="align-middle"
     id="searchButton"
     data-bs-toggle="modal"
     data-bs-target="#staticBackdrop"
   >
-    Añadir Nuevo Usuario
+    Añadir Usuario
     <!-- Icon -->
-    <i class="bi bi-plus"></i>
+    <i class="bi bi-plus align-middle"></i>
   </button>
   <!-- Modal -->
   <div

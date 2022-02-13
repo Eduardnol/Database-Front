@@ -1,6 +1,6 @@
 <template>
   <div class="person">
-    <div class="icon"></div>
+    <div class="icon"><i class="bi bi-person-circle"></i></div>
     <div class="textinfo">
       <div class="basic">
         <p id="name">{{ nombre }}</p>
@@ -9,7 +9,7 @@
       </div>
       <p id="email">{{ email }}</p>
       <p id="birthday">{{ birthday }}</p>
-      <p>{{id}}</p>
+      <p>{{ id }}</p>
     </div>
   </div>
 </template>
@@ -83,6 +83,9 @@ export default {
   background-color: var(--orange);
   border-radius: 50%;
   display: inline-block;
+  font-size: 70px;
+  text-align: center;
+  justify-content: center;
 }
 .textinfo {
   flex-grow: 2;
