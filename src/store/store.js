@@ -4,7 +4,6 @@ export const store = createStore({
     state() {
         return {
             person: {
-                id: "",
                 nombre: "",
                 apellido: "",
                 apellido2: "",
@@ -12,6 +11,7 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
+                extras: { selected: "", name: "", tagname: "" },
             },
             persons: [{
                 id: "",
@@ -22,6 +22,7 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
+                extras: { selected: "", name: "", tagname: "" },
             }]
         }
 
