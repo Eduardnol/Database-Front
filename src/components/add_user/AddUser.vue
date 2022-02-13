@@ -7,8 +7,9 @@
     data-bs-target="#staticBackdrop"
   >
     Añadir Nuevo Usuario
+    <!-- Icon -->
+    <i class="bi bi-plus"></i>
   </button>
-
   <!-- Modal -->
   <div
     class="modal fade"
@@ -85,5 +86,8 @@ export default {
 <style scoped>
 .modal-dialog {
   color: black;
+}
+.bi.bi-plus {
+  font-size: 30px;
 }
 </style>
