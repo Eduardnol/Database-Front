@@ -26,6 +26,7 @@ export default {
     birthday: Date,
     saint: Date,
     dni: String,
+    extras: [],
   },
 };
 </script>
@@ -53,7 +54,7 @@ export default {
   width: 450px;
   height: 135px;
 
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--card-white);
   /*box-shadow: 0 8px 7px 0 var(--white);*/
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
