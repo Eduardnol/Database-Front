@@ -72,7 +72,6 @@ body {
   background-image: url("../../assets/bg-footer-transparent.png");
   background-color: var(--light_blue);
   background-size: 20%;
-  color: white;
 }
 .userinfo {
   display: grid;
@@ -85,7 +84,7 @@ body {
 }
 .stats {
   grid-area: 1 / 1 / 2 / 2;
-  margin-left: 35px;
+  margin-left: 35px;  
 }
 .info {
   grid-area: 1 / 2 / 2 / 3;
@@ -94,9 +93,10 @@ body {
 .userfields {
   background: var(--card-white);
   /*box-shadow: 0 8px 7px 0 var(--white);*/
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  padding-bottom: 14px;
 }
 </style>

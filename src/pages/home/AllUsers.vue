@@ -64,7 +64,7 @@ body {
   background-image: url("../../assets/bg-footer-transparent.png");
   background-color: var(--light_blue);
   background-size: 20%;
-  color: white;
+  color: var(--text-black);
 }
 .component {
   display: grid;

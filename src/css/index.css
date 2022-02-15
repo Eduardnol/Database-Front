@@ -6,6 +6,7 @@
   --light_blue: #a3c2ff;
   --dark_orange: #bb7e10;
   --card-white: rgba(255, 255, 255, 0.45);
+  --text-black: #4f4f4f;
 }
 #searchButton {
   background-color: orange;
