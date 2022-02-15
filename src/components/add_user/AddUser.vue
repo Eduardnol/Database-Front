@@ -11,7 +11,6 @@
     <!-- Icon -->
     <i class="bi bi-plus align-middle"></i>
   </button>
-
   <!-- Modal -->
   <div
     class="modal fade"
@@ -77,7 +76,6 @@ export default {
     cancelUser() {
       this.$store.commit("deleteUser");
     },
-
   },
   computed: {
     person_ret() {
@@ -87,12 +85,6 @@ export default {
 };
 </script>
 <style scoped>
-#searchButton:active {
-  color: white;
-  background-color: darkorange;
-  transform: translateY(4px);
-  box-shadow: 0px 0px 0px gray;
-}
 .modal-dialog {
   color: black;
 }
