@@ -3,7 +3,7 @@
     <input
       type="text"
       class="form-control"
-      v-model="person.extras.tagname"
+      v-model="extras[this.fieldId].tagname"
       placeholder="Etiqueta"
     />
   </div>
@@ -12,7 +12,7 @@
     <select
       class="form-select"
       aria-label="Default select example"
-      v-model="person.extras.selected"
+      v-model="extras[this.fieldId].selected"
     >
       <option disabled value="">Seleccionar Tipo</option>
       <option value="text">Texto</option>
@@ -23,28 +23,29 @@
 
   <div class="col-auto">
     <input
-      :type="person.extras.selected"
+      :type="extras[this.fieldId].selected"
       class="form-control"
-      v-model="person.extras.name"
-      :placeholder="person.extras.selected"
+      v-model="extras[this.fieldId].name"
+      :placeholder="extras[this.fieldId].selected"
     />
   </div>
 </template>
 <script>
 export default {
   name: "AddUserFieldsCustom",
-  props: {
-    id: Number,
-  },
   computed: {
-    person: {
+    extras: {
       get() {
-        return this.$store.state.person;
+        //Returns the extra field of a person
+        return this.$store.state.person.extras;
       },
       set(value) {
-        this.$store.commit("insertUser", value);
+        this.$store.commit("addAnExtraField", value);
       },
     },
+  },
+  props: {
+    fieldId: Number,
   },
 };
 </script>

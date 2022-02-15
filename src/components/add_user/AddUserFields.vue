@@ -88,11 +88,7 @@
         v-for="customField in person.extras"
         :key="customField.id"
       >
-        <AddUserFieldsCustom
-          :selected="customField.selected"
-          :tagname="customField.tagname"
-          :name="customField.name"
-        />
+        <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)" />
       </div>
     </div>
   </div>
@@ -112,6 +108,12 @@ export default {
       set(value) {
         this.$store.commit("insertUser", value);
       },
+    },
+  },
+  methods: {
+    getCustomFieldId(element) {
+      //Returns id of the element of the internal extra array
+      return this.person.extras.map((item) => item.id).indexOf(element);
     },
   },
 };

@@ -44,7 +44,7 @@ export const store = createStore({
                 state.person.birthday = "",
                 state.person.saint = "",
                 state.person.dni = "",
-                state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }]
+                state.person.extras = [{ id: "", selected: "", name: "", tagname: "" }]
         },
         addUser(state, person) {
             state.persons.addUser(person)
@@ -57,6 +57,9 @@ export const store = createStore({
 
             const i = state.persons.extras.map(item => item.id).indexOf(extra.id);
             state.persons.splice(i, 1);
+        },
+        addAnExtraField(state, person) {
+            state.person.extra = person
         }
 
 
