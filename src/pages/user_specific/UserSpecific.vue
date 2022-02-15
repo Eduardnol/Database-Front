@@ -1,5 +1,10 @@
 <template>
-  <div class="userfields"><AddUserFields /></div>
+  <div class="userinfo">
+    <div class="userfields stats">
+      <p>ID: {{ this.$store.state.person.id }}</p>
+    </div>
+    <div class="userfields info"><AddUserFields /></div>
+  </div>
 
   <div class="button-group">
     <button
@@ -69,8 +74,22 @@ body {
   background-size: 20%;
   color: white;
 }
+.userinfo {
+  display: grid;
+  grid-template-columns: repeat(3);
+  grid-column-gap: 35px;
+  grid-row-gap: 0px;
+}
 .button-group {
   margin: 60px;
+}
+.stats {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-left: 35px;
+}
+.info {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-right: 35px;
 }
 .userfields {
   background: var(--card-white);
@@ -79,22 +98,5 @@ body {
   -webkit-backdrop-filter: blur(8px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-}
-@media (max-width: 600px) {
-  .userfields {
-    margin-right: 2%;
-    margin-left: 2%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-  }
-}
-
-@media (min-width: 600px) {
-  .userfields {
-    margin-right: 20%;
-    margin-left: 20%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-  }
 }
 </style>
