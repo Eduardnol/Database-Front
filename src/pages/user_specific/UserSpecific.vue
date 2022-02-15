@@ -6,6 +6,7 @@
       <p>Creado el: {{ this.$store.state.person.id }}</p>
 
       <p>Archivos: {{ this.$store.state.person.id }}</p>
+      <UserFile />
     </div>
     <div class="userfields info"><AddUserFields /></div>
   </div>
@@ -39,9 +40,10 @@
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn.js";
+import UserFile from "../../components/file/UserFile.vue";
 export default {
   name: "UserSpecific",
-  components: { AddUserFields },
+  components: { AddUserFields, UserFile },
   computed: {
     getPerson() {
       return this.$store.getters.getArrItem(this.$route.params.id);
