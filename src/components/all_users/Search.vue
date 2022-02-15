@@ -1,6 +1,8 @@
 <template>
   <div id="keyword">
-    <button id="searchButton" @click="search">SEARCH</button>
+    <button id="searchButton" @click="search">
+      SEARCH <i class="bi bi-search"></i>
+    </button>
     <input
       type="search"
       class="form-control"
