@@ -113,7 +113,11 @@ export default {
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
-      return this.person.extras.map((item) => item.id).indexOf(element);
+      let number = this.person.extras.map((item) => item.id).indexOf(element);
+      if (number < 0) number = 0;
+      console.log("El ID es: " + number);
+      console.log("La longitud es" + this.person.extras.length);
+      return number;
     },
   },
 };
