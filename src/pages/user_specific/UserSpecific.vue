@@ -6,7 +6,7 @@
       <p>Creado el: {{ this.$store.state.person.id }}</p>
 
       <p>Archivos: {{ this.$store.state.person.id }}</p>
-      <UserFile />
+      <UserFile :filename="'user-info.pdf'" />
     </div>
     <div class="userfields info"><AddUserFields /></div>
   </div>
