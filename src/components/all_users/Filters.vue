@@ -43,6 +43,8 @@ export default {
   grid-template-columns: repeat(2, 180px);
   grid-column-gap: 100px;
   grid-row-gap: 50px;
+  padding-bottom: 14px;
+  padding-top: 14px;
 }
 .field {
   display: flex;

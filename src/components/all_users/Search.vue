@@ -1,6 +1,5 @@
 <template>
   <div id="keyword">
-    <button id="searchButton" @click="getall">ALL</button>
     <button id="searchButton" @click="search">SEARCH</button>
     <input
       type="search"
@@ -25,12 +24,6 @@ export default {
     search() {
       let search = new MongoDBconn();
       search.searchValue(this.keyword).then((data) => {
-        console.log(data), (this.$store.state.persons = data);
-      });
-    },
-    getall() {
-      let search = new MongoDBconn();
-      search.getAllPeople().then((data) => {
         console.log(data), (this.$store.state.persons = data);
       });
     },

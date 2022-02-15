@@ -6,6 +6,10 @@
     </div>
     <div class="adduser"><AddUser /></div>
     <div class="filters"><Filters /></div>
+
+    <button id="searchButton" @click="getall">Ver todos 
+      <i class="bi bi-people-fill"></i>
+    </button>
     <ul class="person_grid scrollable">
       <li
         class="list_item"
@@ -31,6 +35,7 @@ import Person from "../../components/all_users/Person.vue";
 import Search from "../../components/all_users/Search.vue";
 import Filters from "../../components/all_users/Filters.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
+import MongoDBconn from "../../services/MongoDBconn";
 
 export default {
   name: "AllUsers",
@@ -52,6 +57,12 @@ export default {
         params: { id: identificator },
       });
     },
+    getall() {
+      let search = new MongoDBconn();
+      search.getAllPeople().then((data) => {
+        console.log(data), (this.$store.state.persons = data);
+      });
+    },
   },
 };
 </script>
@@ -60,6 +71,12 @@ export default {
 @import "../../css/normalize.css";
 @import "../../css/index.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#searchButton:active {
+  color: white;
+  background-color: darkorange;
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0px gray;
+}
 body {
   background-image: url("../../assets/bg-footer-transparent.png");
   background-color: var(--light_blue);
