@@ -27,7 +27,8 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 25px;
   color: red;
-  max-width: 500px;
+  width: 500px;
+  margin: 10px;
 }
 .filename {
   color: black;

@@ -7,6 +7,10 @@
 
       <p>Archivos: {{ this.$store.state.person.id }}</p>
       <UserFile :filename="'user-info.pdf'" />
+      <UserFile :filename="'user-info.pdf'" />
+      <UserFile :filename="'user-info.pdf'" />
+      <UserFile :filename="'user-info.pdf'" />
+      <UserFile :filename="'user-info.pdf'" />
     </div>
     <div class="userfields info"><AddUserFields /></div>
   </div>
@@ -91,6 +95,9 @@ body {
 .stats {
   grid-area: 1 / 1 / 2 / 2;
   margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .info {
   grid-area: 1 / 2 / 2 / 3;
