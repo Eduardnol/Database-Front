@@ -11,7 +11,7 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
-                extras: { selected: "", name: "", tagname: "" },
+                extras: [{ id: 0, selected: "", name: "", tagname: "" }],
             },
             persons: [{
                 id: "",
@@ -22,7 +22,7 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
-                extras: { selected: "", name: "", tagname: "" },
+                extras: [{ id: 0, selected: "", name: "", tagname: "" }],
             }]
         }
 
@@ -43,7 +43,8 @@ export const store = createStore({
                 state.person.email = "",
                 state.person.birthday = "",
                 state.person.saint = "",
-                state.person.dni = ""
+                state.person.dni = "",
+                state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }]
         },
         addUser(state, person) {
             state.persons.addUser(person)

@@ -67,6 +67,7 @@ export default {
   },
   methods: {
     getToPage() {
+      this.$store.commit("deleteUser");
       this.$router.push({
         name: "AllUsers",
       });

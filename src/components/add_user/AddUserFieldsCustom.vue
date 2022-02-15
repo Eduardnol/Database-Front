@@ -33,6 +33,9 @@
 <script>
 export default {
   name: "AddUserFieldsCustom",
+  props: {
+    id: Number,
+  },
   computed: {
     person: {
       get() {

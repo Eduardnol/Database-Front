@@ -83,8 +83,16 @@
           />
         </div>
       </div>
-      <div class="row mt-3">
-        <AddUserFieldsCustom />
+      <div
+        class="row mt-3"
+        v-for="customField in person.extras"
+        :key="customField.id"
+      >
+        <AddUserFieldsCustom
+          :selected="customField.selected"
+          :tagname="customField.tagname"
+          :name="customField.name"
+        />
       </div>
     </div>
   </div>
