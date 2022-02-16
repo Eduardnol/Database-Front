@@ -83,6 +83,10 @@
           />
         </div>
       </div>
+      <div class="row mt-3">
+        <AddUserFieldsSacraments />
+      </div>
+
       <div
         class="row mt-3"
         v-for="customField in person.extras"
@@ -95,10 +99,12 @@
 </template>
 <script>
 import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
+import AddUserFieldsSacraments from "./AddUserFieldsSacraments.vue";
 export default {
   name: "AddUserFields",
   components: {
     AddUserFieldsCustom,
+    AddUserFieldsSacraments,
   },
   computed: {
     person: {
