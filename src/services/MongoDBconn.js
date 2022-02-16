@@ -39,8 +39,6 @@ export default class MongoDBconn {
 
     }
     async postPerson(person) {
-        
-        console.log(person);
 
         const response = await fetch(`http://localhost:8080/api/v1/people/insertnew/`, {
             method: 'POST',
@@ -55,6 +53,9 @@ export default class MongoDBconn {
         }
         if (response.status == 200) {
             //Process response
+            return data;
+        }
+        else {
             return data;
         }
     }
