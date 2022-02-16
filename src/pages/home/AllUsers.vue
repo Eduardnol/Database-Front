@@ -9,7 +9,7 @@
 
     <div class="dropdown order">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        class="btn btn-secondary dropdown-toggle dropButton"
         type="button"
         id="dropdownMenuButton1"
         data-bs-toggle="dropdown"
@@ -18,9 +18,11 @@
         <i class="bi bi-sort-alpha-down"></i> Ordenar
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Nombre</a></li>
-        <li><a class="dropdown-item" href="#">Apellido</a></li>
-        <li><a class="dropdown-item" href="#">Fecha de Nacimiento</a></li>
+        <li><a class="dropdown-item" @click="orderByName">Nombre</a></li>
+        <li><a class="dropdown-item" @click="orderBySurname">Apellido</a></li>
+        <li>
+          <a class="dropdown-item" @click="orderByBirth">Fecha de Nacimiento</a>
+        </li>
       </ul>
     </div>
     <button id="searchButton" class="all" @click="getall">
@@ -78,6 +80,15 @@ export default {
       search.getAllPeople().then((data) => {
         console.log(data), (this.$store.state.persons = data);
       });
+    },
+    orderByName() {
+      console.log("Order By Name");
+    },
+    orderBySurname() {
+      console.log("Order By Surname");
+    },
+    orderByBirthday() {
+      console.log("Order by birth");
     },
   },
 };
