@@ -50,7 +50,7 @@ export default {
   components: { AddUserFields, UserFile },
   computed: {
     getPerson() {
-      return this.$store.getters.getArrItem(this.$route.params.id);
+      return JSON.parse(JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id)));
     },
     save() {
       let update = new MongoDBconn();

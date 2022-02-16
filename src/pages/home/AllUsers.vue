@@ -22,7 +22,7 @@
           :nombre="person.nombre"
           :email="person.email"
           :apellido="person.apellido"
-          :apellido2="HELLO"
+          :apellido2="person.apellido2"
           :birthday="person.birthday"
         />
       </li>
