@@ -48,6 +48,7 @@ export default {
   padding-bottom: 14px;
   padding-top: 14px;
 }
+
 .field {
   display: flex;
   flex-direction: row;
