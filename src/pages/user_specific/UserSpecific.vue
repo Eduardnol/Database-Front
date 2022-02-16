@@ -50,7 +50,7 @@ export default {
   components: { AddUserFields, UserFile },
   computed: {
     getPerson() {
-      return JSON.parse(JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id)));
+      return JSON.parse(JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id))); //Makes a copy about the state in vuex store and returns it
     },
     save() {
       let update = new MongoDBconn();
@@ -74,7 +74,7 @@ export default {
     },
   },
   beforeMount() {
-    this.$store.commit("insertUser", this.getPerson);
+    this.$store.commit("insertUser", this.getPerson); //Get a copy of the state and save it into the "working" state person
   },
 };
 </script>
