@@ -50,7 +50,9 @@ export default {
   components: { AddUserFields, UserFile },
   computed: {
     getPerson() {
-      return JSON.parse(JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id))); //Makes a copy about the state in vuex store and returns it
+      return JSON.parse(
+        JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id))
+      ); //Makes a copy about the state in vuex store and returns it
     },
     //Saves into the database the user we just updated
     save() {
@@ -88,7 +90,7 @@ body {
 }
 .userinfo {
   display: grid;
-  grid-template-columns: repeat(3);
+  grid-template-columns: repeat(3, 615px);
   grid-column-gap: 35px;
   grid-row-gap: 0px;
 }
@@ -103,7 +105,7 @@ body {
   align-items: center;
 }
 .info {
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: 1 / 2 / 2 / 4;
   margin-right: 35px;
 }
 .userfields {
