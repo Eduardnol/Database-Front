@@ -15,7 +15,7 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        Ordenar
+        <i class="bi bi-sort-alpha-down"></i> Ordenar
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" href="#">Nombre</a></li>
@@ -24,8 +24,7 @@
       </ul>
     </div>
     <button id="searchButton" class="all" @click="getall">
-      Ver todos
-      <i class="bi bi-people-fill"></i>
+      <i class="bi bi-people-fill"></i> Ver todos
     </button>
     <ul class="person_grid scrollable">
       <li

@@ -24,10 +24,10 @@
       type="button"
       class="btn btn-primary"
     >
-      Guardar
+      <i class="bi bi-cloud-arrow-up"></i> Guardar
     </button>
     <button @click="getToPage" type="button" class="btn btn-primary">
-      HOME
+      <i class="bi bi-house"></i> HOME
     </button>
     <button
       type="button"
@@ -37,7 +37,7 @@
         getToPage;
       "
     >
-      Eliminar
+      <i class="bi bi-trash3"></i> Eliminar
     </button>
   </div>
 </template>

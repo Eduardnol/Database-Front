@@ -7,9 +7,9 @@
     data-bs-toggle="modal"
     data-bs-target="#staticBackdrop"
   >
-    Añadir Usuario
     <!-- Icon -->
     <i class="bi bi-plus align-middle"></i>
+    Añadir Usuario
   </button>
   <!-- Modal -->
   <div
@@ -47,14 +47,14 @@
             @click="cancelUser"
             data-bs-dismiss="modal"
           >
-            Cerrar
+            <i class="bi bi-x-circle"></i> Cancelar
           </button>
           <button
             type="button"
             class="btn btn-primary"
             @click="sendNewUserToDatabase"
           >
-            Guardar
+            <i class="bi bi-cloud-arrow-up"></i> Guardar
           </button>
         </div>
       </div>
