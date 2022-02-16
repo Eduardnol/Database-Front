@@ -7,7 +7,24 @@
     <div class="adduser"><AddUser /></div>
     <div class="filters"><Filters /></div>
 
-    <button id="searchButton" @click="getall">Ver todos 
+    <div class="dropdown order">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Ordenar
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Nombre</a></li>
+        <li><a class="dropdown-item" href="#">Apellido</a></li>
+        <li><a class="dropdown-item" href="#">Fecha de Nacimiento</a></li>
+      </ul>
+    </div>
+    <button id="searchButton" class="all" @click="getall">
+      Ver todos
       <i class="bi bi-people-fill"></i>
     </button>
     <ul class="person_grid scrollable">
@@ -94,6 +111,14 @@ body {
 }
 .filters {
   grid-area: 2 / 5 / 6 / 6;
+}
+.all {
+  grid-area: 1 / 2 / 2 / 3;
+  justify-self: end;
+}
+.order {
+  grid-area: 1 / 2 / 2 / 3;
+  justify-self: start;
 }
 .list_item {
   list-style-type: none;
