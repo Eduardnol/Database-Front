@@ -37,7 +37,8 @@ export const store = createStore({
             state.person = person
         },
         deleteUser(state) {
-            state.person.nombre = "",
+            state.person.id = "",
+                state.person.nombre = "",
                 state.person.apellido = "",
                 state.person.apellido2 = "",
                 state.person.email = "",
