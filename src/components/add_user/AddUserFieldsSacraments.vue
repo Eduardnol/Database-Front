@@ -4,7 +4,8 @@
       <input
         class="form-check-input"
         type="checkbox"
-        value="1"
+        value=""
+        v-model="person.sacraments.bautismo"
         id="flexCheckDefault"
         checked
       />
@@ -16,7 +17,8 @@
       <input
         class="form-check-input"
         type="checkbox"
-        value="2"
+        value=""
+        v-model="person.sacraments.comunion"
         id="flexCheckDefault"
         checked
       />
@@ -28,7 +30,8 @@
       <input
         class="form-check-input"
         type="checkbox"
-        value="3"
+        value=""
+        v-model="person.sacraments.confirmacion"
         id="flexCheckDefault"
         checked
       />
@@ -42,7 +45,8 @@
       <input
         class="form-check-input"
         type="checkbox"
-        value="4"
+        value=""
+        v-model="person.sacraments.matrimonio"
         id="flexCheckDefault"
         checked
       />
@@ -55,7 +59,16 @@
 <script>
 export default {
   name: "AddUserFieldsSacraments",
-  setup() {},
+  computed: {
+    person: {
+      get() {
+        return this.$store.state.person;
+      },
+      set(value) {
+        this.$store.commit("insertUser", value);
+      },
+    },
+  },
 };
 </script>
 <style scoped></style>
