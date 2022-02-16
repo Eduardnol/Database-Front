@@ -52,6 +52,7 @@ export default {
     getPerson() {
       return JSON.parse(JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id))); //Makes a copy about the state in vuex store and returns it
     },
+    //Saves into the database the user we just updated
     save() {
       let update = new MongoDBconn();
       update.updatePerson(this.$store.state.person);
@@ -66,6 +67,7 @@ export default {
     },
   },
   methods: {
+    //this will delete the working state person and return to the user home
     getToPage() {
       this.$store.commit("deleteUser");
       this.$router.push({
