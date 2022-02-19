@@ -41,6 +41,7 @@ export default {
   font-size: 20px;
   font-weight: bold;
 }
+
 #email,
 #birthday {
   font-size: 13px;
