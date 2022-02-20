@@ -41,8 +41,8 @@
           :email="person.email"
           :apellido="person.apellido"
           :apellido2="person.apellido2"
-          :birthday="new Date(person.birthday)" <!-- Cambiar entre date y string -->
-        />
+          :birthday="new Date(person.birthday)" 
+        /><!-- Cambiar entre date y string -->
       </li>
     </ul>
   </div>
