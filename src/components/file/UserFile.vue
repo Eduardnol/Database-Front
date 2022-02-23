@@ -13,6 +13,7 @@ export default {
   methods: {
     openFile() {
       console.log("File being opened");
+      //Send file name
     },
   },
 };

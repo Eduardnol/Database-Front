@@ -41,8 +41,8 @@
           :email="person.email"
           :apellido="person.apellido"
           :apellido2="person.apellido2"
-          :birthday="person.birthday"
-        />
+          :birthday="new Date(person.birthday)" 
+        /><!-- Cambiar entre date y string -->
       </li>
     </ul>
   </div>
@@ -83,6 +83,10 @@ export default {
     },
     orderByName() {
       console.log("Order By Name");
+      let search = new MongoDBconn();
+      search.getAllPeopleOrder("name", "asc").then((data) => {
+        console.log(data), (this.$store.state.persons = data);
+      });
     },
     orderBySurname() {
       console.log("Order By Surname");

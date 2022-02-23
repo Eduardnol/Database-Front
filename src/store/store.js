@@ -4,6 +4,7 @@ export const store = createStore({
     state() {
         return {
             person: {
+                id: null,
                 nombre: "",
                 apellido: "",
                 apellido2: "",
@@ -11,10 +12,11 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
+                sacraments: { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 extras: [{ id: 0, selected: "", name: "", tagname: "" }],
             },
             persons: [{
-                id: "",
+                id: null,
                 nombre: "",
                 apellido: "",
                 apellido2: "",
@@ -22,6 +24,7 @@ export const store = createStore({
                 birthday: "",
                 saint: "",
                 dni: "",
+                sacraments: { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 extras: [{ id: 0, selected: "", name: "", tagname: "" }],
             }]
         }
@@ -37,7 +40,7 @@ export const store = createStore({
             state.person = person
         },
         deleteUser(state) {
-            state.person.id = "",
+            state.person.id = null,
                 state.person.nombre = "",
                 state.person.apellido = "",
                 state.person.apellido2 = "",
@@ -45,6 +48,7 @@ export const store = createStore({
                 state.person.birthday = "",
                 state.person.saint = "",
                 state.person.dni = "",
+                state.person.sacraments = { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }]
         },
         addUser(state, person) {

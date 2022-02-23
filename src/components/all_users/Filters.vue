@@ -9,7 +9,7 @@
     <p><i class="bi bi-calendar3-range"></i>Fecha</p>
     <input v-model="dateSaint" class="form-control" type="date" />
 
-    <p><i class="bi bi-tag-fill"></i>Posicion</p>
+    <p><i class="bi bi-tag-fill"></i>Posición</p>
 
     <input
       type="text"
@@ -48,6 +48,7 @@ export default {
   padding-bottom: 14px;
   padding-top: 14px;
 }
+
 .field {
   display: flex;
   flex-direction: row;
