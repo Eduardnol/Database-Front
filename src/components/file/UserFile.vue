@@ -1,7 +1,19 @@
 <template>
-  <div @click="openFile" class="pdf">
+  <div class="pdf">
     <i class="bi bi-file-earmark-pdf-fill"></i>
     <p class="filename">{{ filename }}</p>
+    <div class="buttons">
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        @click="downloadAction"
+      >
+        <i class="bi bi-cloud-download-fill download"></i>
+      </button>
+      <button type="button" class="btn btn-outline-danger">
+        <i class="bi bi-trash3-fill delete"></i>
+      </button>
+    </div>
   </div>
 </template>
 <script>
@@ -15,6 +27,8 @@ export default {
       console.log("File being opened");
       //Send file name
     },
+    deleteAction() {},
+    downloadAction() {},
   },
 };
 </script>
@@ -33,5 +47,15 @@ export default {
 }
 .filename {
   color: black;
+}
+.buttons {
+  margin-left: auto;
+}
+.delete {
+  padding: 4px;
+}
+.download {
+  padding: 4px;
+  margin-right: 4px;
 }
 </style>
