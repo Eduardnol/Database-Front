@@ -35,7 +35,6 @@
         :key="person.id"
         @click="getToPage(person.id)"
       >
-      
         <Person
           :id="person.id"
           :nombre="person.nombre"
