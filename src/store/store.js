@@ -14,6 +14,7 @@ export const store = createStore({
                 dni: "",
                 sacraments: { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 extras: [{ id: 0, selected: "", name: "", tagname: "" }],
+                fileStorage: [{ name: null, url: null }],
             },
             persons: [{
                 id: null,
@@ -26,6 +27,7 @@ export const store = createStore({
                 dni: "",
                 sacraments: { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 extras: [{ id: 0, selected: "", name: "", tagname: "" }],
+                fileStorage: [{ name: null, url: null }],
             }]
         }
 
@@ -50,6 +52,7 @@ export const store = createStore({
                 state.person.dni = "",
                 state.person.sacraments = { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
                 state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }]
+            state.person.fileStorage = [{ name: null, url: null }],
         },
         addUser(state, person) {
             state.persons.addUser(person)
