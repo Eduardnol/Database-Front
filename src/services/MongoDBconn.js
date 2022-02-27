@@ -118,4 +118,22 @@ export default class MongoDBconn {
         }
 
     }
+
+    async getAllUserFiles(userid) {
+        let url = `http://localhost:8080/api/v1/files/?id=${userid}`
+        const response = await fetch(url, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const data = response.json();
+        //Now its time to check the error codes
+        if (response.status == 500) {
+            return "Bad Parameters";
+        }
+        if (response.status == 200) {
+            //Process response
+            return data;
+        }
+
+    }
 }
