@@ -51,8 +51,8 @@ export const store = createStore({
                 state.person.saint = "",
                 state.person.dni = "",
                 state.person.sacraments = { bautismo: false, comunion: false, confirmacion: false, matrimonio: false },
-                state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }]
-            state.person.fileStorage = [{ name: null, url: null }],
+                state.person.extras = [{ id: 0, selected: "", name: "", tagname: "" }],
+                state.person.fileStorage = [{ name: null, url: null }],
         },
         addUser(state, person) {
             state.persons.addUser(person)
