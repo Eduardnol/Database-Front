@@ -8,7 +8,7 @@
         <p id="surname">{{ apellido2 }}</p>
       </div>
       <p id="email">{{ email }}</p>
-      <p id="birthday">{{ birthday }}</p>
+      <p id="birthday">{{ birthday.toLocaleDateString() }}</p>
       <p>{{ id }}</p>
     </div>
   </div>
@@ -68,6 +68,7 @@ export default {
   -o-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
 }
+
 .person:hover {
   transform: scaleY(1);
   background: rgba(255, 255, 255, 0.25);
@@ -77,6 +78,7 @@ export default {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
 .icon {
   margin: 15px;
   height: 100px;
@@ -88,6 +90,7 @@ export default {
   text-align: center;
   justify-content: center;
 }
+
 .textinfo {
   flex-grow: 2;
   justify-self: right;
