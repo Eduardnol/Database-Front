@@ -6,11 +6,16 @@
       <p>Creado el: {{ getPerson.id }}</p>
 
       <p>Archivos: {{ getPerson.id }}</p>
-      <UserFile :filename="'user-info.pdf'"/>
-      <UserFile :filename="'user-info.pdf'"/>
-      <UserFile :filename="'user-info.pdf'"/>
-      <UserFile :filename="'user-info.pdf'"/>
-      <UserFile :filename="'user-info.pdf'"/>
+
+      <ul>
+        <li
+            v-for="file in getPerson.fileStorage"
+            :key="file.url"
+            class="list_item">
+          <UserFile :filename="file.name"/>
+        </li>
+      </ul>
+
     </div>
     <div class="userfields info">
       <AddUserFields/>
