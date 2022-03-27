@@ -55,7 +55,6 @@ export default {
   methods: {
     //this will delete the working state person and return to the user home
     getToPage() {
-      this.$store.commit("deleteUser");
       this.$router.push({
         name: "AllUsers",
       });

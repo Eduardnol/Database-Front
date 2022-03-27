@@ -99,6 +99,12 @@ export default {
       console.log("Order by birth");
     },
   },
+  beforeMount() {
+    let search = new MongoDBconn();
+    search.getAllPeople().then((data) => {
+      console.log(data), (this.$store.state.persons = data);
+    });
+  },
 };
 </script>
 
