@@ -94,6 +94,10 @@ export default {
     },
     orderBySurname() {
       console.log("Order By Surname");
+      let search = new MongoDBconn();
+      search.getAllPeopleOrder("surname", "asc").then((data) => {
+        console.log(data), (this.$store.state.persons = data);
+      });
     },
     orderByBirthday() {
       console.log("Order by birth");
