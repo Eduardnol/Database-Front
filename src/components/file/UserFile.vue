@@ -19,15 +19,18 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "UserFile",
   props: {
     filename: String,
+    url: String,
   },
   methods: {
     deleteAction() {
     },
     downloadAction() {
+      window.open(this.url);
     },
   },
 };

@@ -12,7 +12,7 @@
             v-for="file in getPerson.fileStorage"
             :key="file.url"
             class="list_item">
-          <UserFile :filename="file.name"/>
+          <UserFile :filename="file.name" :url="file.url"/>
         </li>
       </ul>
 
