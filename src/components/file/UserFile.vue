@@ -4,13 +4,15 @@
     <p class="filename">{{ filename }}</p>
     <div class="buttons">
       <button
-        type="button"
-        class="btn btn-outline-primary"
-        @click="downloadAction"
+          class="btn btn-outline-primary"
+          type="button"
+          @click="downloadAction"
       >
         <i class="bi bi-cloud-download-fill download"></i>
       </button>
-      <button type="button" class="btn btn-outline-danger">
+      <button class="btn btn-outline-danger"
+              type="button"
+              @click="deleteAction">
         <i class="bi bi-trash3-fill delete"></i>
       </button>
     </div>
@@ -23,12 +25,10 @@ export default {
     filename: String,
   },
   methods: {
-    openFile() {
-      console.log("File being opened");
-      //Send file name
+    deleteAction() {
     },
-    deleteAction() {},
-    downloadAction() {},
+    downloadAction() {
+    },
   },
 };
 </script>
@@ -45,15 +45,19 @@ export default {
   width: 500px;
   margin: 10px;
 }
+
 .filename {
   color: black;
 }
+
 .buttons {
   margin-left: auto;
 }
+
 .delete {
   padding: 4px;
 }
+
 .download {
   padding: 4px;
   margin-right: 4px;
