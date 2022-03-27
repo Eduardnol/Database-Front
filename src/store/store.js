@@ -51,6 +51,11 @@ export const store = createStore({
             insertUser(state, person) {
                 state.person = person
             },
+            getPersonById(state, id) {
+
+                return state.persons.map(item => item.id).indexOf(id);
+
+            },
             deleteUser(state) {
                 state.person.id = null
                 state.person.nombre = ""
@@ -69,12 +74,9 @@ export const store = createStore({
                 state.person.extras = [{id: 0, selected: "", name: "", tagname: ""}]
                 state.person.fileStorage = [{name: null, url: null}]
             },
-            addUser(state, person) {
-                state.persons.addUser(person)
-            },
             deleteFromArray(state, person) {
-                const i = state.persons.map(item => item.id).indexOf(person.id);
-                state.persons.splice(i, 1);
+                const toBeDeleted = state.persons.map(item => item.id).indexOf(person.id);
+                state.persons.splice(toBeDeleted, 1);
             },
             deleteFromExtraArray(state, extra) {
 
@@ -83,6 +85,12 @@ export const store = createStore({
             },
             addAnExtraField(state, person) {
                 state.person.extra = person
+            },
+            updateView(state, person) {
+                const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);
+                state.persons.splice(toBeUpdated, 1, person);
+                // state.persons.splice(toBeUpdated, 1);
+                // state.persons.push(person);
             }
 
 
