@@ -180,7 +180,7 @@ body {
 
 .scrollable {
   grid-area: 2 / 1 / 6 / 3;
-  height: 700px; /* or any value */
+  height: 800px; /* or any value */
   overflow-y: auto;
   margin: 0px;
 }
