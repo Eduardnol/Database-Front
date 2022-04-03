@@ -157,4 +157,24 @@ export default class MongoDBconn {
             return data;
         }
     }
+
+    async uploadFile(userid, file) {
+        let url = `http://localhost:8080/api/v1/files/upload/${userid}`
+        let uploadFile = new FormData();
+        uploadFile.append('file', file);
+        const response = await fetch(url, {
+            method: "POST",
+            body: uploadFile,
+        })
+        const data = response.json();
+        //Now its time to check the error codes
+        if (response.status === 500) {
+            return "Bad Parameters";
+        }
+        if (response.status === 200) {
+            //Process response
+            return data;
+        }
+    }
+
 }

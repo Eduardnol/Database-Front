@@ -15,6 +15,11 @@
           <UserFile :filename="file.name" :url="file.url"/>
         </li>
       </ul>
+      <!--add a file uploader button-->
+      <button class="btn btn-primary" @click="addFile">Subir</button>
+      <div class="mb-3">
+        <input id="formFile" ref="file" class="form-control" type="file">
+      </div>
 
     </div>
     <div class="userfields info">
@@ -77,6 +82,12 @@ export default {
       deletion.deletePerson(this.$store.state.person.id);
       this.$store.commit("deleteFromArray", this.getPerson);
       this.getToPage();
+    },
+    addFile() {
+      let file = this.$refs.file.files[0];
+      let upload = new MongoDBconn();
+      upload.uploadFile(this.$store.state.person.id, file);
+      this.$store.commit("addFile", this.getPerson);
     },
   },
   beforeMount() {
