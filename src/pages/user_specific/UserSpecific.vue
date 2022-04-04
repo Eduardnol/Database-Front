@@ -85,9 +85,13 @@ export default {
     },
     addFile() {
       let file = this.$refs.file.files[0];
-      let upload = new MongoDBconn();
-      upload.uploadFile(this.$store.state.person.id, file);
-      this.$store.commit("addFile", this.getPerson);
+      if (file != null) {
+
+        let upload = new MongoDBconn();
+        upload.uploadFile(this.$store.state.person.id, file);
+        this.$store.commit("addFile", this.getPerson);
+
+      }
     },
   },
   beforeMount() {
