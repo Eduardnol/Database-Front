@@ -1,11 +1,13 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <p>Identificador de Usuario: {{ getPerson.id }}</p>
+      <h5>Identificador de Usuario: {{ getPerson.id }}</h5>
 
-      <p>Creado el: {{ getPerson.id }}</p>
+      <h5>Creado el: {{
+          getDateAndFormat(getPerson.createdOn)
+        }}</h5>
 
-      <p>Archivos: {{ getPerson.id }}</p>
+      <h5>Archivos:</h5>
 
       <ul>
         <li
@@ -16,10 +18,11 @@
         </li>
       </ul>
       <!--add a file uploader button-->
-      <button class="btn btn-primary" @click="addFile">Subir</button>
-      <div class="mb-3">
+      <div class="d-inline">
         <input id="formFile" ref="file" class="form-control" type="file">
       </div>
+      <button class="btn btn-primary d-inline" @click="addFile">Subir</button>
+
 
     </div>
     <div class="userfields info">
@@ -29,28 +32,76 @@
 
   <div class="button-group">
     <button
-        class="btn btn-primary"
+        class="btn btn-primary m-1"
         type="button"
         @click="saveIntoDatabase"
     >
       <i class="bi bi-cloud-arrow-up"></i> Guardar
     </button>
-    <button @click="getToPage" type="button" class="btn btn-primary">
+    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal"
+            data-bs-target="#dismiss">
       <i class="bi bi-house"></i> HOME
     </button>
     <button
-        class="btn btn-danger"
+        class="btn btn-danger m-1"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
         type="button"
-        @click="deleteuser"
     >
       <i class="bi bi-trash3"></i> Eliminar
     </button>
+  </div>
+  <div class="modal" id="exampleModal" aria-labelledby="exampleModalLabel" tabindex="-1"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Eliminación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea eliminar este usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger"
+                  @click="deleteuser"
+                  data-bs-dismiss="modal">Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="dismiss" aria-labelledby="dismiss" tabindex="-1"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Descarte</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea descartar este usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Editando
+          </button>
+          <button type="button" class="btn btn-warning"
+                  @click="getToPage"
+                  data-bs-dismiss="modal">Descartar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn.js";
 import UserFile from "../../components/file/UserFile.vue";
+import moment from "moment";
 
 export default {
   name: "UserSpecific",
@@ -93,6 +144,12 @@ export default {
 
       }
     },
+    getDateTimeAndFormat(date) {
+      return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
+    },
+    getDateAndFormat(date) {
+      return moment(String(date)).format('DD/MM/YYYY');
+    }
   },
   beforeMount() {
     this.$store.commit("insertUser", this.getPerson); //Get a copy of the state and save it into the "working" state person

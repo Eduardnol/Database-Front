@@ -20,6 +20,7 @@ export const store = createStore({
                     },
                     extras: [{id: 0, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
+                    createdOn: null,
                 },
                 persons: [{
                     id: null,
@@ -38,6 +39,7 @@ export const store = createStore({
                     },
                     extras: [{id: 0, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
+                    createdOn: null,
                 }]
             }
 
@@ -65,6 +67,7 @@ export const store = createStore({
                 state.person.birthday = ""
                 state.person.saint = ""
                 state.person.dni = ""
+                state.person.createdOn = null
                 state.person.sacraments = {
                     bautismo: false,
                     comunion: false,
@@ -83,8 +86,8 @@ export const store = createStore({
                 const i = state.persons.extras.map(item => item.id).indexOf(extra.id);
                 state.persons.splice(i, 1);
             },
-            addAnExtraField(state, person) {
-                state.person.extra = person
+            addAnExtraField(state) {
+                state.person.extras.push({id: 0, selected: "", name: "", tagname: ""})
             },
             updateView(state, person) {
                 const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);

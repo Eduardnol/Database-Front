@@ -7,10 +7,10 @@
         </div>
         <div class="col-auto">
           <input
-            type="text"
-            class="form-control"
-            v-model="person.nombre"
-            placeholder="Nombre"
+              type="text"
+              class="form-control"
+              v-model="person.nombre"
+              placeholder="Nombre"
           />
         </div>
       </div>
@@ -20,10 +20,10 @@
         </div>
         <div class="col-auto">
           <input
-            type="text"
-            class="form-control"
-            v-model="person.apellido"
-            placeholder="Apellido"
+              type="text"
+              class="form-control"
+              v-model="person.apellido"
+              placeholder="Apellido"
           />
         </div>
       </div>
@@ -33,10 +33,10 @@
         </div>
         <div class="col-auto">
           <input
-            type="text"
-            class="form-control"
-            v-model="person.apellido2"
-            placeholder="Apellido2"
+              type="text"
+              class="form-control"
+              v-model="person.apellido2"
+              placeholder="Apellido2"
           />
         </div>
       </div>
@@ -45,7 +45,7 @@
           <p class="form">Cumpleaños</p>
         </div>
         <div class="col-auto">
-          <input v-model="person.birthday" class="form-control" type="date" />
+          <input v-model="person.birthday" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -53,7 +53,7 @@
           <p class="form">Fecha</p>
         </div>
         <div class="col-auto">
-          <input v-model="person.saint" class="form-control" type="date" />
+          <input v-model="person.saint" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -62,11 +62,11 @@
         </div>
         <div class="col-auto">
           <input
-            class="form-control"
-            type="email"
-            id="email"
-            v-model="person.email"
-            placeholder="ejemplo@email.com"
+              class="form-control"
+              type="email"
+              id="email"
+              v-model="person.email"
+              placeholder="ejemplo@email.com"
           />
         </div>
       </div>
@@ -76,23 +76,27 @@
         </div>
         <div class="col-auto">
           <input
-            type="text"
-            class="form-control"
-            v-model="person.tags"
-            placeholder="tag1, tag2, tag3"
+              type="text"
+              class="form-control"
+              v-model="person.tags"
+              placeholder="tag1, tag2, tag3"
           />
         </div>
       </div>
       <div class="row mt-3">
-        <AddUserFieldsSacraments />
+        <div class="col-auto me-auto">
+          <p class="form">Sacr</p>
+        </div>
+        <AddUserFieldsSacraments/>
       </div>
-
       <div
-        class="row mt-3"
-        v-for="customField in person.extras"
-        :key="customField.id"
-      >
-        <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)" />
+          class="row mt-3"
+          v-for="customField in person.extras"
+          :key="customField.id">
+        <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)"/>
+      </div>
+      <div class="row mt-3">
+        <button class="btn btn-primary" @click="addCustomFields">Add</button>
       </div>
     </div>
   </div>
@@ -100,6 +104,8 @@
 <script>
 import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
 import AddUserFieldsSacraments from "./AddUserFieldsSacraments.vue";
+import moment from "moment";
+
 export default {
   name: "AddUserFields",
   components: {
@@ -119,9 +125,15 @@ export default {
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
-      let number = this.person.extras.indexOf(element);
-      return number;
+      return this.person.extras.indexOf(element);
     },
+    getDateAndFormat(date) {
+      return moment(String(date)).format('DD/MM/YYYY');
+    },
+    addCustomFields() {
+      this.$store.commit("addAnExtraField")
+
+    }
   },
 };
 </script>
@@ -129,6 +141,7 @@ export default {
 .form {
   font-weight: bold;
 }
+
 .field {
   display: flex;
   flex-direction: row;
