@@ -86,8 +86,8 @@ export const store = createStore({
                 const i = state.persons.extras.map(item => item.id).indexOf(extra.id);
                 state.persons.splice(i, 1);
             },
-            addAnExtraField(state, person) {
-                state.person.extra = person
+            addAnExtraField(state) {
+                state.person.extras.push({id: 0, selected: "", name: "", tagname: ""})
             },
             updateView(state, person) {
                 const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);

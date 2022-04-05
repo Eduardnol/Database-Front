@@ -84,15 +84,19 @@
         </div>
       </div>
       <div class="row mt-3">
+        <div class="col-auto me-auto">
+          <p class="form">Sacr</p>
+        </div>
         <AddUserFieldsSacraments/>
       </div>
-
       <div
           class="row mt-3"
           v-for="customField in person.extras"
-          :key="customField.id"
-      >
+          :key="customField.id">
         <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)"/>
+      </div>
+      <div class="row mt-3">
+        <button class="btn btn-primary" @click="addCustomFields">Add</button>
       </div>
     </div>
   </div>
@@ -125,6 +129,10 @@ export default {
     },
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
+    },
+    addCustomFields() {
+      this.$store.commit("addAnExtraField")
+
     }
   },
 };

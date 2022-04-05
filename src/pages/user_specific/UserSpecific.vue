@@ -1,11 +1,11 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <p>Identificador de Usuario: {{ getPerson.id }}</p>
+      <h5>Identificador de Usuario: {{ getPerson.id }}</h5>
 
-      <p>Creado el: {{
+      <h5>Creado el: {{
           getDateAndFormat(getPerson.createdOn)
-        }}</p>
+        }}</h5>
 
       <h5>Archivos:</h5>
 
