@@ -38,7 +38,8 @@
     >
       <i class="bi bi-cloud-arrow-up"></i> Guardar
     </button>
-    <button @click="getToPage" type="button" class="btn btn-primary m-1">
+    <button type="button" class="btn btn-primary m-1"       data-bs-toggle="modal"
+            data-bs-target="#dismiss">
       <i class="bi bi-house"></i> HOME
     </button>
     <button
@@ -67,6 +68,28 @@
           <button type="button" class="btn btn-danger"
                   @click="deleteuser"
                   data-bs-dismiss="modal">Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="dismiss" aria-labelledby="dismiss" tabindex="-1"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Descarte</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea descartar este usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-warning"
+                  @click="getToPage"
+                  data-bs-dismiss="modal">Descartar
           </button>
         </div>
       </div>
