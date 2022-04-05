@@ -5,7 +5,7 @@
 
       <p>Creado el: {{ getPerson.id }}</p>
 
-      <p>Archivos: {{ getPerson.id }}</p>
+      <h5>Archivos:</h5>
 
       <ul>
         <li
@@ -16,10 +16,11 @@
         </li>
       </ul>
       <!--add a file uploader button-->
-      <button class="btn btn-primary" @click="addFile">Subir</button>
       <div class="mb-3">
         <input id="formFile" ref="file" class="form-control" type="file">
+        <button class="btn btn-primary" @click="addFile">Subir</button>
       </div>
+
 
     </div>
     <div class="userfields info">
@@ -29,17 +30,17 @@
 
   <div class="button-group">
     <button
-        class="btn btn-primary"
+        class="btn btn-primary m-1"
         type="button"
         @click="saveIntoDatabase"
     >
       <i class="bi bi-cloud-arrow-up"></i> Guardar
     </button>
-    <button @click="getToPage" type="button" class="btn btn-primary">
+    <button @click="getToPage" type="button" class="btn btn-primary m-1">
       <i class="bi bi-house"></i> HOME
     </button>
     <button
-        class="btn btn-danger"
+        class="btn btn-danger m-1"
         type="button"
         @click="deleteuser"
     >
