@@ -3,7 +3,9 @@
     <div class="userfields stats">
       <p>Identificador de Usuario: {{ getPerson.id }}</p>
 
-      <p>Creado el: {{ getPerson.id }}</p>
+      <p>Creado el: {{
+          getDateAndFormat(getPerson.createdOn)
+        }}</p>
 
       <h5>Archivos:</h5>
 
@@ -16,10 +18,10 @@
         </li>
       </ul>
       <!--add a file uploader button-->
-      <div class="mb-3">
+      <div class="d-inline">
         <input id="formFile" ref="file" class="form-control" type="file">
-        <button class="btn btn-primary" @click="addFile">Subir</button>
       </div>
+      <button class="btn btn-primary d-inline" @click="addFile">Subir</button>
 
 
     </div>
@@ -52,6 +54,7 @@
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn.js";
 import UserFile from "../../components/file/UserFile.vue";
+import moment from "moment";
 
 export default {
   name: "UserSpecific",
@@ -90,6 +93,12 @@ export default {
       upload.uploadFile(this.$store.state.person.id, file);
       this.$store.commit("addFile", this.getPerson);
     },
+    getDateTimeAndFormat(date) {
+      return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
+    },
+    getDateAndFormat(date) {
+      return moment(String(date)).format('DD/MM/YYYY');
+    }
   },
   beforeMount() {
     this.$store.commit("insertUser", this.getPerson); //Get a copy of the state and save it into the "working" state person

@@ -20,6 +20,7 @@ export const store = createStore({
                     },
                     extras: [{id: 0, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
+                    createdOn: null,
                 },
                 persons: [{
                     id: null,
@@ -38,6 +39,7 @@ export const store = createStore({
                     },
                     extras: [{id: 0, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
+                    createdOn: null,
                 }]
             }
 
@@ -65,6 +67,7 @@ export const store = createStore({
                 state.person.birthday = ""
                 state.person.saint = ""
                 state.person.dni = ""
+                state.person.createdOn = null
                 state.person.sacraments = {
                     bautismo: false,
                     comunion: false,

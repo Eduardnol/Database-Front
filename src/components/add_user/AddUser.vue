@@ -51,6 +51,7 @@
           </button>
           <button
               class="btn btn-primary"
+              data-bs-dismiss="modal"
               type="button"
               @click="sendNewUserToDatabase"
           >
