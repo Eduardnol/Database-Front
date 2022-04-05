@@ -38,7 +38,7 @@
     >
       <i class="bi bi-cloud-arrow-up"></i> Guardar
     </button>
-    <button type="button" class="btn btn-primary m-1"       data-bs-toggle="modal"
+    <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal"
             data-bs-target="#dismiss">
       <i class="bi bi-house"></i> HOME
     </button>
@@ -86,10 +86,11 @@
           <p>Desea descartar este usuario?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Editando
+          </button>
           <button type="button" class="btn btn-warning"
                   @click="getToPage"
-                  data-bs-dismiss="modal">Descartar
+                  data-bs-dismiss="modal">Descartar Cambios
           </button>
         </div>
       </div>
