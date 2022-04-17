@@ -14,7 +14,8 @@
             v-for="file in person.fileStorage"
             :key="file.url"
             class="list_item">
-          <UserFile :filename="file.name" :url="file.url" @deleteUserFile="deleteFile(file.name)"/>
+          <UserFile :filename="file.name" :url="file.url"
+                    @deleteUserFile="deleteFile(file.name, file.url)"/>
         </li>
       </ul>
       <!--add a file uploader button-->
@@ -143,18 +144,21 @@ export default {
 
         let upload = new MongoDBconn();
         let resultStatus = upload.uploadFile(this.$store.state.person.id, file);
-        let filename = resultStatus.filename;
-        let fileUrl = resultStatus.url;
-        this.$store.commit("addFile", filename, fileUrl);
+        resultStatus.then(data => {
+          console.log(data);
+          let filename = data.details.name;
+          let fileUrl = data.details.url;
+          this.$store.commit("addFile", filename, fileUrl);
+        })
+
+
         //show confirmation and reload page
-
-
       }
     },
-    deleteFile(fileName) {
+    deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.person.id, fileName)
-      this.$store.commit("deleteFile", fileName);
+      deleteFile.deleteFile(this.person.id, fileName, fileurl)
+      this.$store.commit("deleteFile", fileName, fileurl);
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
