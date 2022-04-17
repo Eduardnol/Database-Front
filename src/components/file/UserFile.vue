@@ -6,8 +6,7 @@
       <button
           class="btn btn-outline-primary"
           type="button"
-          @click="downloadAction"
-      >
+          @click="downloadAction">
         <i class="bi bi-cloud-download-fill download"></i>
       </button>
       <button class="btn btn-outline-danger"
@@ -28,6 +27,7 @@ export default {
   },
   methods: {
     deleteAction() {
+      this.$emit('deleteUserFile', this.url, this.filename);
     },
     downloadAction() {
       window.open(this.url);

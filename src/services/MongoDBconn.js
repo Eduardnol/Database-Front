@@ -175,6 +175,17 @@ export default class MongoDBconn {
             //Process response
             return data;
         }
+
+    }
+
+    async deleteFile(userid, filename) {
+        let url = `http://localhost:8080/api/v1/files/${userid}/${filename}`
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers: {'Content-Type': 'application/json'},
+        })
+        //Now its time to check the error codes
+        return response.status;
     }
 
 }

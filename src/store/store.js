@@ -94,6 +94,13 @@ export const store = createStore({
                 state.persons.splice(toBeUpdated, 1, person);
                 // state.persons.splice(toBeUpdated, 1);
                 // state.persons.push(person);
+            },
+            addFile(state, fileName, fileUrl) {
+                state.person.fileStorage.push({name: fileName, url: fileUrl})
+            },
+            deleteFile(state, filename, fileUrl) {
+                const toBeDeleted = state.person.fileStorage.map(item => item.url).indexOf(fileUrl);
+                state.person.fileStorage.splice(toBeDeleted, 1);
             }
 
 

@@ -1,20 +1,20 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <h5>Identificador de Usuario: {{ getPerson.id }}</h5>
+      <h5>Identificador de Usuario: {{ person.id }}</h5>
 
       <h5>Creado el: {{
-          getDateAndFormat(getPerson.createdOn)
+          getDateAndFormat(person.createdOn)
         }}</h5>
 
       <h5>Archivos:</h5>
 
       <ul>
         <li
-            v-for="file in getPerson.fileStorage"
+            v-for="file in person.fileStorage"
             :key="file.url"
             class="list_item">
-          <UserFile :filename="file.name" :url="file.url"/>
+          <UserFile :filename="file.name" :url="file.url" @deleteUserFile="deleteFile(file.name)"/>
         </li>
       </ul>
       <!--add a file uploader button-->
@@ -107,10 +107,13 @@ export default {
   name: "UserSpecific",
   components: {AddUserFields, UserFile},
   computed: {
-    getPerson() {
-      return JSON.parse(
-          JSON.stringify(this.$store.getters.getArrItem(this.$route.params.id))
-      ); //Makes a copy about the state in vuex store and returns it
+    person: {
+      get() {
+        return this.$store.state.person;
+      },
+      set(value) {
+        this.$store.commit("insertUser", value);
+      },
     },
   },
   methods: {
@@ -124,14 +127,14 @@ export default {
     saveIntoDatabase() {
       let update = new MongoDBconn();
       update.updatePerson(this.$store.state.person);
-      this.$store.commit("updateView", this.getPerson); //Updates the view of all results on main page
+      this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
     deleteuser() {
       //update database user throught api and automatically the array
       let deletion = new MongoDBconn();
       deletion.deletePerson(this.$store.state.person.id);
-      this.$store.commit("deleteFromArray", this.getPerson);
+      this.$store.commit("deleteFromArray", this.person);
       this.getToPage();
     },
     addFile() {
@@ -139,10 +142,19 @@ export default {
       if (file != null) {
 
         let upload = new MongoDBconn();
-        upload.uploadFile(this.$store.state.person.id, file);
-        this.$store.commit("addFile", this.getPerson);
+        let resultStatus = upload.uploadFile(this.$store.state.person.id, file);
+        let filename = resultStatus.filename;
+        let fileUrl = resultStatus.url;
+        this.$store.commit("addFile", filename, fileUrl);
+        //show confirmation and reload page
+
 
       }
+    },
+    deleteFile(fileName) {
+      let deleteFile = new MongoDBconn();
+      deleteFile.deleteFile(this.person.id, fileName)
+      this.$store.commit("deleteFile", fileName);
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
@@ -152,7 +164,7 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.commit("insertUser", this.getPerson); //Get a copy of the state and save it into the "working" state person
+    this.$store.commit("insertUser", this.$store.getters.getArrItem(this.$route.params.id)); //Get a copy of the state and save it into the "working" state person
   },
 };
 </script>
@@ -167,7 +179,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 615px);
   grid-column-gap: 35px;
-  grid-row-gap: 0px;
+  grid-row-gap: 0;
 }
 
 .button-group {
