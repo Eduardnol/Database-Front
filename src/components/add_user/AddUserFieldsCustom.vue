@@ -1,18 +1,18 @@
 <template>
   <div class="col-auto me-auto">
     <input
-      type="text"
-      class="form-control"
-      v-model="extras[this.fieldId].tagname"
-      placeholder="Etiqueta"
+        v-model="extras[this.fieldId].tagname"
+        class="form-control"
+        placeholder="Etiqueta"
+        type="text"
     />
   </div>
 
   <div class="col-auto me-auto">
     <select
-      class="form-select"
-      aria-label="Default select example"
-      v-model="extras[this.fieldId].selected"
+        v-model="extras[this.fieldId].selected"
+        aria-label="Default select example"
+        class="form-select"
     >
       <option disabled value="">Seleccionar Tipo</option>
       <option value="text">Texto</option>
@@ -23,11 +23,14 @@
 
   <div class="col-auto">
     <input
-      :type="extras[this.fieldId].selected"
-      class="form-control"
-      v-model="extras[this.fieldId].name"
-      :placeholder="extras[this.fieldId].selected"
+        v-model="extras[this.fieldId].name"
+        :placeholder="extras[this.fieldId].selected"
+        :type="extras[this.fieldId].selected"
+        class="form-control"
     />
+  </div>
+  <div class="col-auto" @click="deleteThisField">
+    <i class="deletebutton bi bi-x-circle"></i>
   </div>
 </template>
 <script>
@@ -42,11 +45,23 @@ export default {
       set(value) {
         this.$store.commit("addAnExtraField", value);
       },
-    },
+    }
   },
   props: {
     fieldId: Number,
   },
+  methods: {
+    deleteThisField() {
+      //emmit a deletion signal
+      this.$emit("deleteindiv");
+    }
+  }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.deletebutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>

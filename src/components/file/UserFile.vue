@@ -1,7 +1,8 @@
 <template>
   <div class="pdf">
     <i class="bi bi-file-earmark-pdf-fill"></i>
-    <p class="filename">{{ filename }}</p>
+    <div class="filename"><p>{{ filename }}</p></div>
+
     <div class="buttons">
       <button
           class="btn btn-outline-primary"
@@ -46,11 +47,17 @@ export default {
   font-size: 25px;
   color: red;
   width: 500px;
+  max-height: 50px;
   margin: 10px;
+
 }
 
 .filename {
   color: black;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .buttons {

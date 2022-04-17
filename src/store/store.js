@@ -50,6 +50,7 @@ export const store = createStore({
             }
         },
         mutations: {
+            //***********************Persons***********************//
             insertUser(state, person) {
                 state.person = person
             },
@@ -81,20 +82,23 @@ export const store = createStore({
                 const toBeDeleted = state.persons.map(item => item.id).indexOf(person.id);
                 state.persons.splice(toBeDeleted, 1);
             },
-            deleteFromExtraArray(state, extra) {
+            //***********************Extra fields***********************//
+            deleteFromExtraArray(state, fieldId) {
 
-                const i = state.persons.extras.map(item => item.id).indexOf(extra.id);
+                const i = state.persons.extras.map(item => item.id).indexOf(fieldId);
                 state.persons.splice(i, 1);
             },
             addAnExtraField(state) {
                 state.person.extras.push({id: 0, selected: "", name: "", tagname: ""})
             },
+            //***********************Update View***********************//
             updateView(state, person) {
                 const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);
                 state.persons.splice(toBeUpdated, 1, person);
                 // state.persons.splice(toBeUpdated, 1);
                 // state.persons.push(person);
             },
+            //***********************Files***********************//
             addFile(state, fileName, fileUrl) {
                 state.person.fileStorage.push({name: fileName, url: fileUrl})
             },
