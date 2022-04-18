@@ -94,7 +94,7 @@
           v-for="customField in person.extras"
           :key="customField.id">
         <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)"
-                             @deleteindiv="deleteIndividualField(customField.id)"/>
+                             @deleteindiv="deleteIndividualField"/>
       </div>
       <div class="row mt-3">
         <button class="btn btn-primary" @click="addCustomFields">Add</button>
@@ -136,6 +136,7 @@ export default {
 
     },
     deleteIndividualField(id) {
+      console.log("The id is: " + id)
       this.$store.commit("deleteFromExtraArray", id)
     }
   },

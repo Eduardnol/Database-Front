@@ -18,7 +18,7 @@ export const store = createStore({
                         confirmacion: false,
                         matrimonio: false
                     },
-                    extras: [{id: 0, selected: "", name: "", tagname: ""}],
+                    extras: [{id: null, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 },
@@ -37,7 +37,7 @@ export const store = createStore({
                         confirmacion: false,
                         matrimonio: false
                     },
-                    extras: [{id: 0, selected: "", name: "", tagname: ""}],
+                    extras: [{id: null, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 }]
@@ -75,7 +75,7 @@ export const store = createStore({
                     confirmacion: false,
                     matrimonio: false
                 }
-                state.person.extras = [{id: 0, selected: "", name: "", tagname: ""}]
+                state.person.extras = [{id: null, selected: "", name: "", tagname: ""}]
                 state.person.fileStorage = [{name: null, url: null}]
             },
             deleteFromArray(state, person) {
@@ -84,12 +84,10 @@ export const store = createStore({
             },
             //***********************Extra fields***********************//
             deleteFromExtraArray(state, fieldId) {
-
-                const i = state.persons.extras.map(item => item.id).indexOf(fieldId);
-                state.persons.splice(i, 1);
+                state.person.extras.splice(fieldId, 1);
             },
             addAnExtraField(state) {
-                state.person.extras.push({id: 0, selected: "", name: "", tagname: ""})
+                state.person.extras.push({id: null, selected: "", name: "", tagname: ""})
             },
             //***********************Update View***********************//
             updateView(state, person) {

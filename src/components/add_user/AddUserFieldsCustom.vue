@@ -29,7 +29,7 @@
         class="form-control"
     />
   </div>
-  <div class="col-auto" @click="deleteThisField">
+  <div class="col-auto" @click="$emit('deleteindiv', this.fieldId)">
     <i class="deletebutton bi bi-x-circle"></i>
   </div>
 </template>
@@ -50,12 +50,6 @@ export default {
   props: {
     fieldId: Number,
   },
-  methods: {
-    deleteThisField() {
-      //emmit a deletion signal
-      this.$emit("deleteindiv");
-    }
-  }
 };
 </script>
 <style scoped>
