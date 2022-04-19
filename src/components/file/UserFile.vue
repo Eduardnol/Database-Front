@@ -26,6 +26,7 @@ export default {
     filename: String,
     url: String,
   },
+  emits: ['deleteUserFile'],
   methods: {
     deleteAction() {
       this.$emit('deleteUserFile', this.url, this.filename);

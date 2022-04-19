@@ -15,7 +15,7 @@
             :key="file.url"
             class="list_item">
           <UserFile :filename="file.name" :url="file.url"
-                    @deleteUserFile="deleteFile(file.name, file.url)"/>
+                    @deleteUserFile="deleteFile"/>
         </li>
       </ul>
       <!--add a file uploader button-->
@@ -127,8 +127,8 @@ export default {
     //Saves into the database the user we just updated
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updatePerson(this.$store.state.person);
-      this.$store.commit("updateView", this.person); //Updates the view of all results on main page
+      update.updatePerson(this.person);
+      // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
     deleteuser() {
@@ -145,10 +145,12 @@ export default {
         let upload = new MongoDBconn();
         let resultStatus = upload.uploadFile(this.$store.state.person.id, file);
         resultStatus.then(data => {
-          console.log(data);
+          console.log("The data fetched is" + data.details.url);
           let filename = data.details.name;
           let fileUrl = data.details.url;
-          this.$store.commit("addFile", filename, fileUrl);
+          console.log("the vairable is " + fileUrl);
+          this.$store.commit("addFile", {filename, fileUrl,});
+
         })
 
 
@@ -158,7 +160,7 @@ export default {
     deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
       deleteFile.deleteFile(this.person.id, fileName, fileurl)
-      this.$store.commit("deleteFile", fileName, fileurl);
+      this.$store.commit("deleteFile", fileurl);
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');

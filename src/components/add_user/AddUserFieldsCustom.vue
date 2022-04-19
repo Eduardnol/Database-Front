@@ -36,6 +36,7 @@
 <script>
 export default {
   name: "AddUserFieldsCustom",
+  emits: ['deleteindiv'],
   computed: {
     extras: {
       get() {

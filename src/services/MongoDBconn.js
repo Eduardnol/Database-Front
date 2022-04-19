@@ -1,3 +1,4 @@
+const baseUrl = "http://localhost:8080/"
 export default class MongoDBconn {
 
     constructor() {
@@ -5,7 +6,7 @@ export default class MongoDBconn {
 
     async getAllPeople() {
 
-        let url = `http://localhost:8080/api/v1/people/allpeople`
+        let url = baseUrl + `api/v1/people/allpeople`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -24,7 +25,7 @@ export default class MongoDBconn {
 
     async searchValue(search) {
 
-        let url = `http://localhost:8080/api/v1/people/search/${search}`
+        let url = baseUrl + `api/v1/people/search/${search}`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -43,7 +44,7 @@ export default class MongoDBconn {
 
     async postPerson(person) {
 
-        const response = await fetch(`http://localhost:8080/api/v1/people/insertnew/`, {
+        const response = await fetch(baseUrl + `api/v1/people/insertnew/`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},//important to specify the headers as a JSON
             body: JSON.stringify(person), //We pass into a JSON string the parameters to the api
@@ -65,7 +66,7 @@ export default class MongoDBconn {
     async deletePerson(personId) {
 
 
-        const response = await fetch(`http://localhost:8080/api/v1/people/deletebyid?id=${personId}`, {
+        const response = await fetch(baseUrl + `api/v1/people/deletebyid?id=${personId}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},//important to specify the headers as a JSON
             //We pass into a JSON string the parameters to the api
@@ -85,7 +86,7 @@ export default class MongoDBconn {
 
     async updatePerson(person) {
 
-        const response = await fetch(`http://localhost:8080/api/v1/people/update/`, {
+        const response = await fetch(baseUrl + `api/v1/people/update/`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},//important to specify the headers as a JSON
             body: JSON.stringify(person),
@@ -106,7 +107,7 @@ export default class MongoDBconn {
 
     async getAllPeopleOrder(sortby, direction) {
 
-        let url = `http://localhost:8080/api/v1/people/sort?field=${sortby}&direction=${direction}`
+        let url = baseUrl + `api/v1/people/sort?field=${sortby}&direction=${direction}`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -124,7 +125,7 @@ export default class MongoDBconn {
     }
 
     async getAllUserFiles(userid) {
-        let url = `http://localhost:8080/api/v1/files/?id=${userid}`
+        let url = baseUrl + `api/v1/files/?id=${userid}`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -142,7 +143,7 @@ export default class MongoDBconn {
     }
 
     async getSpecificFile(userid, filename) {
-        let url = `http://localhost:8080/api/v1/files/${userid}/${filename}`
+        let url = baseUrl + `api/v1/files/${userid}/${filename}`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -159,7 +160,7 @@ export default class MongoDBconn {
     }
 
     async uploadFile(userid, file) {
-        let url = `http://localhost:8080/api/v1/files/upload/${userid}`
+        let url = baseUrl + `api/v1/files/upload/${userid}`
         let uploadFile = new FormData();
         uploadFile.append('file', file);
         const response = await fetch(url, {
@@ -179,7 +180,7 @@ export default class MongoDBconn {
     }
 
     async deleteFile(userid, filename) {
-        let url = `http://localhost:8080/api/v1/files/${userid}/${filename}`
+        let url = baseUrl + `api/v1/files/${userid}/${filename}`
         const response = await fetch(url, {
             method: "DELETE",
             headers: {'Content-Type': 'application/json'},

@@ -97,11 +97,16 @@ export const store = createStore({
                 // state.persons.push(person);
             },
             //***********************Files***********************//
-            addFile(state, fileName, fileUrl) {
-                state.person.fileStorage.push({name: fileName, url: fileUrl})
+            addFile(state, {filename, fileUrl}) {
+                console.log("the url is" + fileUrl);
+                console.log("the filename is" + filename);
+                state.person.fileStorage.push({name: filename, url: fileUrl})
+                console.log(state.person);
             },
-            deleteFile(state, filename, fileUrl) {
+            deleteFile(state, fileUrl) {
+                console.log("the url" + fileUrl);
                 const toBeDeleted = state.person.fileStorage.map(item => item.url).indexOf(fileUrl);
+                console.log("The id to be deleted" + toBeDeleted)
                 state.person.fileStorage.splice(toBeDeleted, 1);
             }
 
