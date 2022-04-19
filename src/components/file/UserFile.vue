@@ -29,7 +29,7 @@ export default {
   emits: ['deleteUserFile'],
   methods: {
     deleteAction() {
-      this.$emit('deleteUserFile', this.url, this.filename);
+      this.$emit('deleteUserFile', this.filename, this.url);
     },
     downloadAction() {
       window.open(this.url);

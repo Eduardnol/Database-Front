@@ -159,7 +159,7 @@ export default {
     },
     deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.person.id, fileName, fileurl)
+      deleteFile.deleteFile(this.person.id, fileName)
       this.$store.commit("deleteFile", fileurl);
     },
     getDateTimeAndFormat(date) {
