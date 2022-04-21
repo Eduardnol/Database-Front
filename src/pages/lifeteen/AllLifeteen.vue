@@ -29,7 +29,7 @@ import MongoDBconn from "../../services/MongoDBconn";
 import Lifeteen from "../../components/all_lifeteen/Lifeteen";
 
 export default {
-  name: "Lifeteen",
+  name: "AllLifeteen",
   computed: {},
   components: {
     Lifeteen,
@@ -38,7 +38,8 @@ export default {
   beforeMount() {
     let search = new MongoDBconn();
     search.getAllLifeteen().then((data) => {
-      console.log(data), (this.$store.state.persons = data);
+      console.log(data);
+      this.$store.state.lifeteens = data;
     });
   },
 };
