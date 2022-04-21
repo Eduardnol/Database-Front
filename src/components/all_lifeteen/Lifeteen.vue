@@ -1,11 +1,11 @@
 <template>
-  <div class="person">
+  <div class="lifeteen">
     <div class="icon"><i class="bi bi-person-circle"></i></div>
     <div class="textinfo">
       <div class="basic">
         <p id="responsable">{{ responsable1 }}</p>
         <p id="responsable2">{{ responsable2 }}</p>
-        <p id="startdate">{{ startDate.toLocaleDateString().getUTCFullYear() }}</p>
+        <p id="startdate">{{ startDate.toLocaleDateString() }}</p>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
     id: String,
     responsable1: String,
     responsable2: String,
-    startDate: String,
+    startDate: Date,
     idMonitores: [],
     idInscritos: [],
   },
