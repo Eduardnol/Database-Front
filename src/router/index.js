@@ -1,6 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import AllUsers from "../pages/home/AllUsers.vue"
 import UserSpecific from "../pages/user_specific/UserSpecific.vue"
+import AllLifeteen from "../pages/lifeteen/AllLifeteen.vue"
+import LifeteenSpecific from "../pages/lifeteen_specific/LifeteenSpecific.vue"
+
 const routes = [
     {
         path: '/',
@@ -13,6 +16,16 @@ const routes = [
         name: 'UserSpecific',
         component: UserSpecific,
     },
+    {
+        path: '/all-lifeteen',
+        name: 'AllLifeteen',
+        component: AllLifeteen,
+    },
+    {
+        path: '/lifeteen-specific',
+        name: 'LifeteenSpecific',
+        component: LifeteenSpecific,
+    }
 ]
 
 
