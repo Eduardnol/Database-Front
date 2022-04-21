@@ -40,6 +40,15 @@ export const store = createStore({
                     extras: [{id: null, selected: "", name: "", tagname: ""}],
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
+                }],
+                lifeteens: [{
+                    id: null,
+                    responsable1: "",
+                    responsable2: "",
+                    startDate: "",
+                    idMonitores: [],
+                    idInscritos: [],
+
                 }]
             }
 
@@ -108,8 +117,19 @@ export const store = createStore({
                 const toBeDeleted = state.person.fileStorage.map(item => item.url).indexOf(fileUrl);
                 console.log("The id to be deleted" + toBeDeleted)
                 state.person.fileStorage.splice(toBeDeleted, 1);
-            }
-
+            },
+            //***********************Lifeteens***********************//
+            insertLifeteen(state, lifeteen) {
+                state.lifeteens.push(lifeteen);
+            },
+            updateLifeteen(state, lifeteen) {
+                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
+                state.lifeteens.splice(toBeUpdated, 1, lifeteen);
+            },
+            deleteLifeteen(state, lifeteen) {
+                const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
+                state.lifeteens.splice(toBeDeleted, 1);
+            },
 
         }
     }
