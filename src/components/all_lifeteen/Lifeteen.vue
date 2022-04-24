@@ -1,13 +1,18 @@
 <template>
   <div class="lifeteen">
-    <div class="icon"><i class="bi bi-person-circle"></i></div>
+    <div class="icon"><i class="bi bi-people-fill"></i></div>
     <div class="textinfo">
+      <h1 class="title">{{ title }}</h1>
       <div class="basic">
-        <p id="responsable">{{ responsable1 }}</p>
-        <p id="responsable2">{{ responsable2 }}</p>
-        <p id="startdate">{{ startDate.toLocaleDateString() }}</p>
+        <p id="responsable">Responsable: {{ responsable1 }}</p>
+        <p id="responsable2">Responsable: {{ responsable2 }}</p>
       </div>
     </div>
+    <div class="inscriptionsTotal">
+      <p class="inscriptionNum">{{ inscritos }}</p>
+      <p>Inscritos</p>
+    </div>
+
   </div>
 </template>
 
@@ -16,9 +21,11 @@ export default {
   name: "Lifeteen",
   props: {
     id: String,
+    title: String,
     responsable1: String,
     responsable2: String,
     startDate: Date,
+    inscritos: Number,
     idMonitores: [],
     idInscritos: [],
   },
@@ -26,28 +33,35 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 .basic {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
   gap: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.title {
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+}
+
+.inscriptionNum {
   font-size: 20px;
   font-weight: bold;
 }
 
-#email,
-#birthday {
-  font-size: 13px;
-  margin-top: 6px;
-}
-
-.person {
+.lifeteen {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 450px;
   height: 135px;
+  padding: 2px;
 
   background: var(--card-white);
   /*box-shadow: 0 8px 7px 0 var(--white);*/

@@ -18,9 +18,11 @@
           class="list_item"
           @click="getToPage(lifeteen.id)">
         <Lifeteen :id="lifeteen.id"
+                  :inscritos="lifeteen.numInscritos"
                   :responsable1="lifeteen.responsable1"
                   :responsable2="lifeteen.responsable2"
                   :start-date="new Date(lifeteen.startDate)"
+                  :title="lifeteen.title"
         />
         <!-- Cambiar entre date y string -->
       </li>

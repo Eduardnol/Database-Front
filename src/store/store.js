@@ -43,9 +43,11 @@ export const store = createStore({
                 }],
                 lifeteens: [{
                     id: null,
+                    title: "",
                     responsable1: "",
                     responsable2: "",
                     startDate: "",
+                    numInscritos: null,
                     idMonitores: [],
                     idInscritos: [],
 
