@@ -3,31 +3,28 @@
     <button id="searchButton" @click="search">
       <i class="bi bi-search"> SEARCH</i>
     </button>
-    <ais-instant-search :search-client="searchClient" index-name="users">
-      <ais-search-box class="form-control"/>
-    </ais-instant-search>
-    <!--    <input-->
-    <!--        type="search"-->
-    <!--        class="form-control"-->
-    <!--        v-model="keyword"-->
-    <!--        placeholder="Search... "-->
-    <!--        @keypress.enter="search"-->
-    <!--    />-->
+    <ais-search-box>
+      <template v-slot="{isSearchStalled, refine}">
+        <input
+            class="form-control"
+            placeholder="Search... "
+            type="search"
+            @input="refine($event.currentTarget.value)"
+        />
+        <span :hidden="!isSearchStalled">Loading...</span>
+      </template>
+    </ais-search-box>
   </div>
 </template>
 <script>
 import MongoDBconn from "../../services/MongoDBconn";
-import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 export default {
   name: "Search",
   data() {
     return {
       keyword: "",
-      searchButton: "",
-      searchClient: instantMeiliSearch(
-          "http://localhost:7720",
-      ),
+      searchButton: ""
     };
   },
   methods: {

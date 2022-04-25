@@ -1,55 +1,65 @@
 <template>
-  <div class="component">
-    <h2>Usuarios Registrados</h2>
-    <div class="search">
-      <Search/>
-    </div>
-    <div class="adduser">
-      <AddUser/>
-    </div>
-    <div class="filters">
-      <Filters/>
-    </div>
 
-    <div class="dropdown order">
-      <button
-          class="btn btn-secondary dropdown-toggle dropButton"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-      >
-        <i class="bi bi-sort-alpha-down"></i> Ordenar
+  <ais-instant-search :search-client="searchClient" index-name="users">
+    <div class="component">
+      <h2>Usuarios Registrados</h2>
+      <div class="search">
+        <Search/>
+      </div>
+      <div class="adduser">
+        <AddUser/>
+      </div>
+      <div class="filters">
+        <Filters/>
+      </div>
+
+      <div class="dropdown order">
+        <button
+            id="dropdownMenuButton1"
+            aria-expanded="false"
+            class="btn btn-secondary dropdown-toggle dropButton"
+            data-bs-toggle="dropdown"
+            type="button"
+        >
+          <i class="bi bi-sort-alpha-down"></i> Ordenar
+        </button>
+        <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+          <li><a class="dropdown-item" @click="orderByName">Nombre</a></li>
+          <li><a class="dropdown-item" @click="orderBySurname">Apellido</a></li>
+          <li>
+            <a class="dropdown-item" @click="orderByBirth">Fecha de Nacimiento</a>
+          </li>
+        </ul>
+      </div>
+      <button id="searchButton" class="all" @click="getall">
+        <i class="bi bi-people-fill"></i> Ver todos
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" @click="orderByName">Nombre</a></li>
-        <li><a class="dropdown-item" @click="orderBySurname">Apellido</a></li>
-        <li>
-          <a class="dropdown-item" @click="orderByBirth">Fecha de Nacimiento</a>
-        </li>
-      </ul>
+      <div class="scrollable">
+        <ais-hits>
+          <template v-slot="{ items }">
+            <ul class="person_grid">
+              <li
+                  v-for="person in items"
+                  :key="person.id"
+                  class="list_item"
+                  @click="getToPage(person.id)"
+              >
+                <Person
+                    :id="person.id"
+                    :apellido="person.apellido"
+                    :apellido2="person.apellido2"
+                    :birthday="new Date(person.birthday)"
+                    :email="person.email"
+                    :nombre="person.nombre"
+                /><!-- Cambiar entre date y string -->
+              </li>
+            </ul>
+          </template>
+        </ais-hits>
+      </div>
     </div>
-    <button id="searchButton" class="all" @click="getall">
-      <i class="bi bi-people-fill"></i> Ver todos
-    </button>
-    <ul class="person_grid scrollable">
-      <li
-          class="list_item"
-          v-for="person in allPerson"
-          :key="person.id"
-          @click="getToPage(person.id)"
-      >
-        <Person
-            :id="person.id"
-            :nombre="person.nombre"
-            :email="person.email"
-            :apellido="person.apellido"
-            :apellido2="person.apellido2"
-            :birthday="new Date(person.birthday)"
-        /><!-- Cambiar entre date y string -->
-      </li>
-    </ul>
-  </div>
+  </ais-instant-search>
+
 </template>
 
 <script>
@@ -58,9 +68,17 @@ import Search from "../../components/all_users/Search.vue";
 import Filters from "../../components/all_users/Filters.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
 import MongoDBconn from "../../services/MongoDBconn";
+import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 export default {
   name: "AllUsers",
+  data() {
+    return {
+      searchClient: instantMeiliSearch(
+          "http://localhost:7720",
+      ),
+    }
+  },
   computed: {
     allPerson() {
       return this.$store.state.persons;
