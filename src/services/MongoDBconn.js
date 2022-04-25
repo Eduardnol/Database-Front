@@ -23,6 +23,23 @@ export default class MongoDBconn {
 
     }
 
+    async getPersonById(id) {
+        let url = baseUrl + `api/v1/people/getbyid/${id}`
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'},
+        })
+        const data = response.json();
+        //Now its time to check the error codes
+        if (response.status == 500) {
+            return "Bad Parameters";
+        }
+        if (response.status == 200) {
+            //Process response
+            return data;
+        }
+    }
+
     async searchValue(search) {
 
         let url = baseUrl + `api/v1/people/search/${search}`

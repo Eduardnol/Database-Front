@@ -170,7 +170,10 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.commit("insertUser", this.$store.getters.getArrItem(this.$route.params.id)); //Get a copy of the state and save it into the "working" state person
+    let getuser = new MongoDBconn();
+    getuser.getPersonById(this.$route.params.id).then(data => {
+      this.$store.commit("insertUser", data);
+    });
   },
 };
 </script>
