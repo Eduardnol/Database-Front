@@ -9,7 +9,7 @@
           <input
               v-model="lifeteen.nombre"
               class="form-control"
-              placeholder="Nombre"
+              placeholder="ej: Lifeteen 2022"
               type="text"
           />
         </div>
@@ -22,7 +22,7 @@
           <input
               v-model="lifeteen.responsable1"
               class="form-control"
-              placeholder="Apellido"
+              placeholder="Nombre Apellido"
               type="text"
           />
         </div>
@@ -35,7 +35,7 @@
           <input
               v-model="lifeteen.responsable2"
               class="form-control"
-              placeholder="Apellido2"
+              placeholder="Nombre Apellido"
               type="text"
           />
         </div>
@@ -46,14 +46,6 @@
         </div>
         <div class="col-auto">
           <input v-model="lifeteen.startDate" class="form-control" type="date"/>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Número Inscritos</p>
-        </div>
-        <div class="col-auto">
-          <input v-model="lifeteen.numInscritos" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -72,9 +64,6 @@
 
         </div>
       </div>
-      <div class="row mt-3">
-        <button class="btn btn-primary" @click="addCustomFields">Add</button>
-      </div>
     </div>
   </div>
 </template>
@@ -83,23 +72,20 @@ import moment from "moment";
 
 export default {
   name: "AddLifeteenFields",
-  components: {},
-  computed: {
-    person: {},
-  },
-  props: {
-    lifeteen: {
-      id: String,
-      title: String,
-      responsable1: String,
-      responsable2: String,
-      startDate: Date,
-      numINscritos: Number,
-      idMonitores: Array,
-      idInscritos: Array,
-
+  data() {
+    return {
+      lifeteen: {
+        title: "",
+        responsable1: "",
+        responsable2: "",
+        startDate: Date,
+        idMonitores: Array,
+        idInscritos: Array,
+      }
     }
   },
+  components: {},
+  computed: {},
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
