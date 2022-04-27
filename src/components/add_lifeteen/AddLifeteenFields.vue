@@ -19,12 +19,8 @@
           <p class="form">Responsable 1</p>
         </div>
         <div class="col-auto">
-          <input
-              v-model="lifeteen.responsable1"
-              class="form-control"
-              placeholder="Nombre Apellido"
-              type="text"
-          />
+
+
         </div>
       </div>
       <div class="row mt-3">
@@ -69,6 +65,7 @@
 </template>
 <script>
 import moment from "moment";
+import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 export default {
   name: "AddLifeteenFields",
@@ -81,7 +78,10 @@ export default {
         startDate: Date,
         idMonitores: Array,
         idInscritos: Array,
-      }
+      },
+      searchClient: instantMeiliSearch(
+          "http://localhost:7720",
+      ),
     }
   },
   components: {},
