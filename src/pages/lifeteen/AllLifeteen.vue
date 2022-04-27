@@ -5,7 +5,7 @@
       <!--      <Search/>-->
     </div>
     <div class="adduser">
-      <!--      <AddLifeteen/>-->
+      <AddLifeteen/>
     </div>
 
     <button id="searchButton" class="all" @click="getAll">
@@ -34,6 +34,7 @@
 
 import MongoDBconn from "../../services/MongoDBconn";
 import Lifeteen from "../../components/all_lifeteen/Lifeteen";
+import AddLifeteen from "../../components/add_lifeteen/AddLifeteen";
 
 export default {
   name: "AllLifeteen",
@@ -44,6 +45,7 @@ export default {
   },
   components: {
     Lifeteen,
+    AddLifeteen,
   },
   methods: {
     getToPage(id) {

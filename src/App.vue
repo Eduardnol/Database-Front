@@ -1,9 +1,10 @@
 <template>
   <div>
-    <Header />
-    <!-- <router-link to="/">All Users</router-link>-->
+    <Header/>
+    <router-link to="/">All Users</router-link>
+    <router-link to="/all-lifeteen">All Lifeteen</router-link>
     <!-- Page rendered by router -->
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
