@@ -16,9 +16,17 @@ npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Backend
+
+The backend is in this other repo.
+
+[https://github.com/Eduardnol/Database_Backend](https://github.com/Eduardnol/Database_Backend)
