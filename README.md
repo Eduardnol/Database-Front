@@ -1,5 +1,7 @@
 # database
 
+> It takes some time for the backend to start (because of free tier), so when cliking the web page, please be patient.
+
 ## Project setup
 ```
 npm install
