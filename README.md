@@ -1,6 +1,6 @@
 # database
 
-> :warning: :warning: It takes some time for the backend to start (because of free tier), so when cliking the web page, please be patient. :warning: :warning:
+> :warning: :warning: It takes some time for the backend to start (because of free tier), so when clicking the web page, please be patient. :warning: :warning:
 
 ## Project setup
 ```
