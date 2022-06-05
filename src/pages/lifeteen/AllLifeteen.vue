@@ -50,7 +50,7 @@ export default {
   methods: {
     getToPage(id) {
       this.$router.push({
-        name: "Lifeteen",
+        name: "LifeteenSpecific",
         params: {
           id: id
         }

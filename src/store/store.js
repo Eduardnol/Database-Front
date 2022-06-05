@@ -58,6 +58,9 @@ export const store = createStore({
         getters: {
             getArrItem: (state) => (id) => {
                 return state.persons.find(item => item.id === id);
+            },
+            getArrItemLifeTeen: (state) => (id) => {
+                return state.lifeteens.find(item => item.id === id);
             }
         },
         mutations: {
@@ -131,6 +134,11 @@ export const store = createStore({
             deleteLifeteen(state, lifeteen) {
                 const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
                 state.lifeteens.splice(toBeDeleted, 1);
+            },
+            getLifeteenById(state, id) {
+
+                return state.lifeteens.map(item => item.id).indexOf(id);
+
             },
 
         }
