@@ -29,10 +29,10 @@
     <div class="userfields info">
       <AddLifeteenFields/>
     </div>
-    <div>
+    <div class="searchInput">
       <ais-instant-search :search-client="searchClient" index-name="users">
         <ais-configure :hits-per-page.camel="5"/>
-        <ais-search-box>
+        <ais-search-box class="searchbox">
           <template v-slot="{isSearchStalled, refine}">
             <input
                 class="form-control"
@@ -200,6 +200,18 @@ body {
   margin-right: 35px;
 }
 
+.searchbox {
+  width: 350px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .userfields {
   background: var(--card-white);
   /*box-shadow: 0 8px 7px 0 var(--white);*/
@@ -211,5 +223,13 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding-bottom: 14px;
+}
+
+.person_grid {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(1, 350px);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 </style>
