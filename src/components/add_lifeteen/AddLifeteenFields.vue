@@ -19,7 +19,12 @@
           <p class="form">Responsable 1</p>
         </div>
         <div class="col-auto">
-
+          <input
+              v-model="lifeteen.responsable1"
+              class="form-control"
+              placeholder="Nombre Apellido"
+              type="text"
+          />
 
         </div>
       </div>

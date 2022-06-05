@@ -27,7 +27,43 @@
 
     </div>
     <div class="userfields info">
-      <AddUserFields/>
+      <AddLifeteenFields/>
+    </div>
+    <div>
+      <ais-instant-search :search-client="searchClient" index-name="users">
+        <ais-configure :hits-per-page.camel="5"/>
+        <ais-search-box>
+          <template v-slot="{isSearchStalled, refine}">
+            <input
+                class="form-control"
+                placeholder="Search... "
+                type="search"
+                @input="refine($event.currentTarget.value)"
+            />
+            <span :hidden="!isSearchStalled">Loading...</span>
+          </template>
+        </ais-search-box>
+        <ais-hits>
+          <template v-slot="{ items }">
+            <ul class="person_grid">
+              <li
+                  v-for="person in items"
+                  :key="person.id"
+                  class="list_item"
+              >
+                <MiniPerson
+                    :id="person.id"
+                    :apellido="person.apellido"
+                    :apellido2="person.apellido2"
+                    :birthday="new Date(person.birthday)"
+                    :email="person.email"
+                    :nombre="person.nombre"
+                />
+              </li>
+            </ul>
+          </template>
+        </ais-hits>
+      </ais-instant-search>
     </div>
   </div>
 
@@ -55,9 +91,13 @@
 </template>
 <script>
 import moment from "moment";
+import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
+import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
+import MiniPerson from "../../components/add_lifeteen/MiniPerson";
 
 export default {
   name: "LifeteenSpecific",
+  components: {MiniPerson, AddLifeteenFields},
   computed: {
     lifeteens: {
       get() {
@@ -67,6 +107,13 @@ export default {
         this.$store.commit("updateLifeteen", value);
       },
     },
+  },
+  data() {
+    return {
+      searchClient: instantMeiliSearch(
+          "http://localhost:7720",
+      ),
+    }
   },
   methods: {
     //this will delete the working state person and return to the user home
