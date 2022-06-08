@@ -29,7 +29,7 @@
     <div class="userfields info">
       <AddLifeteenFields/>
     </div>
-    <div class="searchInput">
+    <div class="userfields searchInput">
       <ais-instant-search :search-client="searchClient" index-name="users">
         <ais-configure :hits-per-page.camel="6"/>
         <ais-search-box class="searchbox">
@@ -64,6 +64,22 @@
           </template>
         </ais-hits>
       </ais-instant-search>
+    </div>
+    <div class="userfields inscritos">
+      <ul class="person_grid">
+        <li
+            v-for="person in lifeteens.idInscritos"
+            :key="person.id"
+            class="list_item"
+        >
+          <MiniPerson
+              :id="person.id"
+              :apellido="person.apellido"
+              :apellido2="person.apellido2"
+              :nombre="person.nombre"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -178,7 +194,7 @@ body {
 
 .userinfo {
   display: grid;
-  grid-template-columns: repeat(4, 455px);
+  grid-template-columns: repeat(4, 445px);
   grid-column-gap: 35px;
   grid-row-gap: 0;
 }
@@ -197,7 +213,6 @@ body {
 
 .info {
   grid-area: 1 / 2 / 2 / 4;
-  margin-right: 35px;
 }
 
 .searchbox {
