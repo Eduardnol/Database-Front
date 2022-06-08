@@ -8,6 +8,7 @@
       </div>
       <p>{{ id }}</p>
     </div>
+    <i class="bi bi-plus-square"></i>
   </div>
 </template>
 

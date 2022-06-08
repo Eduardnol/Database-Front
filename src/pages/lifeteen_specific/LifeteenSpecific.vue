@@ -31,7 +31,7 @@
     </div>
     <div class="searchInput">
       <ais-instant-search :search-client="searchClient" index-name="users">
-        <ais-configure :hits-per-page.camel="5"/>
+        <ais-configure :hits-per-page.camel="6"/>
         <ais-search-box class="searchbox">
           <template v-slot="{isSearchStalled, refine}">
             <input
@@ -178,7 +178,7 @@ body {
 
 .userinfo {
   display: grid;
-  grid-template-columns: repeat(3, 615px);
+  grid-template-columns: repeat(4, 455px);
   grid-column-gap: 35px;
   grid-row-gap: 0;
 }
@@ -207,6 +207,7 @@ body {
 }
 
 .searchInput {
+  grid-area: 1 / 4 / 2 / 5;
   display: flex;
   align-items: center;
   flex-direction: column;
