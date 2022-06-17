@@ -71,6 +71,7 @@
             v-for="person in inscritos"
             :key="person.id"
             class="list_item"
+            @click="getToPage(person.id)"
         >
           <MiniPerson
               :id="person.id"
@@ -87,6 +88,7 @@
             v-for="person in monitores"
             :key="person.id"
             class="list_item"
+            @click="getToPage(person.id)"
         >
           <MiniPerson
               :id="person.id"
@@ -218,7 +220,13 @@ export default {
     ,
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
-    }
+    },
+    getToPage(identificator) {
+      this.$router.push({
+        name: "UserSpecific",
+        params: {id: identificator},
+      });
+    },
   },
   beforeMount() {
     let search = new MongoDBconn();
