@@ -68,7 +68,7 @@
     <div class="userfields inscritos">
       <ul class="person_grid">
         <li
-            v-for="person in lifeteens.idInscritos"
+            v-for="person in inscritos"
             :key="person.id"
             class="list_item"
         >
@@ -110,6 +110,7 @@ import moment from "moment";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
+import MongoDBconn from "../../services/MongoDBconn";
 
 export default {
   name: "LifeteenSpecific",
@@ -129,8 +130,18 @@ export default {
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
       ),
+      inscritos: [
+        {
+          id: null,
+          apellido: "",
+          apellido2: "",
+          nombre: "",
+          birthday: "",
+          email: "",
+        }],
     }
   },
+
   methods: {
     //this will delete the working state person and return to the user home
     // getToPage() {
@@ -178,12 +189,20 @@ export default {
     // },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
-    },
+    }
+    ,
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     }
+  },
+  beforeMount() {
+    let search = new MongoDBconn();
+    search.getInscritosById(this.$route.params.id).then((data) => {
+      this.inscritos = data;
+    });
   }
-};
+}
+;
 </script>
 <style scoped>
 body {
