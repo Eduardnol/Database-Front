@@ -154,8 +154,6 @@ export default {
           apellido: "",
           apellido2: "",
           nombre: "",
-          birthday: "",
-          email: "",
         }],
       monitores: [
         {
@@ -163,8 +161,6 @@ export default {
           apellido: "",
           apellido2: "",
           nombre: "",
-          birthday: "",
-          email: "",
         }],
     }
   },
