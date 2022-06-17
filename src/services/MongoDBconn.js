@@ -226,7 +226,7 @@ export default class MongoDBconn {
     }
 
     async getMonitoresById(id) {
-        let url = baseUrl + `api/v1/${id}/monitores`
+        let url = baseUrl + `api/v1/lifeteen/${id}/monitores`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},

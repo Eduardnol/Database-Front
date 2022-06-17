@@ -81,6 +81,22 @@
         </li>
       </ul>
     </div>
+    <div class="userfields monitores">
+      <ul class="person_grid">
+        <li
+            v-for="person in monitores"
+            :key="person.id"
+            class="list_item"
+        >
+          <MiniPerson
+              :id="person.id"
+              :apellido="person.apellido"
+              :apellido2="person.apellido2"
+              :nombre="person.nombre"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="button-group">
@@ -131,6 +147,15 @@ export default {
           "http://localhost:7720",
       ),
       inscritos: [
+        {
+          id: null,
+          apellido: "",
+          apellido2: "",
+          nombre: "",
+          birthday: "",
+          email: "",
+        }],
+      monitores: [
         {
           id: null,
           apellido: "",
@@ -200,6 +225,10 @@ export default {
     search.getInscritosById(this.$route.params.id).then((data) => {
       this.inscritos = data;
     });
+    search.getMonitoresById(this.$route.params.id).then((data) => {
+      this.monitores = data;
+    });
+
   }
 }
 ;
@@ -242,6 +271,12 @@ body {
 
 .searchInput {
   grid-area: 1 / 4 / 2 / 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inscritos, .monitores {
   display: flex;
   align-items: center;
   flex-direction: column;
