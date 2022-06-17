@@ -244,7 +244,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 445px);
   grid-column-gap: 35px;
-  grid-row-gap: 0;
+  grid-row-gap: 35px;
 }
 
 .button-group {
@@ -276,7 +276,17 @@ body {
   flex-direction: column;
 }
 
+.inscritos {
+  grid-area: 2 / 1 / 2 / 2;
+  margin-left: 35px;
+}
+
+.monitores {
+  grid-area: 2 / 2 / 2 / 3;
+}
+
 .inscritos, .monitores {
+
   display: flex;
   align-items: center;
   flex-direction: column;
