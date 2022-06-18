@@ -66,6 +66,7 @@
       </ais-instant-search>
     </div>
     <div class="userfields inscritos">
+      <p>Total Inscritos {{ lifeteens.numInscritos }}</p>
       <ul class="person_grid">
         <li
             v-for="person in inscritos"
@@ -83,6 +84,8 @@
       </ul>
     </div>
     <div class="userfields monitores">
+      <p>Total Monitores {{ lifeteens.idMonitores.length }}</p>
+
       <ul class="person_grid">
         <li
             v-for="person in monitores"
@@ -232,7 +235,6 @@ export default {
     search.getMonitoresById(this.$route.params.id).then((data) => {
       this.monitores = data;
     });
-
   }
 }
 ;

@@ -49,22 +49,6 @@
           <input v-model="lifeteen.startDate" class="form-control" type="date"/>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Monitores</p>
-        </div>
-        <div class="col-auto">
-
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Niños</p>
-        </div>
-        <div class="col-auto">
-
-        </div>
-      </div>
     </div>
   </div>
 </template>
