@@ -102,6 +102,30 @@
         </li>
       </ul>
     </div>
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="exampleModalLabel" class="modal-title">Modal title</h5>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+          </div>
+          <div class="modal-body">
+            <ListPicker/>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button class="btn btn-primary" type="button">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="button-group">
@@ -132,10 +156,11 @@ import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
 import MongoDBconn from "../../services/MongoDBconn";
+import ListPicker from "../../components/list_picker/ListPicker";
 
 export default {
   name: "LifeteenSpecific",
-  components: {MiniPerson, AddLifeteenFields},
+  components: {ListPicker, MiniPerson, AddLifeteenFields},
   computed: {
     lifeteens: {
       get() {

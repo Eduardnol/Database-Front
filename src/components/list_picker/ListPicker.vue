@@ -59,10 +59,15 @@
 </template>
 
 <script>
+import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
+
 export default {
   name: "ListPicker",
   data() {
     return {
+      searchClient: instantMeiliSearch(
+          "http://localhost:7720",
+      ),
       selected: [],
     }
   },
