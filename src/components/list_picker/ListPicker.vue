@@ -27,11 +27,9 @@
                     :id="person.id"
                     :apellido="person.apellido"
                     :apellido2="person.apellido2"
-                    :birthday="new Date(person.birthday)"
-                    :email="person.email"
                     :nombre="person.nombre"
-                    @click="addToSelected(person)"
                 />
+
               </li>
             </ul>
           </template>
@@ -60,9 +58,13 @@
 
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
+import MiniPerson from "../add_lifeteen/MiniPerson";
 
 export default {
   name: "ListPicker",
+  components: {
+    MiniPerson
+  },
   data() {
     return {
       searchClient: instantMeiliSearch(
@@ -80,5 +82,82 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-image: url("../../assets/bg-footer-transparent.png");
+  background-color: var(--light_blue);
+  background-size: 20%;
+}
 
+.userinfo {
+  display: grid;
+  grid-template-columns: repeat(4, 445px);
+  grid-column-gap: 35px;
+  grid-row-gap: 35px;
+}
+
+.button-group {
+  margin: 60px;
+}
+
+.stats {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info {
+  grid-area: 1 / 2 / 2 / 4;
+}
+
+.searchbox {
+  width: 350px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  grid-area: 1 / 4 / 2 / 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inscritos {
+  grid-area: 2 / 1 / 2 / 2;
+  margin-left: 35px;
+}
+
+.monitores {
+  grid-area: 2 / 2 / 2 / 3;
+}
+
+.inscritos, .monitores {
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userfields {
+  background: var(--card-white);
+  /*box-shadow: 0 8px 7px 0 var(--white);*/
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  -moz-backdrop-filter: blur(20px);
+  -o-backdrop-filter: blur(20px);
+  -ms-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding-bottom: 14px;
+}
+
+.person_grid {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(1, 350px);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
 </style>
