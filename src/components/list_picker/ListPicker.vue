@@ -1,59 +1,62 @@
 <template>
-  <div>
-    <p>All Users</p>
-    <div class="userfields searchInput">
-      <ais-instant-search :search-client="searchClient" index-name="users">
-        <ais-configure :hits-per-page.camel="6"/>
-        <ais-search-box class="searchbox">
-          <template v-slot="{isSearchStalled, refine}">
-            <input
-                class="form-control"
-                placeholder="Search... "
-                type="search"
-                @input="refine($event.currentTarget.value)"
-            />
-            <span :hidden="!isSearchStalled">Loading...</span>
-          </template>
-        </ais-search-box>
-        <ais-hits>
-          <template v-slot="{ items }">
-            <ul class="person_grid">
-              <li
-                  v-for="person in items"
-                  :key="person.id"
-                  class="list_item"
-                  @click="addToSelected(person)"
-              >
-                <MiniPerson
-                    :id="person.id"
-                    :apellido="person.apellido"
-                    :apellido2="person.apellido2"
-                    :nombre="person.nombre"
-                />
+  <div class="selector">
+    <div>
+      <p>All Users</p>
+      <div class="userfields searchInput">
+        <ais-instant-search :search-client="searchClient" index-name="users">
+          <ais-configure :hits-per-page.camel="6"/>
+          <ais-search-box class="searchbox">
+            <template v-slot="{isSearchStalled, refine}">
+              <input
+                  class="form-control"
+                  placeholder="Search... "
+                  type="search"
+                  @input="refine($event.currentTarget.value)"
+              />
+              <span :hidden="!isSearchStalled">Loading...</span>
+            </template>
+          </ais-search-box>
+          <ais-hits>
+            <template v-slot="{ items }">
+              <ul class="person_grid">
+                <li
+                    v-for="person in items"
+                    :key="person.id"
+                    class="list_item"
+                    @click="addToSelected(person)"
+                >
+                  <MiniPerson
+                      :id="person.id"
+                      :apellido="person.apellido"
+                      :apellido2="person.apellido2"
+                      :nombre="person.nombre"
+                  />
 
-              </li>
-            </ul>
-          </template>
-        </ais-hits>
-      </ais-instant-search>
+                </li>
+              </ul>
+            </template>
+          </ais-hits>
+        </ais-instant-search>
+      </div>
     </div>
-  </div>
-  <div>
-    <p>Selected Users</p>
-    <ul class="person_grid">
-      <li
-          v-for="person in selected"
-          :key="person.id"
-          class="list_item"
-      >
-        <MiniPerson
-            :id="person.id"
-            :apellido="person.apellido"
-            :apellido2="person.apellido2"
-            :nombre="person.nombre"
-        />
-      </li>
-    </ul>
+    <div>
+      <p>Selected Users</p>
+      <ul class="person_grid">
+        <li
+            v-for="person in selected"
+            :key="person.id"
+            class="list_item"
+            @click="removeFromSelected(person)"
+        >
+          <MiniPerson
+              :id="person.id"
+              :apellido="person.apellido"
+              :apellido2="person.apellido2"
+              :nombre="person.nombre"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -81,6 +84,9 @@ export default {
       } else {
         this.selected.push(person);
       }
+    },
+    removeFromSelected(person) {
+      this.selected = this.selected.filter(p => p.id !== person.id);
     },
   },
 }
@@ -143,6 +149,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+
 }
 
 .userfields {
@@ -164,5 +171,12 @@ body {
   grid-template-columns: repeat(1, 350px);
   grid-column-gap: 20px;
   grid-row-gap: 10px;
+}
+
+.selector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>
