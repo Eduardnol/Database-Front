@@ -22,6 +22,7 @@
                   v-for="person in items"
                   :key="person.id"
                   class="list_item"
+                  @click="addToSelected(person)"
               >
                 <MiniPerson
                     :id="person.id"
@@ -75,7 +76,11 @@ export default {
   },
   methods: {
     addToSelected(person) {
-      this.selected.push(person);
+      if (this.selected.find(p => p.id === person.id)) {
+        this.selected = this.selected.filter(p => p.id !== person.id);
+      } else {
+        this.selected.push(person);
+      }
     },
   },
 }
