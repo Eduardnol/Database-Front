@@ -120,7 +120,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            <button class="btn btn-primary" type="button">Save changes</button>
+            <button class="btn btn-primary" type="button" @click="saveIntoDb()">Save changes</button>
           </div>
         </div>
       </div>
@@ -251,6 +251,9 @@ export default {
         params: {id: identificator},
       });
     },
+    saveIntoDb() {
+      this.$refs.ListPicker.saveSelected();
+    }
   },
   beforeMount() {
     let search = new MongoDBconn();

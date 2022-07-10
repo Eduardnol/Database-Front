@@ -63,6 +63,8 @@
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
+import MongoDBconn from "../../services/MongoDBconn";
+
 
 export default {
   name: "ListPicker",
@@ -87,6 +89,20 @@ export default {
     },
     removeFromSelected(person) {
       this.selected = this.selected.filter(p => p.id !== person.id);
+    },
+    saveSelected() {
+
+
+      this.$store.commit("setSelected", this.selected);
+      this.$router.push({
+        name: "AddLifeteen",
+      });
+
+
+      let search = new MongoDBconn();
+      search.getAllPeople().then((data) => {
+        console.log(data), (this.$store.state.persons = data);
+      });
     },
   },
 }
@@ -171,6 +187,8 @@ body {
   grid-template-columns: repeat(1, 350px);
   grid-column-gap: 20px;
   grid-row-gap: 10px;
+  overflow: scroll;
+  height: 300px;
 }
 
 .selector {
