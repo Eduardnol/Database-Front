@@ -136,10 +136,16 @@ export const store = createStore({
                 state.lifeteens.splice(toBeDeleted, 1);
             },
             getLifeteenById(state, id) {
-
                 return state.lifeteens.map(item => item.id).indexOf(id);
-
             },
+            updateMonitorList(state, {lifeteenId, list}) {
+                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
+                state.lifeteens[toBeUpdated].idMonitores = list;
+            },
+            updateInscritosList(state, {lifeteenId, list}) {
+                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
+                state.lifeteens[toBeUpdated].idInscritos = list;
+            }
 
         }
     }

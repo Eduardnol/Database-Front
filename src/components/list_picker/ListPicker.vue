@@ -63,7 +63,6 @@
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
-import MongoDBconn from "../../services/MongoDBconn";
 
 
 export default {
@@ -80,6 +79,7 @@ export default {
     }
   },
   methods: {
+    //Adds the clicked item into the selected list
     addToSelected(person) {
       if (this.selected.find(p => p.id === person.id)) {
         this.selected = this.selected.filter(p => p.id !== person.id);
@@ -87,22 +87,19 @@ export default {
         this.selected.push(person);
       }
     },
+    //Removes the clicked item from the selected list
     removeFromSelected(person) {
       this.selected = this.selected.filter(p => p.id !== person.id);
     },
-    saveSelected() {
+    //Saves the selected list into the database, if its the monitor list or the inscritos list
+    saveSelected(lifeteenId, isInscritos) {
+      let list = this.selected;
+      if (isInscritos) {
+        this.$store.commit("updateInscritosList", {lifeteenId, list,});
+      } else {
+        this.$store.commit("updateMonitorList", {lifeteenId, list,});
+      }
 
-
-      this.$store.commit("setSelected", this.selected);
-      this.$router.push({
-        name: "AddLifeteen",
-      });
-
-
-      let search = new MongoDBconn();
-      search.getAllPeople().then((data) => {
-        console.log(data), (this.$store.state.persons = data);
-      });
     },
   },
 }

@@ -103,7 +103,8 @@
       </ul>
     </div>
     <!-- Button trigger modal -->
-    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
+    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
+            @click="openMonitores()">
       Launch demo modal
     </button>
 
@@ -116,11 +117,11 @@
             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
           </div>
           <div class="modal-body">
-            <ListPicker/>
+            <ListPicker ref="ListPicker"/>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            <button class="btn btn-primary" type="button" @click="saveIntoDb()">Save changes</button>
+            <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">Save changes</button>
           </div>
         </div>
       </div>
@@ -190,6 +191,7 @@ export default {
           apellido2: "",
           nombre: "",
         }],
+      isInscritos: false,
     }
   },
 
@@ -238,6 +240,12 @@ export default {
     //   deleteFile.deleteFile(this.person.id, fileName)
     //   this.$store.commit("deleteFile", fileurl);
     // },
+    openMonitores() {
+      this.isInscritos = false;
+    },
+    openInscritos() {
+      this.isInscritos = true;
+    },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
     }
@@ -251,8 +259,10 @@ export default {
         params: {id: identificator},
       });
     },
-    saveIntoDb() {
-      this.$refs.ListPicker.saveSelected();
+    saveSelectedItemsIntoVueStore() {
+      //print parameter id
+      console.log(this.$route.params.id);
+      this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
     }
   },
   beforeMount() {
