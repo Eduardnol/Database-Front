@@ -192,11 +192,12 @@ export default {
     //     name: "AllUsers",
     //   });
     // },
-    // //Saves into the database the user we just updated
-    saveIntoDatabase() {
-      let update = new MongoDBconn();
-      update.updateLifeteen(this.lifeteens);
-      // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
+    //
+    /**
+     * Loads the selection among users for either the monitores or the inscritos
+     */
+    updateSelected() {
+      this.$refs.ListPicker.loadSelected();
     },
     // deleteuser() {
     //   //update database user throught api and automatically the array
@@ -229,18 +230,41 @@ export default {
     //   deleteFile.deleteFile(this.person.id, fileName)
     //   this.$store.commit("deleteFile", fileurl);
     // },
-    updateSelected() {
-      this.$refs.ListPicker.loadSelected();
+    /**
+     * Saves the vuex store lifeteen into the database
+     */
+    saveIntoDatabase() {
+      let update = new MongoDBconn();
+      update.updateLifeteen(this.lifeteens);
+      // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
+    /**
+     * Selects the loading swich for monitores
+     */
     openMonitores() {
       this.$store.commit("updateInscritosBoolean", false);
       this.updateSelected();
       console.log("openMonitores");
     },
+    /**
+     * Selects the loading swich for inscritos
+     */
     openInscritos() {
       this.$store.commit("updateInscritosBoolean", true);
       this.updateSelected();
       console.log("openInscritos");
+    },
+    /**
+     * Makes the call to ListPicker to save the selected items into the vue store (not to the database)
+     */
+    saveSelectedItemsIntoVueStore() {
+      this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
+    },
+    getToPage(identificator) {
+      this.$router.push({
+        name: "UserSpecific",
+        params: {id: identificator},
+      });
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
@@ -249,25 +273,7 @@ export default {
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     },
-    getToPage(identificator) {
-      this.$router.push({
-        name: "UserSpecific",
-        params: {id: identificator},
-      });
-    },
-    saveSelectedItemsIntoVueStore() {
-      this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
-    },
   },
-  // beforeMount() {
-  //   let search = new MongoDBconn();
-  //   search.getInscritosById(this.$route.params.id).then((data) => {
-  //     this.inscritos = data;
-  //   });
-  //   search.getMonitoresById(this.$route.params.id).then((data) => {
-  //     this.monitores = data;
-  //   });
-  // }
 }
 ;
 </script>

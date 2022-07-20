@@ -80,7 +80,11 @@ export default {
   },
 
   methods: {
-    //Adds the clicked item into the selected list
+    /**
+     * Adds the clicked item into the selected list using an object
+     * @param person Person to be saved into the selected list
+     * TODO migrate to class instead of using an js object
+     */
     addToSelected(person) {
       if (this.selected.find(p => p.id === person.id)) {
         this.selected = this.selected.filter(p => p.id !== person.id);
@@ -92,11 +96,17 @@ export default {
         });
       }
     },
-    //Removes the clicked item from the selected list
+    /**
+     * Removes the clicked item from the selected list
+     * @param person Person to be removed from the selected list
+     */
     removeFromSelected(person) {
       this.selected = this.selected.filter(p => p.id !== person.id);
     },
-    //Saves the selected list into the database, if its the monitor list or the inscritos list
+    /**
+     * Saves the selected list into the vuex store, if its the monitor list or the inscritos list
+     * @param lifeteenId Id of the lifeteen to save the list into
+     */
     saveSelected(lifeteenId) {
       let list = this.selected;
       if (this.$store.getters['isInscritos']) {
@@ -106,6 +116,9 @@ export default {
       }
 
     },
+    /**
+     * Loads the list of selected users from the vuex store depending if its inscritos or monitor list
+     */
     loadSelected() {
       console.log("ListPicker mounted");
       if (this.$store.getters['isInscritos']) {
