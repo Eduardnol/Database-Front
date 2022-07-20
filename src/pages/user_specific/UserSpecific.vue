@@ -99,7 +99,7 @@
   </div>
 </template>
 <script>
-import AddUserFields from "../../components/add_user/AddUserFields.vue";
+import AddUserFields from "../../components/AddUser/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn.js";
 import UserFile from "../../components/file/UserFile.vue";
 import moment from "moment";

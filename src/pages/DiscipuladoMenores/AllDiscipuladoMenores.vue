@@ -5,24 +5,24 @@
       <!--      <Search/>-->
     </div>
     <div class="adduser">
-      <AddLifeteen/>
+      <AddDiscipuladoMenores/>
     </div>
 
     <button id="searchButton" class="all" @click="getAll">
       <i class="bi bi-people-fill"></i> Ver todos
     </button>
-    <ul class="lifeteen_grid scrollable">
+    <ul class="discipulado_menores_grid scrollable">
       <li
-          v-for="lifeteen in allLifeteen"
-          :key="lifeteen.id"
+          v-for="discipuladoMenores in allDiscipuladoMenores"
+          :key="discipuladoMenores.id"
           class="list_item"
-          @click="getToPage(lifeteen.id)">
-        <Lifeteen :id="lifeteen.id"
-                  :inscritos="lifeteen.numInscritos"
-                  :responsable1="lifeteen.responsable1.nombre + ' ' + lifeteen.responsable1.apellido"
-                  :responsable2="lifeteen.responsable2.nombre + ' ' + lifeteen.responsable2.apellido"
-                  :start-date="new Date(lifeteen.startDate)"
-                  :title="lifeteen.title"
+          @click="getToPage(discipuladoMenores.id)">
+        <DiscipuladoMenores :id="discipuladoMenores.id"
+                            :inscritos="discipuladoMenores.numInscritos"
+                            :responsable1="discipuladoMenores.responsable1.nombre + ' ' + discipuladoMenores.responsable1.apellido"
+                            :responsable2="discipuladoMenores.responsable2.nombre + ' ' + discipuladoMenores.responsable2.apellido"
+                            :start-date="new Date(discipuladoMenores.startDate)"
+                            :title="discipuladoMenores.title"
         />
         <!-- Cambiar entre date y string -->
       </li>
@@ -33,24 +33,24 @@
 <script>
 
 import MongoDBconn from "../../services/MongoDBconn";
-import Lifeteen from "../../components/all_lifeteen/Lifeteen";
-import AddLifeteen from "../../components/add_lifeteen/AddLifeteen";
+import DiscipuladoMenores from "../../components/AllDiscipuladoMenores/DiscipuladoMenores";
+import AddDiscipuladoMenores from "../../components/AddDiscipuladoMenores/AddDiscipuladoMenores";
 
 export default {
-  name: "AllLifeteen",
+  name: "AllDiscipuladoMenores",
   computed: {
-    allLifeteen() {
-      return this.$store.state.lifeteens;
+    allDiscipuladoMenores() {
+      return this.$store.state.discipuladoMenores;
     },
   },
   components: {
-    Lifeteen,
-    AddLifeteen,
+    AddDiscipuladoMenores,
+    DiscipuladoMenores,
   },
   methods: {
     getToPage(id) {
       this.$router.push({
-        name: "LifeteenSpecific",
+        name: "DiscipuladoMenoresSpecific",
         params: {
           id: id
         }
@@ -58,17 +58,17 @@ export default {
     },
     getAll() {
       let search = new MongoDBconn();
-      search.getAllLifeteen().then((data) => {
+      search.getAllDiscipuladoMenores().then((data) => {
         console.log(data);
-        this.$store.state.lifeteens = data;
+        this.$store.state.discipuladoMenores = data;
       });
     },
   },
   beforeMount() {
     let search = new MongoDBconn();
-    search.getAllLifeteen().then((data) => {
+    search.getAllDiscipuladoMenores().then((data) => {
       console.log(data);
-      this.$store.state.lifeteens = data;
+      this.$store.state.discipuladoMenores = data;
     });
   },
 };
@@ -79,7 +79,7 @@ export default {
 @import "../../css/index.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.lifeteen_grid {
+.discipulado_menores_grid {
   display: grid;
   grid-template-columns: repeat(2, 450px);
   grid-column-gap: 20px;

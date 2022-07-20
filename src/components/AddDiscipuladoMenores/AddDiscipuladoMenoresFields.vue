@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="lifeteen.nombre"
+              v-model="discipuladoMenores.nombre"
               class="form-control"
               placeholder="ej: Lifeteen 2022"
               type="text"
@@ -20,7 +20,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="lifeteen.responsable1"
+              v-model="discipuladoMenores.responsable1"
               class="form-control"
               placeholder="Nombre Apellido"
               type="text"
@@ -34,7 +34,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="lifeteen.responsable2"
+              v-model="discipuladoMenores.responsable2"
               class="form-control"
               placeholder="Nombre Apellido"
               type="text"
@@ -46,7 +46,7 @@
           <p class="form">Fecha de Inicio</p>
         </div>
         <div class="col-auto">
-          <input v-model="lifeteen.startDate" class="form-control" type="date"/>
+          <input v-model="discipuladoMenores.startDate" class="form-control" type="date"/>
         </div>
       </div>
     </div>
@@ -57,10 +57,10 @@ import moment from "moment";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 export default {
-  name: "AddLifeteenFields",
+  name: "AddDiscipuladoMenoresFields",
   data() {
     return {
-      lifeteen: {
+      discipuladoMenores: {
         title: "",
         responsable1: "",
         responsable2: "",

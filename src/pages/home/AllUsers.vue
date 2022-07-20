@@ -63,10 +63,10 @@
 </template>
 
 <script>
-import Person from "../../components/all_users/Person.vue";
-import Search from "../../components/all_users/Search.vue";
-import Filters from "../../components/all_users/Filters.vue";
-import AddUser from "../../components/add_user/AddUser.vue";
+import Person from "../../components/AllUsers/Person.vue";
+import Search from "../../components/AllUsers/Search.vue";
+import Filters from "../../components/AllUsers/Filters.vue";
+import AddUser from "../../components/AddUser/AddUser.vue";
 import MongoDBconn from "../../services/MongoDBconn";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 

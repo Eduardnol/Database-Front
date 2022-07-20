@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-import AddUserFields from "../../components/add_user/AddUserFields.vue";
+import AddUserFields from ".//AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn";
 
 export default {

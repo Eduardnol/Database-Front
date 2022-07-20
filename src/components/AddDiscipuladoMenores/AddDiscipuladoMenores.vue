@@ -9,7 +9,7 @@
   >
     <!-- Icon -->
     <i class="bi bi-plus align-middle"></i>
-    Añadir Lifeteen
+    Añadir Discipulado Menores
   </button>
   <!-- Modal -->
   <div
@@ -25,7 +25,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title color">
-            Añadir un nuevo Lifeteen
+            Añadir un nuevo Discipulado Menores
           </h5>
           <button
               aria-label="Close"
@@ -37,7 +37,7 @@
         </div>
         <div class="modal-body">
           <form>
-            <AddLifeteenFields/>
+            <AddDiscipuladoMenoresFields/>
           </form>
         </div>
         <div class="modal-footer">
@@ -63,11 +63,11 @@
   </div>
 </template>
 <script>
-import AddLifeteenFields from './AddLifeteenFields.vue'
+import AddDiscipuladoMenoresFields from './AddDiscipuladoMenoresFields.vue'
 
 export default {
   components: {
-    AddLifeteenFields,
+    AddDiscipuladoMenoresFields,
   },
   beforeMount() {
     this.$store.commit("deleteUser");

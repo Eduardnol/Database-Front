@@ -1,8 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
 import AllUsers from "../pages/home/AllUsers.vue"
 import UserSpecific from "../pages/user_specific/UserSpecific.vue"
-import AllLifeteen from "../pages/lifeteen/AllLifeteen.vue"
-import LifeteenSpecific from "../pages/lifeteen_specific/LifeteenSpecific.vue"
+import AllDiscipuladoMenores from "../pages/DiscipuladoMenores/AllDiscipuladoMenores.vue"
+import DiscipuladoMenoresSpecific from "../pages/DiscipuladoMenoresSpecific/DiscipuladoMenoresSpecific.vue"
 
 const routes = [
     {
@@ -17,14 +17,14 @@ const routes = [
         component: UserSpecific,
     },
     {
-        path: '/all-lifeteen',
-        name: 'AllLifeteen',
-        component: AllLifeteen,
+        path: '/all-discipuladomenores',
+        name: 'AllDiscipuladoMenores',
+        component: AllDiscipuladoMenores,
     },
     {
-        path: '/lifeteen-specific',
-        name: 'LifeteenSpecific',
-        component: LifeteenSpecific,
+        path: '/discipuladomenores-specific',
+        name: 'DiscipuladoMenoresSpecific',
+        component: DiscipuladoMenoresSpecific,
     }
 ]
 

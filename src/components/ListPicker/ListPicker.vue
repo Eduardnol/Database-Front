@@ -62,7 +62,7 @@
 
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
-import MiniPerson from "../add_lifeteen/MiniPerson";
+import MiniPerson from "../AddDiscipuladoMenores/MiniPerson";
 
 
 export default {
@@ -105,14 +105,14 @@ export default {
     },
     /**
      * Saves the selected list into the vuex store, if its the monitor list or the inscritos list
-     * @param lifeteenId Id of the lifeteen to save the list into
+     * @param discipuladoMenoresId Id of the discipuladoMenores to save the list into
      */
-    saveSelected(lifeteenId) {
+    saveSelected(discipuladoMenoresId) {
       let list = this.selected;
       if (this.$store.getters['isInscritos']) {
-        this.$store.commit("updateInscritosList", {lifeteenId, list,});
+        this.$store.commit("updateInscritosList", {discipuladoMenoresId, list,});
       } else {
-        this.$store.commit("updateMonitorList", {lifeteenId, list,});
+        this.$store.commit("updateMonitorList", {discipuladoMenoresId, list,});
       }
 
     },
@@ -122,9 +122,9 @@ export default {
     loadSelected() {
       console.log("ListPicker mounted");
       if (this.$store.getters['isInscritos']) {
-        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idInscritos;
+        this.selected = this.$store.getters.getArrItemDiscipuladoMenores(this.$route.params.id).idInscritos;
       } else {
-        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idMonitores;
+        this.selected = this.$store.getters.getArrItemDiscipuladoMenores(this.$route.params.id).idMonitores;
       }
     },
   }

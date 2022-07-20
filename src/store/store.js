@@ -41,7 +41,7 @@ export const store = createStore({
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 }],
-                lifeteens: [{
+                discipuladoMenores: [{
                     id: null,
                     title: "",
                     responsable1: {id: null, nombre: "", apellido: ""},
@@ -60,8 +60,8 @@ export const store = createStore({
             getArrItem: (state) => (id) => {
                 return state.persons.find(item => item.id === id);
             },
-            getArrItemLifeTeen: (state) => (id) => {
-                return state.lifeteens.find(item => item.id === id);
+            getArrItemDiscipuladoMenores: (state) => (id) => {
+                return state.discipuladoMenores.find(item => item.id === id);
             },
             isInscritos: (state) => {
                 return state.isInscritos;
@@ -127,28 +127,28 @@ export const store = createStore({
                 console.log("The id to be deleted" + toBeDeleted)
                 state.person.fileStorage.splice(toBeDeleted, 1);
             },
-            //***********************Lifeteens***********************//
-            insertLifeteen(state, lifeteen) {
-                state.lifeteens.push(lifeteen);
+            //***********************Discipulado Menores***********************//
+            insertDiscipuladoMenores(state, discipuladoMenores) {
+                state.discipuladoMenores.push(discipuladoMenores);
             },
-            updateLifeteen(state, lifeteen) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeUpdated, 1, lifeteen);
+            updateDiscipuladoMenores(state, discipuladoMenores) {
+                const toBeUpdated = state.discipuladoMenores.map(item => item.id).indexOf(discipuladoMenores.id);
+                state.discipuladoMenores.splice(toBeUpdated, 1, discipuladoMenores);
             },
-            deleteLifeteen(state, lifeteen) {
-                const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeDeleted, 1);
+            deleteDiscipuladoMenores(state, discipuladoMenores) {
+                const toBeDeleted = state.discipuladoMenores.map(item => item.id).indexOf(discipuladoMenores.id);
+                state.discipuladoMenores.splice(toBeDeleted, 1);
             },
-            getLifeteenById(state, id) {
-                return state.lifeteens.map(item => item.id).indexOf(id);
+            getDiscipuladoMenoresById(state, id) {
+                return state.discipuladoMenores.map(item => item.id).indexOf(id);
             },
-            updateMonitorList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idMonitores = list;
+            updateMonitorList(state, {discipuladoMenoresId, list}) {
+                const toBeUpdated = state.discipuladoMenores.map(item => item.id).indexOf(discipuladoMenoresId);
+                state.discipuladoMenores[toBeUpdated].idMonitores = list;
             },
-            updateInscritosList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idInscritos = list;
+            updateInscritosList(state, {discipuladoMenoresId, list}) {
+                const toBeUpdated = state.discipuladoMenores.map(item => item.id).indexOf(discipuladoMenoresId);
+                state.discipuladoMenores[toBeUpdated].idInscritos = list;
             },
             //***********************Extras***********************//
             updateInscritosBoolean(state, boolValue) {

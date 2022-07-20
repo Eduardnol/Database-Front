@@ -1,5 +1,5 @@
 <template>
-  <div class="lifeteen">
+  <div class="discipuladoMenores">
     <div class="icon"><i class="bi bi-people-fill"></i></div>
     <div class="textinfo">
       <h1 class="title">{{ title }}</h1>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "Lifeteen",
+  name: "DiscipuladoMenores",
   props: {
     id: String,
     title: String,
@@ -55,7 +55,7 @@ export default {
   font-weight: bold;
 }
 
-.lifeteen {
+.discipuladoMenores {
   display: flex;
   flex-direction: row;
   align-items: center;

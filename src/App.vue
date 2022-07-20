@@ -2,7 +2,7 @@
   <div>
     <Header/>
     <router-link to="/">All Users</router-link>
-    <router-link to="/all-lifeteen">All Lifeteen</router-link>
+    <router-link to="/all-discipuladomenores">All Discipulado Menores</router-link>
     <!-- Page rendered by router -->
     <router-view/>
   </div>

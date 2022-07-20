@@ -1,17 +1,17 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <h5>Identificador Lifeteen: {{ lifeteens.id }}</h5>
+      <h5>Identificador Discipulado: {{ discipuladoMenores.id }}</h5>
 
       <h5>Creado el: {{
-          getDateAndFormat(lifeteens.startDate)
+          getDateAndFormat(discipuladoMenores.startDate)
         }}</h5>
 
       <h5>Archivos:</h5>
 
       <!--      <ul>-->
       <!--        <li-->
-      <!--            v-for="file in lifeteens.fileStorage"-->
+      <!--            v-for="file in discipuladoMenores.fileStorage"-->
       <!--            :key="file.url"-->
       <!--            class="list_item">-->
       <!--          <UserFile :filename="file.name" :url="file.url"-->
@@ -27,7 +27,7 @@
 
     </div>
     <div class="userfields info">
-      <AddLifeteenFields/>
+      <AddDiscipuladoMenoresFields/>
     </div>
     <div class="userfields searchInput">
       <ais-instant-search :search-client="searchClient" index-name="users">
@@ -66,10 +66,10 @@
       </ais-instant-search>
     </div>
     <div class="userfields inscritos">
-      <p>Total Inscritos {{ lifeteens.numInscritos }}</p>
+      <p>Total Inscritos {{ discipuladoMenores.numInscritos }}</p>
       <ul class="person_grid">
         <li
-            v-for="person in lifeteens.idInscritos"
+            v-for="person in discipuladoMenores.idInscritos"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -84,11 +84,11 @@
       </ul>
     </div>
     <div class="userfields monitores">
-      <p>Total Monitores {{ lifeteens.idMonitores.length }}</p>
+      <p>Total Monitores {{ discipuladoMenores.idMonitores.length }}</p>
 
       <ul class="person_grid">
         <li
-            v-for="person in lifeteens.idMonitores"
+            v-for="person in discipuladoMenores.idMonitores"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -157,22 +157,22 @@
 </template>
 <script>
 import moment from "moment";
-import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
+import AddDiscipuladoMenoresFields from "../../components/AddDiscipuladoMenores/AddDiscipuladoMenoresFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
-import MiniPerson from "../../components/add_lifeteen/MiniPerson";
-import ListPicker from "../../components/list_picker/ListPicker";
+import MiniPerson from "../../components/AddDiscipuladoMenores/MiniPerson";
+import ListPicker from "../../components/ListPicker/ListPicker";
 import MongoDBconn from "../../services/MongoDBconn";
 
 export default {
-  name: "LifeteenSpecific",
-  components: {ListPicker, MiniPerson, AddLifeteenFields},
+  name: "DiscipuladoMenoresSpecific",
+  components: {ListPicker, MiniPerson, AddDiscipuladoMenoresFields},
   computed: {
-    lifeteens: {
+    discipuladoMenores: {
       get() {
-        return this.$store.getters.getArrItemLifeTeen(this.$route.params.id);
+        return this.$store.getters.getArrItemDiscipuladoMenores(this.$route.params.id);
       },
       set(value) {
-        this.$store.commit("updateLifeteen", value);
+        this.$store.commit("updateDiscipuladoMenores", value);
       },
     },
   },
@@ -231,11 +231,11 @@ export default {
     //   this.$store.commit("deleteFile", fileurl);
     // },
     /**
-     * Saves the vuex store lifeteen into the database
+     * Saves the vuex store discipuladoMenores into the database
      */
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updateLifeteen(this.lifeteens);
+      update.updateDiscipuladoMenores(this.discipuladoMenores);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
     /**
