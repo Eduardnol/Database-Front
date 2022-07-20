@@ -108,16 +108,20 @@
       Añadir Monitores
     </button>
 
+    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
+            @click="openInscritos()">
+      Añadir Inscritos
+    </button>
     <!-- Modal -->
     <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="exampleModalLabel" class="modal-title">Modal title</h5>
+            <h5 id="exampleModalLabel" class="modal-title">Seleccionar Personas</h5>
             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
           </div>
           <div class="modal-body">
-            <ListPicker ref="ListPicker" :isInscrito="isInscritos"/>
+            <ListPicker ref="ListPicker"/>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
@@ -177,7 +181,7 @@ export default {
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
       ),
-      isInscritos: false,
+
     }
   },
 
@@ -225,11 +229,18 @@ export default {
     //   deleteFile.deleteFile(this.person.id, fileName)
     //   this.$store.commit("deleteFile", fileurl);
     // },
+    updateSelected() {
+      this.$refs.ListPicker.loadSelected();
+    },
     openMonitores() {
-      this.isInscritos = false;
+      this.$store.commit("updateInscritosBoolean", false);
+      this.updateSelected();
+      console.log("openMonitores");
     },
     openInscritos() {
-      this.isInscritos = true;
+      this.$store.commit("updateInscritosBoolean", true);
+      this.updateSelected();
+      console.log("openInscritos");
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
@@ -246,7 +257,7 @@ export default {
     },
     saveSelectedItemsIntoVueStore() {
       this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
-    }
+    },
   },
   // beforeMount() {
   //   let search = new MongoDBconn();

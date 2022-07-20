@@ -70,12 +70,6 @@ export default {
   components: {
     MiniPerson
   },
-  props: {
-    isInscrito: {
-      type: Boolean,
-      default: false
-    },
-  },
   data() {
     return {
       searchClient: instantMeiliSearch(
@@ -84,6 +78,7 @@ export default {
       selected: [],
     }
   },
+
   methods: {
     //Adds the clicked item into the selected list
     addToSelected(person) {
@@ -102,22 +97,23 @@ export default {
       this.selected = this.selected.filter(p => p.id !== person.id);
     },
     //Saves the selected list into the database, if its the monitor list or the inscritos list
-    saveSelected(lifeteenId, isInscritos) {
+    saveSelected(lifeteenId) {
       let list = this.selected;
-      if (isInscritos) {
+      if (this.$store.getters['isInscritos']) {
         this.$store.commit("updateInscritosList", {lifeteenId, list,});
       } else {
         this.$store.commit("updateMonitorList", {lifeteenId, list,});
       }
 
     },
-  },
-  beforeMount() {
-    if (this.$props.isInscrito) {
-      this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idInscritos;
-    } else {
-      this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idMonitores;
-    }
+    loadSelected() {
+      console.log("ListPicker mounted");
+      if (this.$store.getters['isInscritos']) {
+        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idInscritos;
+      } else {
+        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idMonitores;
+      }
+    },
   }
 }
 </script>

@@ -51,7 +51,8 @@ export const store = createStore({
                     idMonitores: [{id: null, nombre: "", apellido: ""}],
                     idInscritos: [{id: null, nombre: "", apellido: ""}],
 
-                }]
+                }],
+                isInscritos: false,
             }
 
         },
@@ -61,6 +62,9 @@ export const store = createStore({
             },
             getArrItemLifeTeen: (state) => (id) => {
                 return state.lifeteens.find(item => item.id === id);
+            },
+            isInscritos: (state) => {
+                return state.isInscritos;
             }
         },
         mutations: {
@@ -145,8 +149,11 @@ export const store = createStore({
             updateInscritosList(state, {lifeteenId, list}) {
                 const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
                 state.lifeteens[toBeUpdated].idInscritos = list;
+            },
+            //***********************Extras***********************//
+            updateInscritosBoolean(state, boolValue) {
+                state.isInscritos = boolValue;
             }
-
         }
     }
 );
