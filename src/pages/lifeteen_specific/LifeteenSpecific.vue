@@ -105,7 +105,7 @@
     <!-- Button trigger modal -->
     <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
             @click="openMonitores()">
-      Launch demo modal
+      Añadir Monitores
     </button>
 
     <!-- Modal -->
@@ -117,7 +117,7 @@
             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
           </div>
           <div class="modal-body">
-            <ListPicker ref="ListPicker"/>
+            <ListPicker ref="ListPicker" :isInscrito="isInscritos"/>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
@@ -156,7 +156,6 @@ import moment from "moment";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
-//import MongoDBconn from "../../services/MongoDBconn";
 import ListPicker from "../../components/list_picker/ListPicker";
 
 export default {
@@ -246,8 +245,6 @@ export default {
       });
     },
     saveSelectedItemsIntoVueStore() {
-      //print parameter id
-      console.log(this.$route.params.id);
       this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
     }
   },

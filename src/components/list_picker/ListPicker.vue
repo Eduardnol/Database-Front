@@ -70,6 +70,12 @@ export default {
   components: {
     MiniPerson
   },
+  props: {
+    isInscrito: {
+      type: Boolean,
+      default: false
+    },
+  },
   data() {
     return {
       searchClient: instantMeiliSearch(
@@ -102,6 +108,13 @@ export default {
 
     },
   },
+  beforeMount() {
+    if (this.$props.isInscrito) {
+      this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idInscritos;
+    } else {
+      this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idMonitores;
+    }
+  }
 }
 </script>
 
