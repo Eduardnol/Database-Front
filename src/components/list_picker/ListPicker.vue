@@ -90,7 +90,11 @@ export default {
       if (this.selected.find(p => p.id === person.id)) {
         this.selected = this.selected.filter(p => p.id !== person.id);
       } else {
-        this.selected.push(person);
+        this.selected.push({
+          id: person.id,
+          nombre: person.nombre,
+          apellido: person.apellido,
+        });
       }
     },
     //Removes the clicked item from the selected list

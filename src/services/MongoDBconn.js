@@ -206,7 +206,7 @@ export default class MongoDBconn {
         return response.status;
     }
 
-    aync
+    /**********Lifeteen**********/
 
     async getAllLifeteen() {
         let url = baseUrl + `api/v1/lifeteen/all`
@@ -247,6 +247,24 @@ export default class MongoDBconn {
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
+        })
+        const data = response.json();
+        //Now its time to check the error codes
+        if (response.status == 500) {
+            return "Bad Parameters";
+        }
+        if (response.status == 200) {
+            //Process response
+            return data;
+        }
+    }
+
+    async updateLifeteen(lifeteen) {
+        let url = baseUrl + `api/v1/lifeteen/update`
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(lifeteen),
         })
         const data = response.json();
         //Now its time to check the error codes

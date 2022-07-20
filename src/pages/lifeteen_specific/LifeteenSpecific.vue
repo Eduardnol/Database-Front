@@ -157,6 +157,7 @@ import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
 import ListPicker from "../../components/list_picker/ListPicker";
+import MongoDBconn from "../../services/MongoDBconn";
 
 export default {
   name: "LifeteenSpecific",
@@ -188,12 +189,11 @@ export default {
     //   });
     // },
     // //Saves into the database the user we just updated
-    // saveIntoDatabase() {
-    //   let update = new MongoDBconn();
-    //   update.updatePerson(this.person);
-    //   // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
-    //   this.getToPage();
-    // },
+    saveIntoDatabase() {
+      let update = new MongoDBconn();
+      update.updateLifeteen(this.lifeteens);
+      // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
+    },
     // deleteuser() {
     //   //update database user throught api and automatically the array
     //   let deletion = new MongoDBconn();
