@@ -69,7 +69,7 @@
       <p>Total Inscritos {{ lifeteens.numInscritos }}</p>
       <ul class="person_grid">
         <li
-            v-for="person in inscritos"
+            v-for="person in lifeteens.idInscritos"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -88,7 +88,7 @@
 
       <ul class="person_grid">
         <li
-            v-for="person in monitores"
+            v-for="person in lifeteens.idMonitores"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -156,7 +156,7 @@ import moment from "moment";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
-import MongoDBconn from "../../services/MongoDBconn";
+//import MongoDBconn from "../../services/MongoDBconn";
 import ListPicker from "../../components/list_picker/ListPicker";
 
 export default {
@@ -177,20 +177,6 @@ export default {
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
       ),
-      inscritos: [
-        {
-          id: null,
-          apellido: "",
-          apellido2: "",
-          nombre: "",
-        }],
-      monitores: [
-        {
-          id: null,
-          apellido: "",
-          apellido2: "",
-          nombre: "",
-        }],
       isInscritos: false,
     }
   },
@@ -265,15 +251,15 @@ export default {
       this.$refs.ListPicker.saveSelected(this.$route.params.id, this.isInscritos);
     }
   },
-  beforeMount() {
-    let search = new MongoDBconn();
-    search.getInscritosById(this.$route.params.id).then((data) => {
-      this.inscritos = data;
-    });
-    search.getMonitoresById(this.$route.params.id).then((data) => {
-      this.monitores = data;
-    });
-  }
+  // beforeMount() {
+  //   let search = new MongoDBconn();
+  //   search.getInscritosById(this.$route.params.id).then((data) => {
+  //     this.inscritos = data;
+  //   });
+  //   search.getMonitoresById(this.$route.params.id).then((data) => {
+  //     this.monitores = data;
+  //   });
+  // }
 }
 ;
 </script>
