@@ -1,9 +1,10 @@
-FROM node:16.0.0
-
+FROM node:14-alpine
 WORKDIR /app
-COPY package.json /app
-COPY package-lock.json /app
-RUN npm install
 RUN npm install -g @vue/cli
-EXPOSE 8082
+COPY package*.json ./
+ENV NODE_ENV=development
+RUN npm install
+COPY . .
+EXPOSE 8080
 CMD ["npm", "run", "serve"]
+
