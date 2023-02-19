@@ -64,6 +64,7 @@
 </template>
 <script>
 import AddLifeteenFields from './AddLifeteenFields.vue'
+import MongoDBconn from "../../services/MongoDBconn";
 
 export default {
   components: {
