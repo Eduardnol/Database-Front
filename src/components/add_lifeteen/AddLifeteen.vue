@@ -74,13 +74,15 @@ export default {
   },
   methods: {
     sendNewUserToDatabase() {
+    let conn = new MongoDBconn();
+    conn.postDiscipulado(this.discipulado_ret);
     },
     cancelUser() {
     },
   },
   computed: {
-    person_ret() {
-      return null;
+    discipulado_ret() {
+      return this.$store.state().insertLifeteen(this.AddLifeteenFields.data());
     },
   },
 };
