@@ -37,7 +37,7 @@
         </div>
         <div class="modal-body">
           <form>
-            <AddLifeteenFields/>
+            <AddLifeteenFields ref="addDiscipuladoRef"/>
           </form>
         </div>
         <div class="modal-footer">
@@ -53,7 +53,7 @@
               class="btn btn-primary"
               data-bs-dismiss="modal"
               type="button"
-              @click="sendNewUserToDatabase"
+              @click="sendNewDiscipuladoToDatabase"
           >
             <i class="bi bi-cloud-arrow-up"></i> Guardar
           </button>
@@ -63,10 +63,11 @@
   </div>
 </template>
 <script>
-import AddLifeteenFields from './AddLifeteenFields.vue'
 import MongoDBconn from "../../services/MongoDBconn";
+import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields.vue";
 
 export default {
+  name: "AddLifeteen",
   components: {
     AddLifeteenFields,
   },
@@ -74,18 +75,15 @@ export default {
     this.$store.commit("deleteUser");
   },
   methods: {
-    sendNewUserToDatabase() {
-    let conn = new MongoDBconn();
-    conn.postDiscipulado(this.discipulado_ret);
+    sendNewDiscipuladoToDatabase() {
+      this.$refs.addDiscipuladoRef.saveObjectToStore();
+      let conn = new MongoDBconn();
+      conn.postDiscipulado(this.$refs.addDiscipuladoRef.lifeteen);
     },
     cancelUser() {
     },
   },
-  computed: {
-    discipulado_ret() {
-      return this.$store.state().insertLifeteen(this.AddLifeteenFields.data());
-    },
-  },
+  computed: {},
 };
 </script>
 <style scoped>

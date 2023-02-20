@@ -52,6 +52,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import moment from "moment";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
@@ -61,6 +62,7 @@ export default {
   data() {
     return {
       lifeteen: {
+        id: null,
         title: "",
         responsable1: "",
         responsable2: "",
@@ -73,26 +75,48 @@ export default {
       ),
     }
   },
-  components: {},
-  computed: {},
+
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
       return this.person.extras.indexOf(element);
-    },
+    }
+    ,
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
-    },
+    }
+    ,
     addCustomFields() {
       this.$store.commit("addAnExtraField")
 
-    },
+    }
+    ,
     deleteIndividualField(id) {
       console.log("The id is: " + id)
       this.$store.commit("deleteFromExtraArray", id)
     }
-  },
-};
+    ,
+    retrieveData() {
+      return this.lifeteen;
+    },
+    saveObjectToStore() {
+      let lifeteens = this.$store.getters.getLifeteens;
+      if(lifeteens == null){
+        lifeteens = [];
+      }
+      if (this.lifeteen.id != null) {
+        let elementToEdit = lifeteens.find(element => element.id === this.lifeteen.id);
+        elementToEdit = this.lifeteen
+        console.log(elementToEdit);
+      } else {
+        lifeteens.push(this.lifeteen);
+      }
+      this.$store.commit('updateLifeteen', lifeteens);
+    }
+  }
+  ,
+}
+;
 </script>
 <style scoped>
 .form {
