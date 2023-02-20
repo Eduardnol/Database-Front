@@ -81,14 +81,15 @@ export default class MongoDBconn {
     }
 
     async postDiscipulado(discipulado) {
-        const response = await fetch(baseUrl + 'api/v1/discipuladomenores/insert', {
+        const response = await fetch(baseUrl + 'api/v1/discipuladomenores/insert/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},//important to specify the headers as a JSON
             body: JSON.stringify(discipulado), //We pass into a JSON string the parameters to the api
         });
+        const data = response.json();
 
         if(response.status == 200){
-            return true;
+            return data;
         }
     }
 
