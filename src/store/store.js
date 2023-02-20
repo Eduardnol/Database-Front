@@ -65,6 +65,9 @@ export const store = createStore({
             },
             isInscritos: (state) => {
                 return state.isInscritos;
+            },
+            getLifeteens: (state) => {
+                return state.lifeteens;
             }
         },
         mutations: {
@@ -131,9 +134,8 @@ export const store = createStore({
             insertLifeteen(state, lifeteen) {
                 state.lifeteens.push(lifeteen);
             },
-            updateLifeteen(state, lifeteen) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeUpdated, 1, lifeteen);
+            updateLifeteen(state, updatedLifeteen) {
+                state.lifeteens = updatedLifeteen;
             },
             deleteLifeteen(state, lifeteen) {
                 const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
