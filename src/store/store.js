@@ -46,10 +46,16 @@ export const store = createStore({
                     title: "",
                     responsable1: {id: null, nombre: "", apellido: ""},
                     responsable2: {id: null, nombre: "", apellido: ""},
-                    startDate: "",
-                    numInscritos: null,
+                    startDate: Date.now(),
+                    numInscritos: 0,
                     idMonitores: [{id: null, nombre: "", apellido: ""}],
                     idInscritos: [{id: null, nombre: "", apellido: ""}],
+                    subgrupos: [{
+                        titulo: "",
+                        descripcion: "",
+                        responsables: null,
+                        integrantes: null,
+                    }],
 
                 }],
                 isInscritos: false,
@@ -65,6 +71,9 @@ export const store = createStore({
             },
             isInscritos: (state) => {
                 return state.isInscritos;
+            },
+            getLifeteens: (state) => {
+                return state.lifeteens;
             }
         },
         mutations: {
@@ -131,9 +140,8 @@ export const store = createStore({
             insertLifeteen(state, lifeteen) {
                 state.lifeteens.push(lifeteen);
             },
-            updateLifeteen(state, lifeteen) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeUpdated, 1, lifeteen);
+            updateLifeteen(state, updatedLifeteen) {
+                state.lifeteens = updatedLifeteen;
             },
             deleteLifeteen(state, lifeteen) {
                 const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
