@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="lifeteen.nombre"
+              v-model="lifeteen.title"
               class="form-control"
               placeholder="ej: Lifeteen 2022"
               type="text"
@@ -64,11 +64,13 @@ export default {
       lifeteen: {
         id: null,
         title: "",
-        responsable1: "",
-        responsable2: "",
-        startDate: Date,
-        idMonitores: Array,
-        idInscritos: Array,
+        responsable1: null,
+        responsable2: null,
+        startDate: "2001-01-20",
+        numInscritos: 0,
+        idMonitores: [],
+        idInscritos: [],
+        subgrupos: [],
       },
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
@@ -101,7 +103,7 @@ export default {
     },
     saveObjectToStore() {
       let lifeteens = this.$store.getters.getLifeteens;
-      if(lifeteens == null){
+      if (lifeteens == null) {
         lifeteens = [];
       }
       if (this.lifeteen.id != null) {

@@ -46,10 +46,16 @@ export const store = createStore({
                     title: "",
                     responsable1: {id: null, nombre: "", apellido: ""},
                     responsable2: {id: null, nombre: "", apellido: ""},
-                    startDate: "",
-                    numInscritos: null,
+                    startDate: Date.now(),
+                    numInscritos: 0,
                     idMonitores: [{id: null, nombre: "", apellido: ""}],
                     idInscritos: [{id: null, nombre: "", apellido: ""}],
+                    subgrupos: [{
+                        titulo: "",
+                        descripcion: "",
+                        responsables: null,
+                        integrantes: null,
+                    }],
 
                 }],
                 isInscritos: false,
