@@ -58,6 +58,22 @@ export const store = createStore({
                     }],
 
                 }],
+                lifeteen: {
+                    id: null,
+                    title: "",
+                    responsable1: {id: null, nombre: "", apellido: ""},
+                    responsable2: {id: null, nombre: "", apellido: ""},
+                    startDate: "2001-01-20",
+                    numInscritos: 0,
+                    idMonitores: [{id: null, nombre: "", apellido: ""}],
+                    idInscritos: [{id: null, nombre: "", apellido: ""}],
+                    subgrupos: [{
+                        titulo: "",
+                        descripcion: "",
+                        responsables: null,
+                        integrantes: null,
+                    }],
+                },
                 isInscritos: false,
             }
 
@@ -80,6 +96,9 @@ export const store = createStore({
             //***********************Persons***********************//
             insertUser(state, person) {
                 state.person = person
+            },
+            insertDiscipulado(state, discipulado) {
+                state.lifeteen = discipulado
             },
             getPersonById(state, id) {
 

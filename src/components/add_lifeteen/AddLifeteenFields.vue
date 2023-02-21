@@ -25,15 +25,16 @@
               <template v-slot="{isSearchStalled, refine}">
                 <input
                     class="form-control"
-                    :placeholder="lifeteen.responsable1.nombre + lifeteen.responsable1.apellido" ,
+                    :placeholder="lifeteen.responsable1.nombre + lifeteen.responsable1.apellido"
                     type="search"
                     @input="refine($event.currentTarget.value)"
                     @focus="inputResponsable1Focused = true"
+                    @blur="inputResponsable1Focused = false"
                 />
                 <span :hidden="!isSearchStalled">Loading...</span>
               </template>
             </ais-search-box>
-            <ais-hits v-show="inputResponsable1Focused">
+            <ais-hits>
               <template v-slot="{ items }">
                 <ul class="person_grid">
                   <li
@@ -95,23 +96,22 @@ export default {
   },
   data() {
     return {
-      inputResponsable1Focused: false,
-      inputResponsable2Focused: false,
-      lifeteen: {
-        id: null,
-        title: "",
-        responsable1: null,
-        responsable2: null,
-        startDate: "2001-01-20",
-        numInscritos: 0,
-        idMonitores: [],
-        idInscritos: [],
-        subgrupos: [],
-      },
+      inputResponsable1Focused: true,
+      inputResponsable2Focused: true,
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
       ),
     }
+  },
+  computed: {
+    lifeteen: {
+      get() {
+        return this.$store.state.lifeteen;
+      },
+      set(value) {
+        this.$store.commit("insertDiscipulado", value);
+      },
+    },
   },
 
   methods: {
@@ -145,8 +145,10 @@ export default {
     addCustomFields() {
       this.$store.commit("addAnExtraField")
 
-    }
-    ,
+    },
+    fillThePersonFromParent() {
+
+    },
     deleteIndividualField(id) {
       console.log("The id is: " + id)
       this.$store.commit("deleteFromExtraArray", id)

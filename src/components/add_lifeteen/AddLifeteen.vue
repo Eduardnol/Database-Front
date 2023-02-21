@@ -83,7 +83,6 @@ export default {
     cancelUser() {
     },
   },
-  computed: {},
 };
 </script>
 <style scoped>
