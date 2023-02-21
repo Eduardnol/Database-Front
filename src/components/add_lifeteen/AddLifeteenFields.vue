@@ -19,12 +19,42 @@
           <p class="form">Responsable 1</p>
         </div>
         <div class="col-auto">
-          <input
-              v-model="lifeteen.responsable1"
-              class="form-control"
-              placeholder="Nombre Apellido"
-              type="text"
-          />
+          <ais-instant-search :search-client="searchClient" index-name="users">
+            <ais-configure :hits-per-page.camel="3"/>
+            <ais-search-box class="searchbox">
+              <template v-slot="{isSearchStalled, refine}">
+                <input
+                    class="form-control"
+                    :placeholder="lifeteen.responsable1.nombre + lifeteen.responsable1.apellido" ,
+                    type="search"
+                    @input="refine($event.currentTarget.value)"
+                    @focus="inputResponsable1Focused = true"
+                />
+                <span :hidden="!isSearchStalled">Loading...</span>
+              </template>
+            </ais-search-box>
+            <ais-hits v-show="inputResponsable1Focused">
+              <template v-slot="{ items }">
+                <ul class="person_grid">
+                  <li
+                      v-for="person in items"
+                      :key="person.id"
+                      class="list_item"
+                      @click="assignToResponsable1(person)"
+                  >
+                    <MiniPerson
+                        :id="person.id"
+                        :apellido="person.apellido"
+                        :apellido2="person.apellido2"
+                        :birthday="new Date(person.birthday)"
+                        :email="person.email"
+                        :nombre="person.nombre"
+                    />
+                  </li>
+                </ul>
+              </template>
+            </ais-hits>
+          </ais-instant-search>
 
         </div>
       </div>
@@ -56,11 +86,17 @@
 <script>
 import moment from "moment";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
+import MiniPerson from "./MiniPerson.vue";
 
 export default {
   name: "AddLifeteenFields",
+  components: {
+    MiniPerson,
+  },
   data() {
     return {
+      inputResponsable1Focused: false,
+      inputResponsable2Focused: false,
       lifeteen: {
         id: null,
         title: "",
@@ -79,6 +115,24 @@ export default {
   },
 
   methods: {
+    assignToResponsable1(person) {
+      console.log("Assigning to responsable 1")
+      this.inputResponsable1Focused = false;
+      this.lifeteen.responsable1 = {
+        id: person.id,
+        nombre: person.nombre,
+        apellido: person.apellido
+      }
+
+    },
+    assignToResponsable2(person) {
+      this.inputResponsable2Focused = false;
+      this.lifeteen.responsable2 = {
+        id: person.id,
+        nombre: person.nombre,
+        apellido: person.apellido
+      }
+    },
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
       return this.person.extras.indexOf(element);
