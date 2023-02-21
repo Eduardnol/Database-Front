@@ -222,7 +222,7 @@ export default class MongoDBconn {
     /**********Lifeteen**********/
 
     async getAllLifeteen() {
-        let url = baseUrl + `api/v1/lifeteen/all`
+        let url = baseUrl + `api/v1/discipuladomenores/all`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -239,7 +239,7 @@ export default class MongoDBconn {
     }
 
     async getMonitoresById(id) {
-        let url = baseUrl + `api/v1/lifeteen/${id}/monitores`
+        let url = baseUrl + `api/v1/discipuladomenores/${id}/monitores`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -256,7 +256,7 @@ export default class MongoDBconn {
     }
 
     async getInscritosById(id) {
-        let url = baseUrl + `api/v1/lifeteen/${id}/inscritos`
+        let url = baseUrl + `api/v1/discipuladomenores/${id}/inscritos`
         const response = await fetch(url, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
@@ -273,7 +273,7 @@ export default class MongoDBconn {
     }
 
     async updateLifeteen(lifeteen) {
-        let url = baseUrl + `api/v1/lifeteen/update`
+        let url = baseUrl + `api/v1/discipuladomenores/update`
         const response = await fetch(url, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'},
