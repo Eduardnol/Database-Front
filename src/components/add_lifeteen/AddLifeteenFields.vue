@@ -18,45 +18,37 @@
         <div class="col-auto me-auto">
           <p class="form">Responsable 1</p>
         </div>
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
+                @click="openResponsable1()">
+          Editar Responsable 1
+        </button>
         <div class="col-auto">
-          <ais-instant-search :search-client="searchClient" index-name="users">
-            <ais-configure :hits-per-page.camel="3"/>
-            <ais-search-box class="searchbox">
-              <template v-slot="{isSearchStalled, refine}">
-                <input
-                    class="form-control"
-                    :placeholder="lifeteen.responsable1.nombre + lifeteen.responsable1.apellido"
-                    type="search"
-                    @input="refine($event.currentTarget.value)"
-                    @focus="inputResponsable1Focused = true"
-                    @blur="inputResponsable1Focused = false"
-                />
-                <span :hidden="!isSearchStalled">Loading...</span>
-              </template>
-            </ais-search-box>
-            <ais-hits>
-              <template v-slot="{ items }">
-                <ul class="person_grid">
-                  <li
-                      v-for="person in items"
-                      :key="person.id"
-                      class="list_item"
-                      @click="assignToResponsable1(person)"
-                  >
-                    <MiniPerson
-                        :id="person.id"
-                        :apellido="person.apellido"
-                        :apellido2="person.apellido2"
-                        :birthday="new Date(person.birthday)"
-                        :email="person.email"
-                        :nombre="person.nombre"
-                    />
-                  </li>
-                </ul>
-              </template>
-            </ais-hits>
-          </ais-instant-search>
-
+          <input
+              v-model="lifeteen.responsable1"
+              class="form-control"
+              placeholder="Nombre Apellido"
+              type="text"
+          />
+        </div>
+        <!-- Modal -->
+        <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" tabindex="-1">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">Seleccionar Responsable</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+              </div>
+              <div class="modal-body">
+                <ListPicker ref="ListPicker"/>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">Save changes
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row mt-3">
@@ -125,6 +117,9 @@ export default {
       }
 
     },
+    saveSelectedItemsIntoVueStore() {
+      //Save the items selected into vue store
+    },
     assignToResponsable2(person) {
       this.inputResponsable2Focused = false;
       this.lifeteen.responsable2 = {
@@ -136,12 +131,10 @@ export default {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
       return this.person.extras.indexOf(element);
-    }
-    ,
+    },
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
-    }
-    ,
+    },
     addCustomFields() {
       this.$store.commit("addAnExtraField")
 
