@@ -15,62 +15,29 @@
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Responsable 1</p>
-        </div>
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
-                @click="openResponsable1()">
-          Editar Responsable 1
-        </button>
-        <div class="col-auto">
-          <input
-              v-model="lifeteen.responsable1"
-              class="form-control"
-              placeholder="Nombre Apellido"
-              type="text"
-          />
-        </div>
-        <!-- Modal -->
-        <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" tabindex="-1">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 id="exampleModalLabel" class="modal-title">Seleccionar Responsable</h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-              </div>
-              <div class="modal-body">
-                <ListPicker ref="ListPicker"/>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">Save changes
-                </button>
-              </div>
+        <ul>
+          <li
+              v-for="responsable in lifeteen.responsables"
+              :key="responsable.id">
+            <div class="col-auto me-auto">
+              <p class="form">Responsable</p>
             </div>
-          </div>
-        </div>
+            <div class="col-auto">
+              <p>
+                  {{responsable.nombre}}
+              </p>
+            </div>
+
+          </li>
+        </ul>
       </div>
-      <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Responsable 2</p>
-        </div>
-        <div class="col-auto">
-          <input
-              v-model="lifeteen.responsable2"
-              class="form-control"
-              placeholder="Nombre Apellido"
-              type="text"
-          />
-        </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-auto me-auto">
+        <p class="form">Fecha de Inicio</p>
       </div>
-      <div class="row mt-3">
-        <div class="col-auto me-auto">
-          <p class="form">Fecha de Inicio</p>
-        </div>
-        <div class="col-auto">
-          <input v-model="lifeteen.startDate" class="form-control" type="date"/>
-        </div>
+      <div class="col-auto">
+        <input v-model="lifeteen.startDate" class="form-control" type="date"/>
       </div>
     </div>
   </div>
@@ -88,8 +55,6 @@ export default {
   },
   data() {
     return {
-      inputResponsable1Focused: true,
-      inputResponsable2Focused: true,
       searchClient: instantMeiliSearch(
           "http://localhost:7720",
       ),
@@ -107,26 +72,8 @@ export default {
   },
 
   methods: {
-    assignToResponsable1(person) {
-      console.log("Assigning to responsable 1")
-      this.inputResponsable1Focused = false;
-      this.lifeteen.responsable1 = {
-        id: person.id,
-        nombre: person.nombre,
-        apellido: person.apellido
-      }
-
-    },
     saveSelectedItemsIntoVueStore() {
       //Save the items selected into vue store
-    },
-    assignToResponsable2(person) {
-      this.inputResponsable2Focused = false;
-      this.lifeteen.responsable2 = {
-        id: person.id,
-        nombre: person.nombre,
-        apellido: person.apellido
-      }
     },
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array

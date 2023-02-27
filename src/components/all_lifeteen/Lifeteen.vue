@@ -4,8 +4,8 @@
     <div class="textinfo">
       <h1 class="title">{{ title }}</h1>
       <div class="basic">
-        <p id="responsable">Responsable: {{ responsable1 }}</p>
-        <p id="responsable2">Responsable: {{ responsable2 }}</p>
+<!--        <p id="responsable">Responsable: {{ responsables[0] }}</p>-->
+<!--        <p id="responsable2">Responsable: {{ responsables[1] }}</p>-->
       </div>
     </div>
     <div class="inscriptionsTotal">
@@ -22,8 +22,7 @@ export default {
   props: {
     id: String,
     title: String,
-    responsable1: String,
-    responsable2: String,
+    responsables: [],
     startDate: Date,
     inscritos: Number,
     idMonitores: [],

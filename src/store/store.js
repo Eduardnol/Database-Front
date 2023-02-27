@@ -44,9 +44,8 @@ export const store = createStore({
                 lifeteens: [{
                     id: null,
                     title: "",
-                    responsable1: {id: null, nombre: "", apellido: ""},
-                    responsable2: {id: null, nombre: "", apellido: ""},
-                    startDate: Date.now(),
+                    responsables: [{id: null, nombre: "", apellido: ""}],
+                    startDate: "2001-01-20",
                     numInscritos: 0,
                     idMonitores: [{id: null, nombre: "", apellido: ""}],
                     idInscritos: [{id: null, nombre: "", apellido: ""}],
@@ -56,13 +55,11 @@ export const store = createStore({
                         responsables: null,
                         integrantes: null,
                     }],
-
                 }],
                 lifeteen: {
                     id: null,
                     title: "",
-                    responsable1: {id: null, nombre: "", apellido: ""},
-                    responsable2: {id: null, nombre: "", apellido: ""},
+                    responsables: [{id: null, nombre: "", apellido: ""}],
                     startDate: "2001-01-20",
                     numInscritos: 0,
                     idMonitores: [{id: null, nombre: "", apellido: ""}],

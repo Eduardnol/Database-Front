@@ -19,8 +19,6 @@
           @click="getToPage(lifeteen.id)">
         <Lifeteen :id="lifeteen.id"
                   :inscritos="lifeteen.numInscritos"
-                  :responsable1="lifeteen.responsable1.nombre + ' ' + lifeteen.responsable1.apellido"
-                  :responsable2="lifeteen.responsable2.nombre + ' ' + lifeteen.responsable2.apellido"
                   :start-date="new Date(lifeteen.startDate)"
                   :title="lifeteen.title"
         />
