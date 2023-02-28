@@ -47,6 +47,8 @@ export default {
   },
   methods: {
     getToPage(id) {
+      let selectedLifeteen = this.$store.getters.getLifeteens[id];
+      this.$store.commit("insertDiscipulado", selectedLifeteen);
       this.$router.push({
         name: "LifeteenSpecific",
         params: {

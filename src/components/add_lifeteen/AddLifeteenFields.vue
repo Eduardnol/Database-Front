@@ -16,16 +16,14 @@
       </div>
       <div class="row mt-3">
         <ul>
-          <li
-              v-for="responsable in lifeteen.responsables"
+          <li v-for="responsable in lifeteen.responsables"
               :key="responsable.id">
+
             <div class="col-auto me-auto">
               <p class="form">Responsable</p>
             </div>
             <div class="col-auto">
-              <p>
-                  {{responsable.nombre}}
-              </p>
+              <p> {{ responsable.nombre }}</p>
             </div>
 
           </li>

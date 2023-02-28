@@ -169,10 +169,10 @@ export default {
   computed: {
     lifeteens: {
       get() {
-        return this.$store.getters.getArrItemLifeTeen(this.$route.params.id);
+        return this.$store.getters.getIndividualLifeteen;
       },
       set(value) {
-        this.$store.commit("updateLifeteen", value);
+        this.$store.commit("updateIndividualLifeteen", value);
       },
     },
   },

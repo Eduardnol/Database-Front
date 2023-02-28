@@ -87,6 +87,9 @@ export const store = createStore({
             },
             getLifeteens: (state) => {
                 return state.lifeteens;
+            },
+            getIndividualLifeteen: (state) => {
+                return state.lifeteen;
             }
         },
         mutations: {
