@@ -44,12 +44,12 @@
 <script>
 import moment from "moment";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
-import MiniPerson from "./MiniPerson.vue";
+// import MiniPerson from "./MiniPerson.vue";
 
 export default {
   name: "AddLifeteenFields",
   components: {
-    MiniPerson,
+    // MiniPerson,
   },
   data() {
     return {
