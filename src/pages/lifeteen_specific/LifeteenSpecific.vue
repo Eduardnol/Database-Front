@@ -1,17 +1,17 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <h5>Identificador Lifeteen: {{ lifeteens.id }}</h5>
+      <h5>Identificador Lifeteen: {{ lifeteen.id }}</h5>
 
       <h5>Creado el: {{
-          getDateAndFormat(lifeteens.startDate)
+          getDateAndFormat(lifeteen.startDate)
         }}</h5>
 
       <h5>Archivos:</h5>
 
       <!--      <ul>-->
       <!--        <li-->
-      <!--            v-for="file in lifeteens.fileStorage"-->
+      <!--            v-for="file in lifeteen.fileStorage"-->
       <!--            :key="file.url"-->
       <!--            class="list_item">-->
       <!--          <UserFile :filename="file.name" :url="file.url"-->
@@ -66,10 +66,10 @@
       </ais-instant-search>
     </div>
     <div class="userfields inscritos">
-      <p>Total Inscritos {{ lifeteens.numInscritos }}</p>
+      <p>Total Inscritos {{ lifeteen.numInscritos }}</p>
       <ul class="person_grid">
         <li
-            v-for="person in lifeteens.idInscritos"
+            v-for="person in lifeteen.idInscritos"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -84,11 +84,11 @@
       </ul>
     </div>
     <div class="userfields monitores">
-      <p>Total Monitores {{ lifeteens.idMonitores.length }}</p>
+      <p>Total Monitores {{ 99 }}</p>
 
       <ul class="person_grid">
         <li
-            v-for="person in lifeteens.idMonitores"
+            v-for="person in lifeteen.idMonitores"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -167,7 +167,7 @@ export default {
   name: "LifeteenSpecific",
   components: {ListPicker, MiniPerson, AddLifeteenFields},
   computed: {
-    lifeteens: {
+    lifeteen: {
       get() {
         return this.$store.getters.getIndividualLifeteen;
       },
@@ -235,7 +235,7 @@ export default {
      */
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updateLifeteen(this.lifeteens);
+      update.updateLifeteen(this.lifeteen);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
     /**

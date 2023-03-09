@@ -47,13 +47,11 @@ export default {
   },
   methods: {
     getToPage(id) {
-      let selectedLifeteen = this.$store.getters.getLifeteens[id];
-      this.$store.commit("insertDiscipulado", selectedLifeteen);
+      let selectedLifeteen = this.$store.getters.getArrItemLifeTeen(id);
+      console.log(selectedLifeteen);
+      this.$store.commit('insertDiscipulado', selectedLifeteen);
       this.$router.push({
         name: "LifeteenSpecific",
-        params: {
-          id: id
-        }
       });
     },
     getAll() {

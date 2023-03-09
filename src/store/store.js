@@ -166,9 +166,6 @@ export const store = createStore({
                 const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
                 state.lifeteens.splice(toBeDeleted, 1);
             },
-            getLifeteenById(state, id) {
-                return state.lifeteens.map(item => item.id).indexOf(id);
-            },
             updateMonitorList(state, {lifeteenId, list}) {
                 const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
                 state.lifeteens[toBeUpdated].idMonitores = list;
@@ -176,6 +173,9 @@ export const store = createStore({
             updateInscritosList(state, {lifeteenId, list}) {
                 const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
                 state.lifeteens[toBeUpdated].idInscritos = list;
+            },
+            updateIndividualLifeteen(state, lifeteen) {
+                state.lifeteen = lifeteen;
             },
             //***********************Extras***********************//
             updateInscritosBoolean(state, boolValue) {
