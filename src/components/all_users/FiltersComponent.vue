@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "Filter",
+  name: "FiltersComponent",
   data() {
     return {
       beginDateBirthday: "",

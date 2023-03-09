@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <HeaderComponent/>
     <router-link to="/">All Users</router-link>
     <router-link to="/all-lifeteen">All Lifeteen</router-link>
     <!-- Page rendered by router -->
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Header from "/src/components/header/Header.vue";
+import HeaderComponent from "/src/components/header/HeaderComponent.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default {
@@ -18,7 +18,7 @@ export default {
     return {};
   },
   components: {
-    Header,
+    HeaderComponent,
   },
 };
 </script>

@@ -65,7 +65,7 @@
 <script>
 import Person from "../../components/all_users/Person.vue";
 import Search from "../../components/all_users/Search.vue";
-import Filters from "../../components/all_users/Filters.vue";
+import Filters from "../../components/all_users/FiltersComponent.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
 import MongoDBconn from "../../services/MongoDBconn";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
