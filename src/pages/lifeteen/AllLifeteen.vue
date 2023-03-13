@@ -45,7 +45,6 @@ export default {
     Lifeteen,
     AddLifeteen,
   },
-
   methods: {
     getToPage(id) {
       let selectedLifeteen = this.$store.getters.getArrItemLifeTeen(id);
