@@ -105,14 +105,13 @@ export default {
     },
     /**
      * Saves the selected list into the vuex store, if its the monitor list or the inscritos list
-     * @param lifeteenId Id of the lifeteen to save the list into
      */
-    saveSelected(lifeteenId) {
+    saveSelected() {
       let list = this.selected;
       if (this.$store.getters['isInscritos']) {
-        this.$store.commit("updateInscritosList", {lifeteenId, list,});
+        this.$store.commit("updateInscritosList", list);
       } else {
-        this.$store.commit("updateMonitorList", {lifeteenId, list,});
+        this.$store.commit("updateMonitorList", list);
       }
 
     },
@@ -122,9 +121,9 @@ export default {
     loadSelected() {
       console.log("ListPicker mounted");
       if (this.$store.getters['isInscritos']) {
-        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idInscritos;
+        this.selected = this.$store.getters["getIndividualLifeteen"].idInscritos;
       } else {
-        this.selected = this.$store.getters.getArrItemLifeTeen(this.$route.params.id).idMonitores;
+        this.selected = this.$store.getters["getIndividualLifeteen"].idMonitores;
       }
     },
   }

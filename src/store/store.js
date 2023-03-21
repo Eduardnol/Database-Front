@@ -166,13 +166,11 @@ export const store = createStore({
                 const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
                 state.lifeteens.splice(toBeDeleted, 1);
             },
-            updateMonitorList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idMonitores = list;
+            updateMonitorList(state, list) {
+                state.lifeteen.idMonitores = list;
             },
-            updateInscritosList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idInscritos = list;
+            updateInscritosList(state, list) {
+                state.lifeteen.idInscritos = list;
             },
             updateIndividualLifeteen(state, lifeteen) {
                 state.lifeteen = lifeteen;
