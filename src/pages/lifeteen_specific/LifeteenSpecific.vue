@@ -276,6 +276,7 @@ export default {
      */
     saveSelectedItemsIntoVueStore() {
       this.$refs.ListPicker.saveSelected();
+      this.$refs.ListPickerIndividual.saveSelected();
     },
     getToPage(identificator) {
       this.$router.push({

@@ -96,6 +96,10 @@ export default {
         });
       }
     },
+    saveSelected() {
+      let list = this.selected;
+      this.$store.commit("updateResponsablesList", list);
+    },
     /**
      * Removes the clicked item from the selected list
      * @param person Person to be removed from the selected list

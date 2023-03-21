@@ -172,6 +172,9 @@ export const store = createStore({
             updateInscritosList(state, list) {
                 state.lifeteen.idInscritos = list;
             },
+            updateResponsablesList(state, list) {
+                state.lifeteen.responsables = list;
+            },
             updateIndividualLifeteen(state, lifeteen) {
                 state.lifeteen = lifeteen;
             },
