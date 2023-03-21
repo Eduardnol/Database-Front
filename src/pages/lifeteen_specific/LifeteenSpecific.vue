@@ -29,6 +29,24 @@
     <div class="userfields info">
       <AddLifeteenFields/>
     </div>
+    <div class="userfields responsables">
+      <p>Total Responsables {{ lifeteen.responsables.length }}</p>
+      <ul class="person_grid">
+        <li
+            v-for="person in lifeteen.responsables"
+            :key="person.id"
+            class="list_item"
+            @click="getToPage(person.id)"
+        >
+          <MiniPerson
+              :id="person.id"
+              :apellido="person.apellido"
+              :apellido2="person.apellido2"
+              :nombre="person.nombre"
+          />
+        </li>
+      </ul>
+    </div>
 
     <div class="userfields inscritos">
       <p>Total Inscritos {{ lifeteen.numInscritos }}</p>
@@ -49,7 +67,7 @@
       </ul>
     </div>
     <div class="userfields monitores">
-      <p>Total Monitores {{ 99 }}</p>
+      <p>Total Monitores {{ lifeteen.idMonitores.length }}</p>
 
       <ul class="person_grid">
         <li
@@ -78,7 +96,7 @@
       Añadir Inscritos
     </button>
 
-    <button class="btn btn-primary searchInput" data-bs-target="#exampleModalIndividual" data-bs-toggle="modal"
+    <button class="btn btn-primary" data-bs-target="#exampleModalIndividual" data-bs-toggle="modal"
             type="button"
             @click="openResponsables()">
       Añadir Responsables
@@ -312,7 +330,7 @@ body {
   margin-bottom: 20px;
 }
 
-.searchInput {
+.responsables {
   grid-area: 1 / 4 / 2 / 5;
   display: flex;
   align-items: center;
