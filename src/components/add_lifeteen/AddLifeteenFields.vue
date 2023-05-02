@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="row mt-3">
-        <ul>
+        <ul v-if="lifeteen.responsables">
           <li v-for="responsable in lifeteen.responsables"
               :key="responsable.id">
 

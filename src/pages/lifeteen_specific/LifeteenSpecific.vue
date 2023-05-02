@@ -30,8 +30,8 @@
       <AddLifeteenFields/>
     </div>
     <div class="userfields responsables">
-      <p>Total Responsables {{ lifeteen.responsables.length }}</p>
-      <ul class="person_grid">
+      <p>Total Responsables 0</p>
+      <ul v-if="lifeteen.responsables" class="person_grid">
         <li
             v-for="person in lifeteen.responsables"
             :key="person.id"
@@ -50,7 +50,7 @@
 
     <div class="userfields inscritos">
       <p>Total Inscritos {{ lifeteen.numInscritos }}</p>
-      <ul class="person_grid">
+      <ul v-if="lifeteen.idInscritos" class="person_grid">
         <li
             v-for="person in lifeteen.idInscritos"
             :key="person.id"
@@ -67,9 +67,9 @@
       </ul>
     </div>
     <div class="userfields monitores">
-      <p>Total Monitores {{ lifeteen.idMonitores.length }}</p>
+      <p>Total Monitores 0</p>
 
-      <ul class="person_grid">
+      <ul v-if="lifeteen.idMonitores" class="person_grid">
         <li
             v-for="person in lifeteen.idMonitores"
             :key="person.id"
@@ -86,12 +86,14 @@
       </ul>
     </div>
     <!-- Button trigger modal -->
-    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
+    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal"
+            type="button"
             @click="openMonitores()">
       Añadir Monitores
     </button>
 
-    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button"
+    <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal"
+            type="button"
             @click="openInscritos()">
       Añadir Inscritos
     </button>
@@ -102,38 +104,46 @@
       Añadir Responsables
     </button>
     <!-- Modal -->
-    <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" tabindex="-1">
+    <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+         tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 id="exampleModalLabel" class="modal-title">Seleccionar Personas</h5>
-            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                    type="button"></button>
           </div>
           <div class="modal-body">
             <ListPicker ref="ListPicker"/>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">Save changes</button>
+            <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
     </div>
     <!--- Modal Individual-->
-    <div id="exampleModalIndividual" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+    <div id="exampleModalIndividual" aria-hidden="true" aria-labelledby="exampleModalLabel"
+         class="modal fade"
          tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 id="exampleModalLabel" class="modal-title">Seleccionar Responsables</h5>
-            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                    type="button"></button>
           </div>
           <div class="modal-body">
             <ListPickerIndividual ref="ListPickerIndividual"/>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">Save changes</button>
+            <button class="btn btn-primary" type="button" @click="saveSelectedItemsIntoVueStore()">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
