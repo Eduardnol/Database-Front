@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="lifeteen.title"
+              v-model="discipulado.title"
               class="form-control"
               placeholder="ej: Lifeteen 2022"
               type="text"
@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="row mt-3">
-        <ul v-if="lifeteen.responsables">
-          <li v-for="responsable in lifeteen.responsables"
+        <ul v-if="discipulado.responsables">
+          <li v-for="responsable in discipulado.responsables"
               :key="responsable.id">
 
             <div class="col-auto me-auto">
@@ -35,7 +35,7 @@
         <p class="form">Fecha de Inicio</p>
       </div>
       <div class="col-auto">
-        <input v-model="lifeteen.startDate" class="form-control" type="date"/>
+        <input v-model="discipulado.startDate" class="form-control" type="date"/>
       </div>
     </div>
   </div>
@@ -59,9 +59,9 @@ export default {
     }
   },
   computed: {
-    lifeteen: {
+    discipulado: {
       get() {
-        return this.$store.state.lifeteen;
+        return this.$store.state.discipulado;
       },
       set(value) {
         this.$store.commit("insertDiscipuladoIndividual", value);
@@ -93,21 +93,21 @@ export default {
     }
     ,
     retrieveData() {
-      return this.lifeteen;
+      return this.discipulado;
     },
     saveObjectToStore() {
       let discipuladoList = this.$store.getters.getDiscipuladoList;
-      if (lifeteens == null) {
-        lifeteens = [];
+      if (discipuladoList == null) {
+        discipuladoList = [];
       }
-      if (this.lifeteen.id != null) {
-        let elementToEdit = lifeteens.find(element => element.id === this.lifeteen.id);
-        elementToEdit = this.lifeteen
+      if (this.discipulado.id != null) {
+        let elementToEdit = discipuladoList.find(element => element.id === this.discipulado.id);
+        elementToEdit = this.discipulado
         console.log(elementToEdit);
       } else {
-        lifeteens.push(this.lifeteen);
+        discipuladoList.push(this.discipulado);
       }
-      this.$store.commit('updateDiscipuladoList', lifeteens);
+      this.$store.commit('updateDiscipuladoList', discipuladoList);
     }
   }
   ,

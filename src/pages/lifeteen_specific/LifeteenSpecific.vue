@@ -31,9 +31,9 @@
     </div>
     <div class="userfields responsables">
       <p>Total Responsables 0</p>
-      <ul v-if="lifeteen.responsables" class="person_grid">
+      <ul v-if="discipulado.responsables" class="person_grid">
         <li
-            v-for="person in lifeteen.responsables"
+            v-for="person in discipulado.responsables"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -50,9 +50,9 @@
 
     <div class="userfields inscritos">
       <p>Total Inscritos {{ discipulado.numInscritos }}</p>
-      <ul v-if="lifeteen.idInscritos" class="person_grid">
+      <ul v-if="discipulado.idInscritos" class="person_grid">
         <li
-            v-for="person in lifeteen.idInscritos"
+            v-for="person in discipulado.idInscritos"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -69,9 +69,9 @@
     <div class="userfields monitores">
       <p>Total Monitores 0</p>
 
-      <ul v-if="lifeteen.idMonitores" class="person_grid">
+      <ul v-if="discipulado.idMonitores" class="person_grid">
         <li
-            v-for="person in lifeteen.idMonitores"
+            v-for="person in discipulado.idMonitores"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -186,7 +186,7 @@ export default {
   name: "LifeteenSpecific",
   components: {ListPicker, MiniPerson, AddLifeteenFields, ListPickerIndividual},
   computed: {
-    lifeteen: {
+    discipulado: {
       get() {
         return this.$store.getters.getDiscipuladoIndividual;
       },
@@ -255,7 +255,7 @@ export default {
      */
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updateLifeteen(this.lifeteen);
+      update.updateLifeteen(this.discipulado);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
     /**

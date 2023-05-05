@@ -14,13 +14,13 @@
     <ul class="lifeteen_grid scrollable">
       <li
           v-for="discipulado in allLifeteen"
-          :key="lifeteen.id"
+          :key="discipulado.id"
           class="list_item"
-          @click="getToPage(lifeteen.id)">
-        <Lifeteen :id="lifeteen.id"
-                  :inscritos="lifeteen.numInscritos"
-                  :start-date="new Date(lifeteen.startDate)"
-                  :title="lifeteen.title"
+          @click="getToPage(discipulado.id)">
+        <Lifeteen :id="discipulado.id"
+                  :inscritos="discipulado.numInscritos"
+                  :start-date="new Date(discipulado.startDate)"
+                  :title="discipulado.title"
         />
         <!-- Cambiar entre date y string -->
       </li>
@@ -38,7 +38,7 @@ export default {
   name: "AllLifeteen",
   computed: {
     allLifeteen() {
-      return this.$store.state.lifeteens;
+      return this.$store.state.discipuladoList;
     },
   },
   components: {
@@ -58,7 +58,7 @@ export default {
       let search = new MongoDBconn();
       search.getAllLifeteen().then((data) => {
         console.log(data);
-        this.$store.state.lifeteens = data;
+        this.$store.state.discipuladoList = data;
       });
     },
   },
@@ -66,7 +66,7 @@ export default {
     let search = new MongoDBconn();
     search.getAllLifeteen().then((data) => {
       console.log(data);
-      this.$store.state.lifeteens = data;
+      this.$store.state.discipuladoList = data;
     });
   },
 };
