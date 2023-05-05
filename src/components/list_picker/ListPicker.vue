@@ -85,14 +85,22 @@ export default {
      * TODO migrate to class instead of using an js object
      */
     addToSelected(person) {
-      if (this.selected.find(p => p.id === person.id)) {
-        this.selected = this.selected.filter(p => p.id !== person.id);
-      } else {
+      if (typeof (this.selected) === 'undefined') {
+        this.selected = [];
         this.selected.push({
           id: person.id,
           nombre: person.nombre,
           apellido: person.apellido,
         });
+      } else if (this.selected.find(p => p.id !== person.id)) {
+        this.selected.push({
+          id: person.id,
+          nombre: person.nombre,
+          apellido: person.apellido,
+        });
+      } else {
+        this.selected = this.selected.filter(p => p.id !== person.id);
+
       }
     },
     /**
@@ -115,7 +123,7 @@ export default {
 
     },
     /**
-     * Loads the list of selected users from the vuex store depending if its inscritos or monitor list
+     * Loads the list of selected users from the vuex store depending on if its inscritos or monitor list
      */
     loadSelected() {
       console.log("ListPicker mounted");
