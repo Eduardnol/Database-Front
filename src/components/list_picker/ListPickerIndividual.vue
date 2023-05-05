@@ -64,7 +64,6 @@
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
 
-
 export default {
   name: "ListPickerIndividual",
   components: {
@@ -98,7 +97,7 @@ export default {
     },
     saveSelected() {
       let list = this.selected;
-      this.$store.commit("updateResponsablesList", list);
+      this.$store.commit("updateDiscipuladoResponsablesList", list);
     },
     /**
      * Removes the clicked item from the selected list
@@ -111,7 +110,7 @@ export default {
      * Loads the list of selected users from the vuex store
      */
     loadSelected() {
-      this.selected = this.$store.getters["getIndividualLifeteen"].responsables;
+      this.selected = this.$store.getters["getDiscipuladoIndividual"].responsables;
     },
   }
 }

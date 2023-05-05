@@ -27,7 +27,7 @@ export const store = createStore({
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 },
-                persons: [{
+                personList: [{
                     id: null,
                     nombre: null,
                     apellido: null,
@@ -51,7 +51,7 @@ export const store = createStore({
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 }],
-                lifeteens: [{
+                discipuladoList: [{
                     id: null,
                     title: null,
                     responsables: [{id: null, nombre: null, apellido: null}],
@@ -66,7 +66,7 @@ export const store = createStore({
                         integrantes: null,
                     }],
                 }],
-                lifeteen: {
+                discipulado: {
                     id: null,
                     title: null,
                     responsables: [{id: null, nombre: null, apellido: null}],
@@ -86,33 +86,27 @@ export const store = createStore({
 
         },
         getters: {
-            getArrItem: (state) => (id) => {
-                return state.persons.find(item => item.id === id);
-            },
-            getArrItemLifeTeen: (state) => (id) => {
-                return state.lifeteens.find(item => item.id === id);
+            getDiscipuladoById: (state) => (id) => {
+                return state.discipuladoList.find(item => item.id === id);
             },
             isInscritos: (state) => {
                 return state.isInscritos;
             },
-            getLifeteens: (state) => {
-                return state.lifeteens;
+            getDiscipuladoList: (state) => {
+                return state.discipuladoList;
             },
-            getIndividualLifeteen: (state) => {
-                return state.lifeteen;
+            getDiscipuladoIndividual: (state) => {
+                return state.discipulado;
             }
         },
         mutations: {
             //***********************Persons***********************//
-            insertUser(state, person) {
+            insertIndividualPerson(state, person) {
                 state.person = person
-            },
-            insertDiscipulado(state, discipulado) {
-                state.lifeteen = discipulado
             },
             getPersonById(state, id) {
 
-                return state.persons.map(item => item.id).indexOf(id);
+                return state.personList.map(item => item.id).indexOf(id);
 
             },
             deleteUser(state) {
@@ -140,8 +134,9 @@ export const store = createStore({
                 state.person.fileStorage = [{name: null, url: null}]
             },
             deleteFromArray(state, person) {
-                const toBeDeleted = state.persons.map(item => item.id).indexOf(person.id);
-                state.persons.splice(toBeDeleted, 1);
+                const toBeDeleted = state.personList.map(
+                    item => item.id).indexOf(person.id);
+                state.personList.splice(toBeDeleted, 1);
             },
             //***********************Extra fields***********************//
             deleteFromExtraArray(state, fieldId) {
@@ -153,10 +148,11 @@ export const store = createStore({
             },
             //***********************Update View***********************//
             updateView(state, person) {
-                const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);
-                state.persons.splice(toBeUpdated, 1, person);
-                // state.persons.splice(toBeUpdated, 1);
-                // state.persons.push(person);
+                const toBeUpdated = state.personList.map(
+                    item => item.id).indexOf(person.id);
+                state.personList.splice(toBeUpdated, 1, person);
+                // state.personList.splice(toBeUpdated, 1);
+                // state.personList.push(person);
             },
             //***********************Files***********************//
             addFile(state, {filename, fileUrl}) {
@@ -167,32 +163,37 @@ export const store = createStore({
             },
             deleteFile(state, fileUrl) {
                 console.log("the url" + fileUrl);
-                const toBeDeleted = state.person.fileStorage.map(item => item.url).indexOf(fileUrl);
+                const toBeDeleted = state.person.fileStorage.map(
+                    item => item.url).indexOf(fileUrl);
                 console.log("The id to be deleted" + toBeDeleted)
                 state.person.fileStorage.splice(toBeDeleted, 1);
             },
             //***********************Lifeteens***********************//
-            insertLifeteen(state, lifeteen) {
-                state.lifeteens.push(lifeteen);
+            insertDiscipuladoIndividual(state, discipulado) {
+                state.discipulado = discipulado
             },
-            updateLifeteen(state, updatedLifeteen) {
-                state.lifeteens = updatedLifeteen;
+            insertDiscipuladoToList(state, lifeteen) {
+                state.discipuladoList.push(lifeteen);
+            },
+            updateDiscipuladoList(state, updatedLifeteen) {
+                state.discipuladoList = updatedLifeteen;
             },
             deleteLifeteen(state, lifeteen) {
-                const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeDeleted, 1);
+                const toBeDeleted = state.discipuladoList.map(
+                    item => item.id).indexOf(lifeteen.id);
+                state.discipuladoList.splice(toBeDeleted, 1);
             },
-            updateMonitorList(state, list) {
-                state.lifeteen.idMonitores = list;
+            updateDiscipuladoMonitorList(state, list) {
+                state.discipulado.idMonitores = list;
             },
-            updateInscritosList(state, list) {
-                state.lifeteen.idInscritos = list;
+            updateDiscipuladoInscritosList(state, list) {
+                state.discipulado.idInscritos = list;
             },
-            updateResponsablesList(state, list) {
-                state.lifeteen.responsables = list;
+            updateDiscipuladoResponsablesList(state, list) {
+                state.discipulado.responsables = list;
             },
-            updateIndividualLifeteen(state, lifeteen) {
-                state.lifeteen = lifeteen;
+            updateIndividualDiscipulado(state, lifeteen) {
+                state.discipulado = lifeteen;
             },
             //***********************Extras***********************//
             updateInscritosBoolean(state, boolValue) {

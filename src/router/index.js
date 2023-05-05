@@ -17,15 +17,15 @@ const routes = [
         component: UserSpecific,
     },
     {
-        path: '/all-lifeteen',
-        name: 'AllLifeteen',
-        component: AllLifeteen,
+      path: '/all-discipulado',
+      name: 'AllLifeteen',
+      component: AllLifeteen,
     },
-    {
-        path: '/lifeteen-specific',
-        name: 'LifeteenSpecific',
-        component: LifeteenSpecific,
-    }
+  {
+    path: '/discipulado-specific',
+    name: 'LifeteenSpecific',
+    component: LifeteenSpecific,
+  }
 ]
 
 

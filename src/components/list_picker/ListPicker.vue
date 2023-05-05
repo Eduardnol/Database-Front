@@ -64,7 +64,6 @@
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
 
-
 export default {
   name: "ListPicker",
   components: {
@@ -109,9 +108,9 @@ export default {
     saveSelected() {
       let list = this.selected;
       if (this.$store.getters['isInscritos']) {
-        this.$store.commit("updateInscritosList", list);
+        this.$store.commit("updateDiscipuladoInscritosList", list);
       } else {
-        this.$store.commit("updateMonitorList", list);
+        this.$store.commit("updateDiscipuladoMonitorList", list);
       }
 
     },
@@ -121,9 +120,9 @@ export default {
     loadSelected() {
       console.log("ListPicker mounted");
       if (this.$store.getters['isInscritos']) {
-        this.selected = this.$store.getters["getIndividualLifeteen"].idInscritos;
+        this.selected = this.$store.getters["getDiscipuladoIndividual"].idInscritos;
       } else {
-        this.selected = this.$store.getters["getIndividualLifeteen"].idMonitores;
+        this.selected = this.$store.getters["getDiscipuladoIndividual"].idMonitores;
       }
     },
   }

@@ -13,7 +13,7 @@
     </button>
     <ul class="lifeteen_grid scrollable">
       <li
-          v-for="lifeteen in allLifeteen"
+          v-for="discipulado in allLifeteen"
           :key="lifeteen.id"
           class="list_item"
           @click="getToPage(lifeteen.id)">
@@ -47,9 +47,9 @@ export default {
   },
   methods: {
     getToPage(id) {
-      let selectedLifeteen = this.$store.getters.getArrItemLifeTeen(id);
+      let selectedLifeteen = this.$store.getters.getDiscipuladoById(id);
       console.log(selectedLifeteen);
-      this.$store.commit('insertDiscipulado', selectedLifeteen);
+      this.$store.commit('insertDiscipuladoIndividual', selectedLifeteen);
       this.$router.push({
         name: "LifeteenSpecific",
       });

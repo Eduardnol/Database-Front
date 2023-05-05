@@ -119,7 +119,7 @@ export default {
         return this.$store.state.person;
       },
       set(value) {
-        this.$store.commit("insertUser", value);
+        this.$store.commit("insertIndividualPerson", value);
       },
     },
   },

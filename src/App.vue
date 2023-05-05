@@ -2,7 +2,7 @@
   <div>
     <HeaderComponent/>
     <router-link to="/">All Users</router-link>
-    <router-link to="/all-lifeteen">All Lifeteen</router-link>
+    <router-link to="/all-discipulado">All Lifeteen</router-link>
     <!-- Page rendered by router -->
     <router-view/>
   </div>

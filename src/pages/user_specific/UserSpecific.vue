@@ -113,7 +113,7 @@ export default {
         return this.$store.state.person;
       },
       set(value) {
-        this.$store.commit("insertUser", value);
+        this.$store.commit("insertIndividualPerson", value);
       },
     },
   },
@@ -172,7 +172,7 @@ export default {
   beforeMount() {
     let getuser = new MongoDBconn();
     getuser.getPersonById(this.$route.params.id).then(data => {
-      this.$store.commit("insertUser", data);
+      this.$store.commit("insertIndividualPerson", data);
     });
   },
 };

@@ -64,7 +64,7 @@ export default {
         return this.$store.state.lifeteen;
       },
       set(value) {
-        this.$store.commit("insertDiscipulado", value);
+        this.$store.commit("insertDiscipuladoIndividual", value);
       },
     },
   },
@@ -96,7 +96,7 @@ export default {
       return this.lifeteen;
     },
     saveObjectToStore() {
-      let lifeteens = this.$store.getters.getLifeteens;
+      let discipuladoList = this.$store.getters.getDiscipuladoList;
       if (lifeteens == null) {
         lifeteens = [];
       }
@@ -107,7 +107,7 @@ export default {
       } else {
         lifeteens.push(this.lifeteen);
       }
-      this.$store.commit('updateLifeteen', lifeteens);
+      this.$store.commit('updateDiscipuladoList', lifeteens);
     }
   }
   ,

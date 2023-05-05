@@ -1,17 +1,17 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <h5>Identificador Lifeteen: {{ lifeteen.id }}</h5>
+      <h5>Identificador Lifeteen: {{ discipulado.id }}</h5>
 
       <h5>Creado el: {{
-          getDateAndFormat(lifeteen.startDate)
+          getDateAndFormat(discipulado.startDate)
         }}</h5>
 
       <h5>Archivos:</h5>
 
       <!--      <ul>-->
       <!--        <li-->
-      <!--            v-for="file in lifeteen.fileStorage"-->
+      <!--            v-for="file in discipulado.fileStorage"-->
       <!--            :key="file.url"-->
       <!--            class="list_item">-->
       <!--          <UserFile :filename="file.name" :url="file.url"-->
@@ -49,7 +49,7 @@
     </div>
 
     <div class="userfields inscritos">
-      <p>Total Inscritos {{ lifeteen.numInscritos }}</p>
+      <p>Total Inscritos {{ discipulado.numInscritos }}</p>
       <ul v-if="lifeteen.idInscritos" class="person_grid">
         <li
             v-for="person in lifeteen.idInscritos"
@@ -188,10 +188,10 @@ export default {
   computed: {
     lifeteen: {
       get() {
-        return this.$store.getters.getIndividualLifeteen;
+        return this.$store.getters.getDiscipuladoIndividual;
       },
       set(value) {
-        this.$store.commit("updateIndividualLifeteen", value);
+        this.$store.commit("updateIndividualDiscipulado", value);
       },
     },
   },
@@ -251,7 +251,7 @@ export default {
     //   this.$store.commit("deleteFile", fileurl);
     // },
     /**
-     * Saves the vuex store lifeteen into the database
+     * Saves the vuex store discipulado into the database
      */
     saveIntoDatabase() {
       let update = new MongoDBconn();
