@@ -52,6 +52,7 @@ export default {
       this.$store.commit('insertDiscipuladoIndividual', selectedLifeteen);
       this.$router.push({
         name: "LifeteenSpecific",
+        query: {id: id},
       });
     },
     getAll() {

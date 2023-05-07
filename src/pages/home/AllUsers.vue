@@ -94,7 +94,8 @@ export default {
     getToPage(identificator) {
       this.$router.push({
         name: "UserSpecific",
-        params: {id: identificator},
+        //params: {id: identificator},
+        query: {id: identificator},
       });
     },
     getall() {

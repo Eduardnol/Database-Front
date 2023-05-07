@@ -171,7 +171,7 @@ export default {
   },
   beforeMount() {
     let getuser = new MongoDBconn();
-    getuser.getPersonById(this.$route.params.id).then(data => {
+    getuser.getPersonById(this.$route.query.id).then(data => {
       this.$store.commit("insertIndividualPerson", data);
     });
   },
