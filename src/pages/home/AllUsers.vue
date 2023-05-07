@@ -151,6 +151,57 @@ body {
   color: var(--text-black);
 }
 
+@media (max-width: 1200px) {
+  .component {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+
+  .filters {
+    grid-area: 2 / 5 / 2 / 5;
+
+  }
+
+  .all {
+    grid-area: 1 / 2 / 1 / 2;
+    justify-self: end;
+  }
+
+  .order {
+    grid-area: 1 / 3 / 1 / 3;
+    justify-self: start;
+  }
+
+  .search {
+    grid-area: 1 / 5 / 1 / 5;
+  }
+
+  .adduser {
+    grid-area: 1 / 4 / 1 / 4;
+  }
+
+  .person_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 450px);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
+
+  .scrollable {
+    grid-area: 2 / 1 / 5 / 5;
+    height: 800px; /* or any value */
+    overflow-y: auto;
+    margin: 0px;
+  }
+}
+
+
 @media (min-width: 1200px) {
   .component {
     display: grid;
@@ -160,30 +211,30 @@ body {
   }
 
   .logo {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 1 / 2;
   }
 
   .filters {
-    grid-area: 2 / 5 / 6 / 5;
+    grid-area: 2 / 5 / 2 / 5;
 
   }
 
   .all {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area: 1 / 2 / 1 / 2;
     justify-self: end;
   }
 
   .order {
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 3 / 1 / 3;
     justify-self: start;
   }
 
   .search {
-    grid-area: 1 / 5 / 2 / 6;
+    grid-area: 1 / 5 / 1 / 5;
   }
 
   .adduser {
-    grid-area: 1 / 4 / 2 / 5;
+    grid-area: 1 / 4 / 1 / 4;
   }
 
   .person_grid {
@@ -211,30 +262,30 @@ body {
   }
 
   .logo {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 1 / 2;
   }
 
   .filters {
-    grid-area: 2 / 5 / 6 / 5;
+    grid-area: 2 / 5 / 2 / 5;
 
   }
 
   .all {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area: 1 / 2 / 1 / 2;
     justify-self: end;
   }
 
   .order {
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 3 / 1 / 3;
     justify-self: start;
   }
 
   .search {
-    grid-area: 1 / 5 / 2 / 6;
+    grid-area: 1 / 5 / 1 / 5;
   }
 
   .adduser {
-    grid-area: 1 / 4 / 2 / 5;
+    grid-area: 1 / 4 / 1 / 4;
   }
 
   .person_grid {
@@ -245,7 +296,7 @@ body {
   }
 
   .scrollable {
-    grid-area: 2 / 1 / 5 / 5;
+    grid-area: 2 / 1 / 6 / 5;
     height: 800px; /* or any value */
     overflow-y: auto;
     margin: 0px;
@@ -262,29 +313,26 @@ body {
   }
 
   .logo {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 1 / 2;
   }
 
-  .filters {
-    grid-area: 2 / 5 / 6 / 5;
-  }
 
   .all {
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 2 / 1 / 2;
     justify-self: end;
   }
 
   .order {
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 3 / 1 / 3;
     justify-self: start;
   }
 
   .search {
-    grid-area: 1 / 5 / 2 / 6;
+    grid-area: 1 / 5 / 1 / 5;
   }
 
   .adduser {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area: 1 / 4 / 1 / 4;
   }
 
   .person_grid {
@@ -295,10 +343,14 @@ body {
   }
 
   .scrollable {
-    grid-area: 2 / 1 / 4 / 4;
+    grid-area: 2 / 1 / 6 / 5;
     height: 800px; /* or any value */
     overflow-y: auto;
     margin: 0px;
+  }
+
+  .filters {
+    grid-area: 2 / 5 / 6 / 5;
   }
 }
 
