@@ -65,7 +65,7 @@ import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
 
 export default {
-  name: "ListPicker",
+  name: "ListPickerIndividual",
   components: {
     MiniPerson
   },
@@ -92,16 +92,19 @@ export default {
           nombre: person.nombre,
           apellido: person.apellido,
         });
-      } else if (this.selected.find(p => p.id !== person.id)) {
+      } else if (this.selected.find(p => p.id === person.id)) {
+        this.selected = this.selected.filter(p => p.id !== person.id);
+      } else {
         this.selected.push({
           id: person.id,
           nombre: person.nombre,
           apellido: person.apellido,
         });
-      } else {
-        this.selected = this.selected.filter(p => p.id !== person.id);
-
       }
+    },
+    saveSelected() {
+      let list = this.selected;
+      this.$store.commit("updateDiscipuladoResponsablesList", list);
     },
     /**
      * Removes the clicked item from the selected list
@@ -111,27 +114,10 @@ export default {
       this.selected = this.selected.filter(p => p.id !== person.id);
     },
     /**
-     * Saves the selected list into the vuex store, if its the monitor list or the inscritos list
-     */
-    saveSelected() {
-      let list = this.selected;
-      if (this.$store.getters['isInscritos']) {
-        this.$store.commit("updateDiscipuladoInscritosList", list);
-      } else {
-        this.$store.commit("updateDiscipuladoMonitorList", list);
-      }
-
-    },
-    /**
-     * Loads the list of selected users from the vuex store depending on if its inscritos or monitor list
+     * Loads the list of selected users from the vuex store
      */
     loadSelected() {
-      console.log("ListPicker mounted");
-      if (this.$store.getters['isInscritos']) {
-        this.selected = this.$store.getters["getDiscipuladoIndividual"].idInscritos;
-      } else {
-        this.selected = this.$store.getters["getDiscipuladoIndividual"].idMonitores;
-      }
+      this.selected = this.$store.getters["getDiscipuladoIndividual"].responsables;
     },
   }
 }

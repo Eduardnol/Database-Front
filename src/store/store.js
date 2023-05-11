@@ -5,71 +5,78 @@ export const store = createStore({
             return {
                 person: {
                     id: null,
-                    nombre: "",
-                    apellido: "",
-                    apellido2: "",
-                    email: "",
-                    birthday: "",
-                    saint: "",
-                    dni: "",
+                    nombre: null,
+                    apellido: null,
+                    apellido2: null,
+                    email: null,
+                    birthday: null,
+                    saint: null,
+                    dni: null,
                     sacraments: {
                         bautismo: false,
                         comunion: false,
                         confirmacion: false,
                         matrimonio: false
                     },
-                    extras: [{id: null, selected: "", name: "", tagname: ""}],
+                    extras: [{
+                        id: null,
+                        selected: null,
+                        name: null,
+                        tagname: null
+                    }],
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 },
-                persons: [{
+                personList: [{
                     id: null,
-                    nombre: "",
-                    apellido: "",
-                    apellido2: "",
-                    email: "",
-                    birthday: "",
-                    saint: "",
-                    dni: "",
+                    nombre: null,
+                    apellido: null,
+                    apellido2: null,
+                    email: null,
+                    birthday: null,
+                    saint: null,
+                    dni: null,
                     sacraments: {
                         bautismo: false,
                         comunion: false,
                         confirmacion: false,
                         matrimonio: false
                     },
-                    extras: [{id: null, selected: "", name: "", tagname: ""}],
+                    extras: [{
+                        id: null,
+                        selected: null,
+                        name: null,
+                        tagname: null
+                    }],
                     fileStorage: [{name: null, url: null}],
                     createdOn: null,
                 }],
-                lifeteens: [{
+                discipuladoList: [{
                     id: null,
-                    title: "",
-                    responsable1: {id: null, nombre: "", apellido: ""},
-                    responsable2: {id: null, nombre: "", apellido: ""},
-                    startDate: Date.now(),
+                    title: null,
+                    responsables: [{id: null, nombre: null, apellido: null}],
+                    startDate: "2001-01-20",
                     numInscritos: 0,
-                    idMonitores: [{id: null, nombre: "", apellido: ""}],
-                    idInscritos: [{id: null, nombre: "", apellido: ""}],
+                    idMonitores: [{id: null, nombre: null, apellido: null}],
+                    idInscritos: [{id: null, nombre: null, apellido: null}],
                     subgrupos: [{
-                        titulo: "",
-                        descripcion: "",
+                        titulo: null,
+                        descripcion: null,
                         responsables: null,
                         integrantes: null,
                     }],
-
                 }],
-                lifeteen: {
+                discipulado: {
                     id: null,
-                    title: "",
-                    responsable1: {id: null, nombre: "", apellido: ""},
-                    responsable2: {id: null, nombre: "", apellido: ""},
+                    title: null,
+                    responsables: [{id: null, nombre: null, apellido: null}],
                     startDate: "2001-01-20",
                     numInscritos: 0,
-                    idMonitores: [{id: null, nombre: "", apellido: ""}],
-                    idInscritos: [{id: null, nombre: "", apellido: ""}],
+                    idMonitores: [{id: null, nombre: null, apellido: null}],
+                    idInscritos: [{id: null, nombre: null, apellido: null}],
                     subgrupos: [{
-                        titulo: "",
-                        descripcion: "",
+                        titulo: null,
+                        descripcion: null,
                         responsables: null,
                         integrantes: null,
                     }],
@@ -79,41 +86,38 @@ export const store = createStore({
 
         },
         getters: {
-            getArrItem: (state) => (id) => {
-                return state.persons.find(item => item.id === id);
-            },
-            getArrItemLifeTeen: (state) => (id) => {
-                return state.lifeteens.find(item => item.id === id);
+            getDiscipuladoById: (state) => (id) => {
+                return state.discipuladoList.find(item => item.id === id);
             },
             isInscritos: (state) => {
                 return state.isInscritos;
             },
-            getLifeteens: (state) => {
-                return state.lifeteens;
+            getDiscipuladoList: (state) => {
+                return state.discipuladoList;
+            },
+            getDiscipuladoIndividual: (state) => {
+                return state.discipulado;
             }
         },
         mutations: {
             //***********************Persons***********************//
-            insertUser(state, person) {
+            insertIndividualPerson(state, person) {
                 state.person = person
-            },
-            insertDiscipulado(state, discipulado) {
-                state.lifeteen = discipulado
             },
             getPersonById(state, id) {
 
-                return state.persons.map(item => item.id).indexOf(id);
+                return state.personList.map(item => item.id).indexOf(id);
 
             },
             deleteUser(state) {
                 state.person.id = null
-                state.person.nombre = ""
-                state.person.apellido = ""
-                state.person.apellido2 = ""
-                state.person.email = ""
-                state.person.birthday = ""
-                state.person.saint = ""
-                state.person.dni = ""
+                state.person.nombre = null
+                state.person.apellido = null
+                state.person.apellido2 = null
+                state.person.email = null
+                state.person.birthday = null
+                state.person.saint = null
+                state.person.dni = null
                 state.person.createdOn = null
                 state.person.sacraments = {
                     bautismo: false,
@@ -121,26 +125,34 @@ export const store = createStore({
                     confirmacion: false,
                     matrimonio: false
                 }
-                state.person.extras = [{id: null, selected: "", name: "", tagname: ""}]
+                state.person.extras = [{
+                    id: null,
+                    selected: null,
+                    name: null,
+                    tagname: null
+                }]
                 state.person.fileStorage = [{name: null, url: null}]
             },
             deleteFromArray(state, person) {
-                const toBeDeleted = state.persons.map(item => item.id).indexOf(person.id);
-                state.persons.splice(toBeDeleted, 1);
+                const toBeDeleted = state.personList.map(
+                    item => item.id).indexOf(person.id);
+                state.personList.splice(toBeDeleted, 1);
             },
             //***********************Extra fields***********************//
             deleteFromExtraArray(state, fieldId) {
                 state.person.extras.splice(fieldId, 1);
             },
             addAnExtraField(state) {
-                state.person.extras.push({id: null, selected: "", name: "", tagname: ""})
+                state.person.extras.push(
+                    {id: null, selected: null, name: null, tagname: null})
             },
             //***********************Update View***********************//
             updateView(state, person) {
-                const toBeUpdated = state.persons.map(item => item.id).indexOf(person.id);
-                state.persons.splice(toBeUpdated, 1, person);
-                // state.persons.splice(toBeUpdated, 1);
-                // state.persons.push(person);
+                const toBeUpdated = state.personList.map(
+                    item => item.id).indexOf(person.id);
+                state.personList.splice(toBeUpdated, 1, person);
+                // state.personList.splice(toBeUpdated, 1);
+                // state.personList.push(person);
             },
             //***********************Files***********************//
             addFile(state, {filename, fileUrl}) {
@@ -151,31 +163,37 @@ export const store = createStore({
             },
             deleteFile(state, fileUrl) {
                 console.log("the url" + fileUrl);
-                const toBeDeleted = state.person.fileStorage.map(item => item.url).indexOf(fileUrl);
+                const toBeDeleted = state.person.fileStorage.map(
+                    item => item.url).indexOf(fileUrl);
                 console.log("The id to be deleted" + toBeDeleted)
                 state.person.fileStorage.splice(toBeDeleted, 1);
             },
             //***********************Lifeteens***********************//
-            insertLifeteen(state, lifeteen) {
-                state.lifeteens.push(lifeteen);
+            insertDiscipuladoIndividual(state, discipulado) {
+                state.discipulado = discipulado
             },
-            updateLifeteen(state, updatedLifeteen) {
-                state.lifeteens = updatedLifeteen;
+            insertDiscipuladoToList(state, lifeteen) {
+                state.discipuladoList.push(lifeteen);
+            },
+            updateDiscipuladoList(state, updatedLifeteen) {
+                state.discipuladoList = updatedLifeteen;
             },
             deleteLifeteen(state, lifeteen) {
-                const toBeDeleted = state.lifeteens.map(item => item.id).indexOf(lifeteen.id);
-                state.lifeteens.splice(toBeDeleted, 1);
+                const toBeDeleted = state.discipuladoList.map(
+                    item => item.id).indexOf(lifeteen.id);
+                state.discipuladoList.splice(toBeDeleted, 1);
             },
-            getLifeteenById(state, id) {
-                return state.lifeteens.map(item => item.id).indexOf(id);
+            updateDiscipuladoMonitorList(state, list) {
+                state.discipulado.idMonitores = list;
             },
-            updateMonitorList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idMonitores = list;
+            updateDiscipuladoInscritosList(state, list) {
+                state.discipulado.idInscritos = list;
             },
-            updateInscritosList(state, {lifeteenId, list}) {
-                const toBeUpdated = state.lifeteens.map(item => item.id).indexOf(lifeteenId);
-                state.lifeteens[toBeUpdated].idInscritos = list;
+            updateDiscipuladoResponsablesList(state, list) {
+                state.discipulado.responsables = list;
+            },
+            updateIndividualDiscipulado(state, lifeteen) {
+                state.discipulado = lifeteen;
             },
             //***********************Extras***********************//
             updateInscritosBoolean(state, boolValue) {

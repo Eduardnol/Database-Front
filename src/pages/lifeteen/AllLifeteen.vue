@@ -13,16 +13,14 @@
     </button>
     <ul class="lifeteen_grid scrollable">
       <li
-          v-for="lifeteen in allLifeteen"
-          :key="lifeteen.id"
+          v-for="discipulado in allLifeteen"
+          :key="discipulado.id"
           class="list_item"
-          @click="getToPage(lifeteen.id)">
-        <Lifeteen :id="lifeteen.id"
-                  :inscritos="lifeteen.numInscritos"
-                  :responsable1="lifeteen.responsable1.nombre + ' ' + lifeteen.responsable1.apellido"
-                  :responsable2="lifeteen.responsable2.nombre + ' ' + lifeteen.responsable2.apellido"
-                  :start-date="new Date(lifeteen.startDate)"
-                  :title="lifeteen.title"
+          @click="getToPage(discipulado.id)">
+        <Lifeteen :id="discipulado.id"
+                  :inscritos="discipulado.numInscritos"
+                  :start-date="new Date(discipulado.startDate)"
+                  :title="discipulado.title"
         />
         <!-- Cambiar entre date y string -->
       </li>
@@ -40,7 +38,7 @@ export default {
   name: "AllLifeteen",
   computed: {
     allLifeteen() {
-      return this.$store.state.lifeteens;
+      return this.$store.state.discipuladoList;
     },
   },
   components: {
@@ -49,18 +47,19 @@ export default {
   },
   methods: {
     getToPage(id) {
+      let selectedLifeteen = this.$store.getters.getDiscipuladoById(id);
+      console.log(selectedLifeteen);
+      this.$store.commit('insertDiscipuladoIndividual', selectedLifeteen);
       this.$router.push({
         name: "LifeteenSpecific",
-        params: {
-          id: id
-        }
+        query: {id: id},
       });
     },
     getAll() {
       let search = new MongoDBconn();
       search.getAllLifeteen().then((data) => {
         console.log(data);
-        this.$store.state.lifeteens = data;
+        this.$store.state.discipuladoList = data;
       });
     },
   },
@@ -68,7 +67,7 @@ export default {
     let search = new MongoDBconn();
     search.getAllLifeteen().then((data) => {
       console.log(data);
-      this.$store.state.lifeteens = data;
+      this.$store.state.discipuladoList = data;
     });
   },
 };
@@ -79,19 +78,160 @@ export default {
 @import "../../css/index.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.lifeteen_grid {
-  display: grid;
-  grid-template-columns: repeat(2, 450px);
-  grid-column-gap: 20px;
-  grid-row-gap: 10px;
+
+@media (min-width: 1200px) {
+  .component {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+
+  .filters {
+    grid-area: 2 / 5 / 2 / 5;
+
+  }
+
+  .all {
+    grid-area: 1 / 2 / 1 / 2;
+    justify-self: end;
+  }
+
+  .order {
+    grid-area: 1 / 3 / 1 / 3;
+    justify-self: start;
+  }
+
+  .search {
+    grid-area: 1 / 5 / 1 / 5;
+  }
+
+  .adduser {
+    grid-area: 1 / 4 / 1 / 4;
+  }
+
+
+  .lifeteen_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 450px);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
+
+  .scrollable {
+    grid-area: 2 / 1 / 6 / 5;
+    height: 800px; /* or any value */
+    overflow-y: auto;
+    margin: 0px;
+  }
 }
 
-.scrollable {
-  grid-area: 2 / 1 / 6 / 3;
-  height: 800px; /* or any value */
-  overflow-y: auto;
-  margin: 0px;
+
+@media (min-width: 1505px) {
+  .component {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+
+  .filters {
+    grid-area: 2 / 5 / 2 / 5;
+
+  }
+
+  .all {
+    grid-area: 1 / 2 / 1 / 2;
+    justify-self: end;
+  }
+
+  .order {
+    grid-area: 1 / 3 / 1 / 3;
+    justify-self: start;
+  }
+
+  .search {
+    grid-area: 1 / 5 / 1 / 5;
+  }
+
+  .adduser {
+    grid-area: 1 / 4 / 1 / 4;
+  }
+
+  .lifeteen_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 450px);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
+
+  .scrollable {
+    grid-area: 2 / 1 / 5 / 5;
+    height: 800px; /* or any value */
+    overflow-y: auto;
+    margin: 0px;
+  }
 }
+
+
+@media (min-width: 1900px) {
+  .component {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+
+  .filters {
+    grid-area: 2 / 5 / 2 / 5;
+
+  }
+
+  .all {
+    grid-area: 1 / 2 / 1 / 2;
+    justify-self: end;
+  }
+
+  .order {
+    grid-area: 1 / 3 / 1 / 3;
+    justify-self: start;
+  }
+
+  .search {
+    grid-area: 1 / 5 / 1 / 5;
+  }
+
+  .adduser {
+    grid-area: 1 / 4 / 1 / 4;
+  }
+
+  .lifeteen_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 450px);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
+
+  .scrollable {
+    grid-area: 2 / 1 / 4 / 4;
+    height: 800px; /* or any value */
+    overflow-y: auto;
+    margin: 0px;
+  }
+}
+
 
 #searchButton:active {
   color: white;
@@ -107,41 +247,8 @@ body {
   color: var(--text-black);
 }
 
-.component {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-}
-
-.logo {
-  grid-area: 1 / 1 / 2 / 2;
-}
-
-.filters {
-  grid-area: 2 / 5 / 6 / 6;
-}
-
-.all {
-  grid-area: 1 / 2 / 2 / 3;
-  justify-self: end;
-}
-
-.order {
-  grid-area: 1 / 2 / 2 / 3;
-  justify-self: start;
-}
-
 .list_item {
   list-style-type: none;
-}
-
-.search {
-  grid-area: 1 / 5 / 2 / 6;
-}
-
-.adduser {
-  grid-area: 1 / 3 / 2 / 4;
 }
 
 #app {
