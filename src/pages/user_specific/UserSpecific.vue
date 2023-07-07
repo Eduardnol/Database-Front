@@ -1,36 +1,129 @@
 <template>
-  <div class="userinfo">
-    <div class="userfields stats">
-      <h5>Identificador de Usuario: {{ person.id }}</h5>
+  <ul id="myTab" class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button id="general-info-tab" aria-controls="home-tab-pane" aria-selected="true"
+              class="nav-link active" data-bs-target="#home-tab-pane" data-bs-toggle="tab" role="tab"
+              type="button">Información General
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button id="groups-tab" aria-controls="groups-tab-pane" aria-selected="false"
+              class="nav-link" data-bs-target="#groups-tab-pane" data-bs-toggle="tab"
+              role="tab" type="button">Grupos
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button id="family-residence-tab" aria-controls="family-residence-tab-pane" aria-selected="false"
+              class="nav-link" data-bs-target="#family-residence-tab-pane" data-bs-toggle="tab"
+              role="tab" type="button">Familia y Domicilio
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button id="files-tab" aria-controls="files-tab-pane" aria-selected="false"
+              class="nav-link" data-bs-target="#files-tab-pane" data-bs-toggle="tab"
+              role="tab" type="button">Archivos
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button id="economy-tab" aria-controls="economy-tab-pane" aria-selected="false"
+              class="nav-link" data-bs-target="#economy-tab-pane" data-bs-toggle="tab"
+              role="tab" type="button">Información Económica
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button id="sacraments-tab" aria-controls="sacraments-tab-pane" aria-selected="false"
+              class="nav-link" data-bs-target="#sacraments-tab-pane" data-bs-toggle="tab"
+              role="tab" type="button">Sacramentos
+      </button>
+    </li>
+  </ul>
+  <div id="home-tab-pane" aria-labelledby="general-info-tab" class="tab-pane fade show active"
+       role="tabpanel" tabindex="0">
+    <div class="userinfo">
+      <div class="userfields stats">
+        <h5>Identificador de Usuario: {{ person.id }}</h5>
 
-      <h5>Creado el: {{
-          getDateAndFormat(person.createdOn)
-        }}</h5>
+        <h5>Creado el: {{
+            getDateAndFormat(person.createdOn)
+          }}</h5>
 
-      <h5>Archivos:</h5>
+        <h5>Archivos:</h5>
 
-      <ul>
-        <li
-            v-for="file in person.fileStorage"
-            :key="file.url"
-            class="list_item">
-          <UserFile :filename="file.name" :url="file.url"
-                    @deleteUserFile="deleteFile"/>
-        </li>
-      </ul>
-      <!--add a file uploader button-->
-      <div class="d-inline">
-        <input id="formFile" ref="file" class="form-control" type="file">
+        <ul>
+          <li
+              v-for="file in person.fileStorage"
+              :key="file.url"
+              class="list_item">
+            <UserFile :filename="file.name" :url="file.url"
+                      @deleteUserFile="deleteFile"/>
+          </li>
+        </ul>
+        <!--add a file uploader button-->
+        <div class="d-inline">
+          <input id="formFile" ref="file" class="form-control" type="file">
+        </div>
+        <button class="btn btn-primary d-inline" @click="addFile">Subir</button>
+
+
       </div>
-      <button class="btn btn-primary d-inline" @click="addFile">Subir</button>
-
-
+      <div class="userfields info">
+        <AddUserFields/>
+      </div>
     </div>
-    <div class="userfields info">
-      <AddUserFields/>
+  </div>
+  <div id="groups-tab-pane" aria-labelledby="groups-tab" class="tab-pane fade" role="tabpanel"
+       tabindex="0">
+    <div class="usergroups">
+
     </div>
   </div>
 
+  <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal"
+       tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Eliminación</h5>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                  type="button"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea eliminar este usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar
+          </button>
+          <button class="btn btn-danger" data-bs-dismiss="modal"
+                  type="button"
+                  @click="deleteuser">Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dismiss" aria-hidden="true" aria-labelledby="dismiss" class="modal"
+       tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Descarte</h5>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                  type="button"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea descartar este usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Seguir Editando
+          </button>
+          <button class="btn btn-warning" data-bs-dismiss="modal"
+                  type="button"
+                  @click="getToPage">Descartar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="button-group">
     <button
         class="btn btn-primary m-1"
@@ -52,51 +145,7 @@
       <i class="bi bi-trash3"></i> Eliminar
     </button>
   </div>
-  <div class="modal" id="exampleModal" aria-labelledby="exampleModalLabel" tabindex="-1"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirmar Eliminación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Desea eliminar este usuario?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger"
-                  @click="deleteuser"
-                  data-bs-dismiss="modal">Eliminar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal" id="dismiss" aria-labelledby="dismiss" tabindex="-1"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirmar Descarte</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Desea descartar este usuario?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Editando
-          </button>
-          <button type="button" class="btn btn-warning"
-                  @click="getToPage"
-                  data-bs-dismiss="modal">Descartar Cambios
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
@@ -152,7 +201,6 @@ export default {
           this.$store.commit("addFile", {filename, fileUrl,});
 
         })
-
 
         //show confirmation and reload page
       }
