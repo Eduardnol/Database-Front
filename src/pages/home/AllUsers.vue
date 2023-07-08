@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       searchClient: instantMeiliSearch(
-          "http://127.0.0.1:7720", ""
+          "http://127.0.0.1:7720", "masterKey"
       ),
     }
   },
