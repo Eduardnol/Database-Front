@@ -106,8 +106,17 @@
 import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
 import AddUserFieldsSacraments from "./AddUserFieldsSacraments.vue";
 import moment from "moment";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {usePersonListStore} from "../../stores/usePersonListStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    let personListStore = usePersonListStore();
+    return {
+      personStore, personListStore
+    };
+  },
   name: "AddUserFields",
   components: {
     AddUserFieldsCustom,
@@ -116,28 +125,28 @@ export default {
   computed: {
     person: {
       get() {
-        return this.$store.state.person;
+        return this.personStore;
       },
       set(value) {
-        this.$store.commit("insertIndividualPerson", value);
+        this.personStore = value;
       },
     },
   },
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
-      return this.person.extras.indexOf(element);
+      return this.personStore.extras.indexOf(element);
     },
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     },
     addCustomFields() {
-      this.$store.commit("addAnExtraField")
+      this.personStore.addAnExtraField()
 
     },
     deleteIndividualField(id) {
       console.log("The id is: " + id)
-      this.$store.commit("deleteFromExtraArray", id)
+      this.personStore.deleteFromExtraArray(id)
     }
   },
 };

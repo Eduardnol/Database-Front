@@ -8,7 +8,7 @@
       <AddLifeteen/>
     </div>
 
-    <button id="searchButton" class="all" @click="getAll">
+    <button id="searchButton" class="all" @click="getAllFromDB">
       <i class="bi bi-people-fill"></i> Ver todos
     </button>
     <ul class="lifeteen_grid scrollable">
@@ -33,12 +33,19 @@
 import MongoDBconn from "../../services/MongoDBconn";
 import Lifeteen from "../../components/all_lifeteen/Lifeteen";
 import AddLifeteen from "../../components/add_lifeteen/AddLifeteen";
+import {useDiscipuladoListStore} from "../../stores/useDiscipuladoListStore";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 
 export default {
+  setup() {
+    let discipuladoList = useDiscipuladoListStore();
+    let discipuladoIndividual = useDiscipuladoStore();
+    return {discipuladoList, discipuladoIndividual};
+  },
   name: "AllLifeteen",
   computed: {
     allLifeteen() {
-      return this.$store.state.discipuladoList;
+      return this.discipuladoList;
     },
   },
   components: {
@@ -47,19 +54,21 @@ export default {
   },
   methods: {
     getToPage(id) {
-      let selectedLifeteen = this.$store.getters.getDiscipuladoById(id);
+      let selectedLifeteen = this.discipuladoList.find(
+          (discipulado) => discipulado.id === id,
+      );
       console.log(selectedLifeteen);
-      this.$store.commit('insertDiscipuladoIndividual', selectedLifeteen);
+      this.discipuladoIndividual = selectedLifeteen;
       this.$router.push({
         name: "LifeteenSpecific",
         query: {id: id},
       });
     },
-    getAll() {
+    getAllFromDB() {
       let search = new MongoDBconn();
       search.getAllLifeteen().then((data) => {
         console.log(data);
-        this.$store.state.discipuladoList = data;
+        this.discipuladoList = data;
       });
     },
   },
@@ -67,7 +76,7 @@ export default {
     let search = new MongoDBconn();
     search.getAllLifeteen().then((data) => {
       console.log(data);
-      this.$store.state.discipuladoList = data;
+      this.discipuladoList = data;
     });
   },
 };

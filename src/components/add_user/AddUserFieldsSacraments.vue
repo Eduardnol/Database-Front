@@ -57,15 +57,23 @@
   </div>
 </template>
 <script>
+import {usePersonStore} from "../../stores/usePersonStore";
+
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    return {
+      personStore,
+    };
+  },
   name: "AddUserFieldsSacraments",
   computed: {
     person: {
       get() {
-        return this.$store.state.person;
+        return this.personStore;
       },
       set(value) {
-        this.$store.commit("insertIndividualPerson", value);
+        this.personStore = value;
       },
     },
   },

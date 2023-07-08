@@ -65,15 +65,21 @@
 <script>
 import MongoDBconn from "../../services/MongoDBconn";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields.vue";
+import {usePersonStore} from "../../stores/usePersonStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    personStore.$reset();
+    return {personStore};
+  },
   name: "AddLifeteen",
   components: {
     AddLifeteenFields,
   },
-  beforeMount() {
-    this.$store.commit("deleteUser");
-  },
+  // beforeMount() {
+  //   this.$store.commit("deleteUser");
+  // },
   methods: {
     sendNewDiscipuladoToDatabase() {
       this.$refs.addDiscipuladoRef.saveObjectToStore();
