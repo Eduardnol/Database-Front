@@ -2,7 +2,8 @@
   <ul id="myTab" class="nav nav-tabs" role="tablist">
     <li class="nav-item" role="presentation">
       <button id="general-info-tab" aria-controls="home-tab-pane" aria-selected="true"
-              class="nav-link active" data-bs-target="#home-tab-pane" data-bs-toggle="tab" role="tab"
+              class="nav-link active" data-bs-target="#home-tab-pane" data-bs-toggle="tab"
+              role="tab"
               type="button">Información General
       </button>
     </li>
@@ -13,7 +14,8 @@
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button id="family-residence-tab" aria-controls="family-residence-tab-pane" aria-selected="false"
+      <button id="family-residence-tab" aria-controls="family-residence-tab-pane"
+              aria-selected="false"
               class="nav-link" data-bs-target="#family-residence-tab-pane" data-bs-toggle="tab"
               role="tab" type="button">Familia y Domicilio
       </button>
@@ -41,17 +43,17 @@
        role="tabpanel" tabindex="0">
     <div class="userinfo">
       <div class="userfields stats">
-        <h5>Identificador de Usuario: {{ person.id }}</h5>
+        <h5>Identificador de Usuario: {{ personStore.id }}</h5>
 
         <h5>Creado el: {{
-            getDateAndFormat(person.createdOn)
+            getDateAndFormat(personStore.createdOn)
           }}</h5>
 
         <h5>Archivos:</h5>
 
         <ul>
           <li
-              v-for="file in person.fileStorage"
+              v-for="file in personStore.fileStorage"
               :key="file.url"
               class="list_item">
             <UserFile :filename="file.name" :url="file.url"
@@ -152,20 +154,51 @@ import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn.js";
 import UserFile from "../../components/file/UserFile.vue";
 import moment from "moment";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {usePersonListStore} from "../../stores/usePersonListStore";
+import {useRoute} from 'vue-router';
 
 export default {
+  setup() {
+    const personStore = usePersonStore();
+    const personListStore = usePersonListStore();
+    const getuser = new MongoDBconn();
+    const route = useRoute();
+
+    getuser.getPersonById(route.query.id).then((result) => {
+      const {
+        id,
+        nombre,
+        apellido,
+        apellido2,
+        email,
+        birthday,
+        saint,
+        dni,
+        sacraments,
+        extras,
+        fileStorage,
+        createdOn
+      } = result;
+      personStore.id = id;
+      personStore.nombre = nombre;
+      personStore.apellido = apellido;
+      personStore.apellido2 = apellido2;
+      personStore.email = email;
+      personStore.birthday = birthday.toString();
+      personStore.saint = saint.toString();
+      personStore.dni = dni;
+      personStore.sacraments = sacraments;
+      personStore.extras = extras;
+      personStore.fileStorage = fileStorage;
+      personStore.createdOn = createdOn.toString();
+    });
+
+    return {personStore, personListStore};
+  },
+
   name: "UserSpecific",
   components: {AddUserFields, UserFile},
-  computed: {
-    person: {
-      get() {
-        return this.$store.state.person;
-      },
-      set(value) {
-        this.$store.commit("insertIndividualPerson", value);
-      },
-    },
-  },
   methods: {
     //this will delete the working state person and return to the user home
     getToPage() {
@@ -176,15 +209,15 @@ export default {
     //Saves into the database the user we just updated
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updatePerson(this.person);
+      update.updatePerson(this.personStore);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
     deleteuser() {
       //update database user throught api and automatically the array
       let deletion = new MongoDBconn();
-      deletion.deletePerson(this.$store.state.person.id);
-      this.$store.commit("deleteFromArray", this.person);
+      deletion.deletePerson(this.personStore.id)
+      this.personListStore.deleteFromArray(this.personStore)
       this.getToPage();
     },
     addFile() {
@@ -192,13 +225,13 @@ export default {
       if (file != null) {
 
         let upload = new MongoDBconn();
-        let resultStatus = upload.uploadFile(this.$store.state.person.id, file);
+        let resultStatus = upload.uploadFile(this.personStore.id, file);
         resultStatus.then(data => {
           console.log("The data fetched is" + data.details.url);
           let filename = data.details.name;
           let fileUrl = data.details.url;
           console.log("the vairable is " + fileUrl);
-          this.$store.commit("addFile", {filename, fileUrl,});
+          this.personStore.addFile(filename, fileUrl);
 
         })
 
@@ -207,8 +240,8 @@ export default {
     },
     deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.person.id, fileName)
-      this.$store.commit("deleteFile", fileurl);
+      deleteFile.deleteFile(this.personStore.id, fileName)
+      this.personStore.deleteFile(fileurl)
     },
     getDateTimeAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY hh:mm:ss');
@@ -216,12 +249,6 @@ export default {
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     }
-  },
-  beforeMount() {
-    let getuser = new MongoDBconn();
-    getuser.getPersonById(this.$route.query.id).then(data => {
-      this.$store.commit("insertIndividualPerson", data);
-    });
   },
 };
 </script>

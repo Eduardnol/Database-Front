@@ -45,8 +45,17 @@
 import moment from "moment";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 // import MiniPerson from "./MiniPerson.vue";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    let discipuladoStore = useDiscipuladoStore();
+    personStore.$reset();
+    discipuladoStore.$reset();
+    return {personStore, discipuladoStore};
+  },
   name: "AddLifeteenFields",
   components: {
     // MiniPerson,
@@ -61,10 +70,10 @@ export default {
   computed: {
     discipulado: {
       get() {
-        return this.$store.state.discipulado;
+        return this.discipuladoStore;
       },
       set(value) {
-        this.$store.commit("insertDiscipuladoIndividual", value);
+        this.discipuladoStore = value;
       },
     },
   },
@@ -81,7 +90,7 @@ export default {
       return moment(String(date)).format('DD/MM/YYYY');
     },
     addCustomFields() {
-      this.$store.commit("addAnExtraField")
+      this.discipulado.addAnExtraField();
 
     },
     fillThePersonFromParent() {
@@ -89,14 +98,14 @@ export default {
     },
     deleteIndividualField(id) {
       console.log("The id is: " + id)
-      this.$store.commit("deleteFromExtraArray", id)
+      this.discipulado.deleteFromExtraArray(id);
     }
     ,
     retrieveData() {
       return this.discipulado;
     },
     saveObjectToStore() {
-      let discipuladoList = this.$store.getters.getDiscipuladoList;
+      let discipuladoList = this.discipuladoStore;
       if (discipuladoList == null) {
         discipuladoList = [];
       }
@@ -107,7 +116,7 @@ export default {
       } else {
         discipuladoList.push(this.discipulado);
       }
-      this.$store.commit('updateDiscipuladoList', discipuladoList);
+      this.discipuladoStore = discipuladoList;
     }
   }
   ,

@@ -9,7 +9,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="person.nombre"
+              v-model="personStore.nombre"
               placeholder="Nombre"
           />
         </div>
@@ -22,7 +22,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="person.apellido"
+              v-model="personStore.apellido"
               placeholder="Apellido"
           />
         </div>
@@ -35,7 +35,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="person.apellido2"
+              v-model="personStore.apellido2"
               placeholder="Apellido2"
           />
         </div>
@@ -45,7 +45,7 @@
           <p class="form">Cumpleaños</p>
         </div>
         <div class="col-auto">
-          <input v-model="person.birthday" class="form-control" type="date"/>
+          <input v-model="personStore.birthday" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -53,7 +53,7 @@
           <p class="form">Fecha</p>
         </div>
         <div class="col-auto">
-          <input v-model="person.saint" class="form-control" type="date"/>
+          <input v-model="personStore.saint" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -65,7 +65,7 @@
               class="form-control"
               type="email"
               id="email"
-              v-model="person.email"
+              v-model="personStore.email"
               placeholder="ejemplo@email.com"
           />
         </div>
@@ -78,7 +78,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="person.tags"
+              v-model="personStore.tags"
               placeholder="tag1, tag2, tag3"
           />
         </div>
@@ -91,7 +91,7 @@
       </div>
       <div
           class="row mt-3"
-          v-for="customField in person.extras"
+          v-for="customField in personStore.extras"
           :key="customField.id">
         <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)"
                              @deleteindiv="deleteIndividualField"/>
@@ -106,38 +106,37 @@
 import AddUserFieldsCustom from "./AddUserFieldsCustom.vue";
 import AddUserFieldsSacraments from "./AddUserFieldsSacraments.vue";
 import moment from "moment";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {usePersonListStore} from "../../stores/usePersonListStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    let personListStore = usePersonListStore();
+    return {
+      personStore, personListStore
+    };
+  },
   name: "AddUserFields",
   components: {
     AddUserFieldsCustom,
     AddUserFieldsSacraments,
   },
-  computed: {
-    person: {
-      get() {
-        return this.$store.state.person;
-      },
-      set(value) {
-        this.$store.commit("insertIndividualPerson", value);
-      },
-    },
-  },
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
-      return this.person.extras.indexOf(element);
+      return this.personStore.extras.indexOf(element);
     },
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     },
     addCustomFields() {
-      this.$store.commit("addAnExtraField")
+      this.personStore.addAnExtraField()
 
     },
     deleteIndividualField(id) {
       console.log("The id is: " + id)
-      this.$store.commit("deleteFromExtraArray", id)
+      this.personStore.deleteFromExtraArray(id)
     }
   },
 };

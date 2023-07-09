@@ -69,19 +69,24 @@ import Filters from "../../components/all_users/FiltersComponent.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
 import MongoDBconn from "../../services/MongoDBconn";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
+import {usePersonListStore} from "../../stores/usePersonListStore";
 
 export default {
+  setup() {
+    let personList = usePersonListStore();
+    return {personList};
+  },
   name: "AllUsers",
   data() {
     return {
       searchClient: instantMeiliSearch(
-          "http://localhost:7720",
+          "http://127.0.0.1:7720", "masterKey"
       ),
     }
   },
   computed: {
     allPerson() {
-      return this.$store.state.persons;
+      return this.personList;
     },
   },
   components: {
@@ -101,7 +106,7 @@ export default {
     getall() {
       let search = new MongoDBconn();
       search.getAllPeople().then((data) => {
-        console.log(data), (this.$store.state.persons = data);
+        console.log(data), (this.personList = data);
       });
     },
     orderByName() {
@@ -109,7 +114,7 @@ export default {
       let search = new MongoDBconn();
       search.getAllPeopleOrder("name", "asc").then((data) => {
         console.log(data);
-        this.$store.state.persons = data;
+        this.personList = data;
       });
     },
     orderBySurname() {
@@ -117,17 +122,17 @@ export default {
       let search = new MongoDBconn();
       search.getAllPeopleOrder("surname", "asc").then((data) => {
         console.log(data);
-        this.$store.state.persons = data;
+        this.personList = data;
       });
     },
-    orderByBirthday() {
+    orderByBirth() {
       console.log("Order by birth");
     },
   },
   beforeMount() {
     let search = new MongoDBconn();
     search.getAllPeople().then((data) => {
-      console.log(data), (this.$store.state.persons = data);
+      (this.personList = data);
     });
   },
 };

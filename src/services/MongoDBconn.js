@@ -115,7 +115,8 @@ export default class MongoDBconn {
     }
 
     async updatePerson(person) {
-
+        console.log("update person");
+        console.log(person);
         const response = await fetch(baseUrl + `api/v1/people/update/`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},//important to specify the headers as a JSON

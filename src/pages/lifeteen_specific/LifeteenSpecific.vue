@@ -181,17 +181,24 @@ import MiniPerson from "../../components/add_lifeteen/MiniPerson";
 import ListPicker from "../../components/list_picker/ListPicker";
 import MongoDBconn from "../../services/MongoDBconn";
 import ListPickerIndividual from "../../components/list_picker/ListPickerIndividual.vue";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
+import {useGeneralStore} from "../../stores/useGeneralStore";
 
 export default {
+  setup() {
+    let discipuladoStore = useDiscipuladoStore();
+    let generalStore = useGeneralStore();
+    return {discipuladoStore, generalStore};
+  },
   name: "LifeteenSpecific",
   components: {ListPicker, MiniPerson, AddLifeteenFields, ListPickerIndividual},
   computed: {
     discipulado: {
       get() {
-        return this.$store.getters.getDiscipuladoIndividual;
+        return this.discipuladoStore;
       },
       set(value) {
-        this.$store.commit("updateIndividualDiscipulado", value);
+        this.discipuladoStore = value;
       },
     },
   },
@@ -262,7 +269,7 @@ export default {
      * Selects the loading swich for monitores
      */
     openMonitores() {
-      this.$store.commit("updateInscritosBoolean", false);
+      this.generalStore.updateInscritosBoolean(false);
       this.updateSelected();
       console.log("openMonitores");
     },
@@ -270,7 +277,7 @@ export default {
      * Selects the loading swich for inscritos
      */
     openInscritos() {
-      this.$store.commit("updateInscritosBoolean", true);
+      this.generalStore.updateInscritosBoolean(true);
       this.updateSelected();
       console.log("openInscritos");
     },

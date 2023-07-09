@@ -65,26 +65,37 @@
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
 import MongoDBconn from "../../services/MongoDBconn";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {usePersonListStore} from "../../stores/usePersonListStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    let personListStore = usePersonListStore();
+    personStore.$reset();
+    return {
+      personStore,
+      personListStore,
+    };
+  },
   components: {
     AddUserFields,
   },
-  beforeMount() {
-    this.$store.commit("deleteUser");
-  },
+  // beforeMount() {
+  //   this.$store.commit("deleteUser");
+  // },
   methods: {
     sendNewUserToDatabase() {
       let conn = new MongoDBconn();
       conn.postPerson(this.person_ret);
     },
     cancelUser() {
-      this.$store.commit("deleteUser");
+      this.personStore.$reset();
     },
   },
   computed: {
     person_ret() {
-      return this.$store.state.person;
+      return this.personStore;
     },
   },
 };

@@ -63,8 +63,15 @@
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 
 export default {
+  setup() {
+    let discipuladoStore = useDiscipuladoStore();
+    return {
+      discipuladoStore
+    }
+  },
   name: "ListPickerIndividual",
   components: {
     MiniPerson
@@ -103,8 +110,7 @@ export default {
       }
     },
     saveSelected() {
-      let list = this.selected;
-      this.$store.commit("updateDiscipuladoResponsablesList", list);
+      this.discipuladoStore.responables = this.selected;
     },
     /**
      * Removes the clicked item from the selected list
@@ -117,7 +123,7 @@ export default {
      * Loads the list of selected users from the vuex store
      */
     loadSelected() {
-      this.selected = this.$store.getters["getDiscipuladoIndividual"].responsables;
+      this.selected = this.discipuladoStore.responsables;
     },
   }
 }

@@ -34,17 +34,25 @@
   </div>
 </template>
 <script>
+import {usePersonStore} from "../../stores/usePersonStore";
+
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    return {
+      personStore,
+    };
+  },
   name: "AddUserFieldsCustom",
   emits: ['deleteindiv'],
   computed: {
     extras: {
       get() {
         //Returns the extra field of a person
-        return this.$store.state.person.extras;
+        return this.personStore.extras;
       },
-      set(value) {
-        this.$store.commit("addAnExtraField", value);
+      set() {
+        this.personStore.addAnExtraField();
       },
     }
   },

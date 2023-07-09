@@ -18,8 +18,16 @@
 </template>
 <script>
 import MongoDBconn from "../../services/MongoDBconn";
+import {usePersonStore} from "../../stores/usePersonStore";
+import "instantsearch.css/themes/algolia-min.css";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    return {
+      personStore,
+    };
+  },
   name: "Search",
   data() {
     return {
@@ -31,7 +39,7 @@ export default {
     search() {
       let search = new MongoDBconn();
       search.searchValue(this.keyword).then((data) => {
-        console.log(data), (this.$store.state.persons = data);
+        this.personStore = data;
       });
     },
   },

@@ -63,8 +63,21 @@
 <script>
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../add_lifeteen/MiniPerson";
+import {usePersonStore} from "../../stores/usePersonStore";
+import {useGeneralStore} from "../../stores/useGeneralStore";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 
 export default {
+  setup() {
+    let personStore = usePersonStore();
+    let generalStore = useGeneralStore();
+    let discipuladoStore = useDiscipuladoStore();
+    return {
+      personStore,
+      generalStore,
+      discipuladoStore,
+    };
+  },
   name: "ListPicker",
   components: {
     MiniPerson
@@ -115,10 +128,10 @@ export default {
      */
     saveSelected() {
       let list = this.selected;
-      if (this.$store.getters['isInscritos']) {
-        this.$store.commit("updateDiscipuladoInscritosList", list);
+      if (this.generalStore.isInscritos) {
+        this.discipuladoStore.updateDiscipuladoInscritosList(list);
       } else {
-        this.$store.commit("updateDiscipuladoMonitorList", list);
+        this.discipuladoStore.updateDiscipuladoMonitorList(list);
       }
 
     },
@@ -127,10 +140,10 @@ export default {
      */
     loadSelected() {
       console.log("ListPicker mounted");
-      if (this.$store.getters['isInscritos']) {
-        this.selected = this.$store.getters["getDiscipuladoIndividual"].idInscritos;
+      if (this.generalStore.isInscritos) {
+        this.selected = this.discipuladoStore.idInscritos;
       } else {
-        this.selected = this.$store.getters["getDiscipuladoIndividual"].idMonitores;
+        this.selected = this.discipuladoStore.idMonitores;
       }
     },
   }
