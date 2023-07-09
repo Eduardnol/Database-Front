@@ -209,7 +209,7 @@ export default {
     //Saves into the database the user we just updated
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updatePerson(this.person);
+      update.updatePerson(this.personStore);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
@@ -217,7 +217,7 @@ export default {
       //update database user throught api and automatically the array
       let deletion = new MongoDBconn();
       deletion.deletePerson(this.personStore.id)
-      this.personListStore.deleteFromArray(this.person)
+      this.personListStore.deleteFromArray(this.personStore)
       this.getToPage();
     },
     addFile() {
@@ -240,7 +240,7 @@ export default {
     },
     deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.person.id, fileName)
+      deleteFile.deleteFile(this.personStore.id, fileName)
       this.personStore.deleteFile(fileurl)
     },
     getDateTimeAndFormat(date) {
