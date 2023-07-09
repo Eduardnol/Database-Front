@@ -156,13 +156,47 @@ import UserFile from "../../components/file/UserFile.vue";
 import moment from "moment";
 import {usePersonStore} from "../../stores/usePersonStore";
 import {usePersonListStore} from "../../stores/usePersonListStore";
+import {useRoute} from 'vue-router';
 
 export default {
   setup() {
     const personStore = usePersonStore();
     const personListStore = usePersonListStore();
+    const getuser = new MongoDBconn();
+    const route = useRoute();
+
+    getuser.getPersonById(route.query.id).then((result) => {
+      const {
+        id,
+        nombre,
+        apellido,
+        apellido2,
+        email,
+        birthday,
+        saint,
+        dni,
+        sacraments,
+        extras,
+        fileStorage,
+        createdOn
+      } = result;
+      personStore.id = id;
+      personStore.nombre = nombre;
+      personStore.apellido = apellido;
+      personStore.apellido2 = apellido2;
+      personStore.email = email;
+      personStore.birthday = birthday;
+      personStore.saint = saint;
+      personStore.dni = dni;
+      personStore.sacraments = sacraments;
+      personStore.extras = extras;
+      personStore.fileStorage = fileStorage;
+      personStore.createdOn = createdOn;
+    });
+
     return {personStore, personListStore};
   },
+
   name: "UserSpecific",
   components: {AddUserFields, UserFile},
   methods: {
@@ -215,12 +249,6 @@ export default {
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');
     }
-  },
-  beforeMount() {
-    let getuser = new MongoDBconn();
-    getuser.getPersonById(this.$route.query.id).then(data => {
-      this.personStore.insertIndividualPerson(data);
-    });
   },
 };
 </script>

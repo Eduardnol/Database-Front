@@ -5,7 +5,6 @@ export const usePersonStore = defineStore('person', {
     id: null,
     nombre: null,
     apellido: null,
-    apellido2: null,
     email: null,
     birthday: null,
     saint: null,
@@ -26,9 +25,8 @@ export const usePersonStore = defineStore('person', {
     createdOn: null,
   }),
   actions: {
-    insertIndividualPerson(person) {
-      this.person = person
-      console.log(this.person);
+    insertIndividualPerson(person_info) {
+      this.person = person_info
     },
     deleteUser() {
       this.person.id = null

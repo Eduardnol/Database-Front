@@ -2,12 +2,12 @@
   <div class="col-auto me-auto">
     <div class="form-check">
       <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        v-model="person.sacraments.bautismo"
-        id="flexCheckDefault"
-        checked
+          id="flexCheckDefault"
+          v-model="personStore.sacraments.bautismo"
+          checked
+          class="form-check-input"
+          type="checkbox"
+          value=""
       />
       <label class="form-check-label" for="flexCheckDefault"> Bautismo </label>
     </div>
@@ -15,12 +15,12 @@
   <div class="col-auto me-auto">
     <div class="form-check">
       <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        v-model="person.sacraments.comunion"
-        id="flexCheckDefault"
-        checked
+          id="flexCheckDefault"
+          v-model="personStore.sacraments.comunion"
+          checked
+          class="form-check-input"
+          type="checkbox"
+          value=""
       />
       <label class="form-check-label" for="flexCheckDefault"> Comunión </label>
     </div>
@@ -28,12 +28,12 @@
   <div class="col-auto me-auto">
     <div class="form-check">
       <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        v-model="person.sacraments.confirmacion"
-        id="flexCheckDefault"
-        checked
+          id="flexCheckDefault"
+          v-model="personStore.sacraments.confirmacion"
+          checked
+          class="form-check-input"
+          type="checkbox"
+          value=""
       />
       <label class="form-check-label" for="flexCheckDefault">
         Confirmación
@@ -43,12 +43,12 @@
   <div class="col-auto me-auto">
     <div class="form-check">
       <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        v-model="person.sacraments.matrimonio"
-        id="flexCheckDefault"
-        checked
+          id="flexCheckDefault"
+          v-model="personStore.sacraments.matrimonio"
+          checked
+          class="form-check-input"
+          type="checkbox"
+          value=""
       />
       <label class="form-check-label" for="flexCheckDefault">
         Matrimonio
@@ -67,16 +67,6 @@ export default {
     };
   },
   name: "AddUserFieldsSacraments",
-  computed: {
-    person: {
-      get() {
-        return this.personStore;
-      },
-      set(value) {
-        this.personStore = value;
-      },
-    },
-  },
 };
 </script>
 <style scoped></style>
