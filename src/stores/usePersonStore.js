@@ -28,6 +28,7 @@ export const usePersonStore = defineStore('person', {
   actions: {
     insertIndividualPerson(person) {
       this.person = person
+      console.log(this.person);
     },
     deleteUser() {
       this.person.id = null
