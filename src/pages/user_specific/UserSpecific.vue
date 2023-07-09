@@ -185,13 +185,13 @@ export default {
       personStore.apellido = apellido;
       personStore.apellido2 = apellido2;
       personStore.email = email;
-      personStore.birthday = birthday;
-      personStore.saint = saint;
+      personStore.birthday = birthday.toString();
+      personStore.saint = saint.toString();
       personStore.dni = dni;
       personStore.sacraments = sacraments;
       personStore.extras = extras;
       personStore.fileStorage = fileStorage;
-      personStore.createdOn = createdOn;
+      personStore.createdOn = createdOn.toString();
     });
 
     return {personStore, personListStore};
