@@ -66,12 +66,15 @@
 import MongoDBconn from "../../services/MongoDBconn";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields.vue";
 import {usePersonStore} from "../../stores/usePersonStore";
+import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 
 export default {
   setup() {
     let personStore = usePersonStore();
+    let discipuladoStore = useDiscipuladoStore();
+    discipuladoStore.$reset();
     personStore.$reset();
-    return {personStore};
+    return {personStore, discipuladoStore};
   },
   name: "AddLifeteen",
   components: {
@@ -82,9 +85,9 @@ export default {
   // },
   methods: {
     sendNewDiscipuladoToDatabase() {
-      this.$refs.addDiscipuladoRef.saveObjectToStore();
+      // this.$refs.addDiscipuladoRef.saveObjectToStore();
       let conn = new MongoDBconn();
-      conn.postDiscipulado(this.$refs.addDiscipuladoRef.discipulado);
+      conn.postDiscipulado(this.discipuladoStore);
     },
     cancelUser() {
     },

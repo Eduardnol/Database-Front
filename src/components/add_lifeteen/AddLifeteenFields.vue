@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="discipulado.title"
+              v-model="discipuladoStore.title"
               class="form-control"
               placeholder="ej: Lifeteen 2022"
               type="text"
@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="row mt-3">
-        <ul v-if="discipulado.responsables">
-          <li v-for="responsable in discipulado.responsables"
+        <ul v-if="discipuladoStore.responsables">
+          <li v-for="responsable in discipuladoStore.responsables"
               :key="responsable.id">
 
             <div class="col-auto me-auto">
@@ -35,7 +35,7 @@
         <p class="form">Fecha de Inicio</p>
       </div>
       <div class="col-auto">
-        <input v-model="discipulado.startDate" class="form-control" type="date"/>
+        <input v-model="discipuladoStore.startDate" class="form-control" type="date"/>
       </div>
     </div>
   </div>
@@ -53,7 +53,6 @@ export default {
     let personStore = usePersonStore();
     let discipuladoStore = useDiscipuladoStore();
     personStore.$reset();
-    discipuladoStore.$reset();
     return {personStore, discipuladoStore};
   },
   name: "AddLifeteenFields",
@@ -67,17 +66,6 @@ export default {
       ),
     }
   },
-  computed: {
-    discipulado: {
-      get() {
-        return this.discipuladoStore;
-      },
-      set(value) {
-        this.discipuladoStore = value;
-      },
-    },
-  },
-
   methods: {
     saveSelectedItemsIntoVueStore() {
       //Save the items selected into vue store

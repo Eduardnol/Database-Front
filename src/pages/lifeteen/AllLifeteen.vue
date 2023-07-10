@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <h2>Lista arer</h2>
+    <h2>Lista Discipulados</h2>
     <div class="search">
       <!--      <Search/>-->
     </div>
