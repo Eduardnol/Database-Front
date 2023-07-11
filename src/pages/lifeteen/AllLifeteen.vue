@@ -11,9 +11,9 @@
     <button id="searchButton" class="all" @click="getAllFromDB">
       <i class="bi bi-people-fill"></i> Ver todos
     </button>
-    <ul v-if="discipuladoList[0].nombre" class="lifeteen_grid scrollable">
+    <ul v-if="discipuladoList.discipuladoList[0].nombre" class="lifeteen_grid scrollable">
       <li
-          v-for="discipulado in discipuladoList"
+          v-for="discipulado in discipuladoList.discipuladoList"
           :key="discipulado.id"
           class="list_item"
           @click="getToPage(discipulado.id)">
@@ -41,10 +41,8 @@ export default {
     let discipuladoList = useDiscipuladoListStore();
     let discipuladoIndividual = useDiscipuladoStore();
 
-    let search = new MongoDBconn();
-    search.getAllLifeteen().then((data) => {
-      discipuladoList = data;
-    });
+   let search = new MongoDBconn();
+    discipuladoList.addDiscipuladoList(search.getAllLifeteen());
 
     return {discipuladoList, discipuladoIndividual};
   },
@@ -55,7 +53,7 @@ export default {
   },
   methods: {
     getToPage(id) {
-      let selectedLifeteen = this.discipuladoList.find(
+      let selectedLifeteen = this.discipuladoList.discipuladoList.find(
           (discipulado) => discipulado.id === id,
       );
       console.log(selectedLifeteen);
@@ -67,10 +65,7 @@ export default {
     },
     getAllFromDB() {
       let search = new MongoDBconn();
-      search.getAllLifeteen().then((data) => {
-        console.log(data);
-        this.discipuladoList = data;
-      });
+      this.discipuladoList.addDiscipuladoList(search.getAllLifeteen());
     },
   },
 };

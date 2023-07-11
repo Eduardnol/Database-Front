@@ -17,6 +17,8 @@ export const useDiscipuladoStore = defineStore('discipuladoList', {
         }],
       }),
 
-      actions: {},
+      actions: {
+
+      },
     }
 );

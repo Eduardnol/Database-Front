@@ -10,6 +10,11 @@
 docker run --name front -v $(pwd)/src:/app/src -p 8082:8080 -d front
 //in powershell use ${pwd} instead of $(pwd)
 ```
+Combined for MAC
+```shell
+docker build -t front . & docker run --name front -v $(pwd)/src:/app/src -p 8082:8080 -d front
+
+```
 
 
 ## Project setup

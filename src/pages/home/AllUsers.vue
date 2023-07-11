@@ -105,25 +105,17 @@ export default {
     },
     getall() {
       let search = new MongoDBconn();
-      search.getAllPeople().then((data) => {
-        console.log(data), (this.personList = data);
-      });
+      this.personList = search.getAllPeople();
     },
     orderByName() {
       console.log("Order By Name");
       let search = new MongoDBconn();
-      search.getAllPeopleOrder("name", "asc").then((data) => {
-        console.log(data);
-        this.personList = data;
-      });
+      this.personList = search.getAllPeopleOrder("name", "asc");
     },
     orderBySurname() {
       console.log("Order By Surname");
       let search = new MongoDBconn();
-      search.getAllPeopleOrder("surname", "asc").then((data) => {
-        console.log(data);
-        this.personList = data;
-      });
+      this.personList = search.getAllPeopleOrder("surname", "asc");
     },
     orderByBirth() {
       console.log("Order by birth");
@@ -131,9 +123,7 @@ export default {
   },
   beforeMount() {
     let search = new MongoDBconn();
-    search.getAllPeople().then((data) => {
-      (this.personList = data);
-    });
+    this.personList = search.getAllPeople();
   },
 };
 </script>
