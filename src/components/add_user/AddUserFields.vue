@@ -9,7 +9,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="personStore.nombre"
+              v-model="personStore.person.nombre"
               placeholder="Nombre"
           />
         </div>
@@ -22,7 +22,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="personStore.apellido"
+              v-model="personStore.person.apellido"
               placeholder="Apellido"
           />
         </div>
@@ -35,7 +35,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="personStore.apellido2"
+              v-model="personStore.person.apellido2"
               placeholder="Apellido2"
           />
         </div>
@@ -45,7 +45,7 @@
           <p class="form">Cumpleaños</p>
         </div>
         <div class="col-auto">
-          <input v-model="personStore.birthday" class="form-control" type="date"/>
+          <input v-model="personStore.person.birthday" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -53,7 +53,7 @@
           <p class="form">Fecha</p>
         </div>
         <div class="col-auto">
-          <input v-model="personStore.saint" class="form-control" type="date"/>
+          <input v-model="personStore.person.saint" class="form-control" type="date"/>
         </div>
       </div>
       <div class="row mt-3">
@@ -65,7 +65,7 @@
               class="form-control"
               type="email"
               id="email"
-              v-model="personStore.email"
+              v-model="personStore.person.email"
               placeholder="ejemplo@email.com"
           />
         </div>
@@ -78,7 +78,7 @@
           <input
               type="text"
               class="form-control"
-              v-model="personStore.tags"
+              v-model="personStore.person.tags"
               placeholder="tag1, tag2, tag3"
           />
         </div>
@@ -91,7 +91,7 @@
       </div>
       <div
           class="row mt-3"
-          v-for="customField in personStore.extras"
+          v-for="customField in personStore.person.extras"
           :key="customField.id">
         <AddUserFieldsCustom :fieldId="getCustomFieldId(customField)"
                              @deleteindiv="deleteIndividualField"/>
@@ -125,7 +125,7 @@ export default {
   methods: {
     getCustomFieldId(element) {
       //Returns id of the element of the internal extra array
-      return this.personStore.extras.indexOf(element);
+      return this.personStore.person.extras.indexOf(element);
     },
     getDateAndFormat(date) {
       return moment(String(date)).format('DD/MM/YYYY');

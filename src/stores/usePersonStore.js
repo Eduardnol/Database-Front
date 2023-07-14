@@ -2,30 +2,33 @@ import {defineStore} from 'pinia'
 
 export const usePersonStore = defineStore('person', {
   state: () => ({
-    id: null,
-    nombre: null,
-    apellido: null,
-    email: null,
-    birthday: null,
-    saint: null,
-    dni: null,
-    sacraments: {
-      bautismo: false,
-      comunion: false,
-      confirmacion: false,
-      matrimonio: false
-    },
-    extras: [{
+    person: {
       id: null,
-      selected: null,
-      name: null,
-      tagname: null
-    }],
-    fileStorage: [{name: null, url: null}],
-    createdOn: null,
+      nombre: null,
+      apellido: null,
+      email: null,
+      birthday: null,
+      saint: null,
+      dni: null,
+      sacraments: {
+        bautismo: false,
+        comunion: false,
+        confirmacion: false,
+        matrimonio: false
+      },
+      extras: [{
+        id: null,
+        selected: null,
+        name: null,
+        tagname: null
+      }],
+      fileStorage: [{name: null, url: null}],
+      createdOn: null,
+    }
   }),
   actions: {
     insertIndividualPerson(person_info) {
+      console.log(person_info)
       this.person = person_info
     },
     deleteUser() {

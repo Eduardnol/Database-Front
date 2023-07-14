@@ -49,7 +49,7 @@ export default {
     extras: {
       get() {
         //Returns the extra field of a person
-        return this.personStore.extras;
+        return this.personStore.person.extras;
       },
       set() {
         this.personStore.addAnExtraField();

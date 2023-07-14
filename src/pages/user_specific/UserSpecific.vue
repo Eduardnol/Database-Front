@@ -43,17 +43,17 @@
        role="tabpanel" tabindex="0">
     <div class="userinfo">
       <div class="userfields stats">
-        <h5>Identificador de Usuario: {{ personStore.id }}</h5>
+        <h5>Identificador de Usuario: {{ personStore.person.id }}</h5>
 
         <h5>Creado el: {{
-            getDateAndFormat(personStore.createdOn)
+            getDateAndFormat(personStore.person.createdOn)
           }}</h5>
 
         <h5>Archivos:</h5>
 
         <ul>
           <li
-              v-for="file in personStore.fileStorage"
+              v-for="file in personStore.person.fileStorage"
               :key="file.url"
               class="list_item">
             <UserFile :filename="file.name" :url="file.url"
@@ -165,9 +165,9 @@ export default {
     const getuser = new MongoDBconn();
     const route = useRoute();
 
-    let retrievedInfo = getuser.getPersonById(route.query.id);
-    personStore = retrievedInfo;
-    console.log(retrievedInfo);
+    getuser.getPersonById(route.query.id).then((response) => {
+      personStore.insertIndividualPerson(response);
+    });
     return {personStore, personListStore};
   },
 
@@ -183,15 +183,15 @@ export default {
     //Saves into the database the user we just updated
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updatePerson(this.personStore);
+      update.updatePerson(this.personStore.person);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
     deleteuser() {
       //update database user throught api and automatically the array
       let deletion = new MongoDBconn();
-      deletion.deletePerson(this.personStore.id)
-      this.personListStore.deleteFromArray(this.personStore)
+      deletion.deletePerson(this.personStore.person.id)
+      this.personListStore.deleteFromArray(this.personStore.person)
       this.getToPage();
     },
     addFile() {
@@ -199,7 +199,7 @@ export default {
       if (file != null) {
 
         let upload = new MongoDBconn();
-        let resultStatus = upload.uploadFile(this.personStore.id, file);
+        let resultStatus = upload.uploadFile(this.personStore.person.id, file);
         resultStatus.then(data => {
           console.log("The data fetched is" + data.details.url);
           let filename = data.details.name;
@@ -214,7 +214,7 @@ export default {
     },
     deleteFile(fileName, fileurl) {
       let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.personStore.id, fileName)
+      deleteFile.deleteFile(this.personStore.person.id, fileName)
       this.personStore.deleteFile(fileurl)
     },
     getDateTimeAndFormat(date) {

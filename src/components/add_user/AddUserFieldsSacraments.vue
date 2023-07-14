@@ -3,7 +3,7 @@
     <div class="form-check">
       <input
           id="flexCheckDefault"
-          v-model="personStore.sacraments.bautismo"
+          v-model="personStore.person.sacraments.bautismo"
           checked
           class="form-check-input"
           type="checkbox"
@@ -16,7 +16,7 @@
     <div class="form-check">
       <input
           id="flexCheckDefault"
-          v-model="personStore.sacraments.comunion"
+          v-model="personStore.person.sacraments.comunion"
           checked
           class="form-check-input"
           type="checkbox"
@@ -29,7 +29,7 @@
     <div class="form-check">
       <input
           id="flexCheckDefault"
-          v-model="personStore.sacraments.confirmacion"
+          v-model="personStore.person.sacraments.confirmacion"
           checked
           class="form-check-input"
           type="checkbox"
@@ -44,7 +44,7 @@
     <div class="form-check">
       <input
           id="flexCheckDefault"
-          v-model="personStore.sacraments.matrimonio"
+          v-model="personStore.person.sacraments.matrimonio"
           checked
           class="form-check-input"
           type="checkbox"

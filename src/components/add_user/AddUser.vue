@@ -95,7 +95,7 @@ export default {
   },
   computed: {
     person_ret() {
-      return this.personStore;
+      return this.personStore.person;
     },
   },
 };
