@@ -93,18 +93,19 @@ export default {
       return this.discipulado;
     },
     saveObjectToStore() {
-      let discipuladoList = this.discipuladoStore;
-      if (discipuladoList == null) {
-        discipuladoList = [];
+      let discipuladoListStore = this.discipuladoStore;
+      if (discipuladoListStore == null) {
+        discipuladoListStore = [];
       }
       if (this.discipulado.id != null) {
-        let elementToEdit = discipuladoList.find(element => element.id === this.discipulado.id);
+        let elementToEdit = discipuladoListStore.find(
+            element => element.id === this.discipulado.id);
         elementToEdit = this.discipulado
         console.log(elementToEdit);
       } else {
-        discipuladoList.push(this.discipulado);
+        discipuladoListStore.push(this.discipulado);
       }
-      this.discipuladoStore = discipuladoList;
+      this.discipuladoStore = discipuladoListStore;
     }
   }
   ,

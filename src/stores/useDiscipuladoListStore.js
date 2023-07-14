@@ -20,7 +20,8 @@ export const useDiscipuladoListStore = defineStore('discipuladoList', {
     }),
     actions: {
         addDiscipuladoList(newDiscipuladoList) {
-            this.discipuladoList.push(newDiscipuladoList);
+            console.log(newDiscipuladoList);
+            this.discipuladoList = newDiscipuladoList;
         },
     },
 })

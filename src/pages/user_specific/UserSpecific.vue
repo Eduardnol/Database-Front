@@ -160,40 +160,14 @@ import {useRoute} from 'vue-router';
 
 export default {
   setup() {
-    const personStore = usePersonStore();
+    let personStore = usePersonStore();
     const personListStore = usePersonListStore();
     const getuser = new MongoDBconn();
     const route = useRoute();
 
-    getuser.getPersonById(route.query.id).then((result) => {
-      const {
-        id,
-        nombre,
-        apellido,
-        apellido2,
-        email,
-        birthday,
-        saint,
-        dni,
-        sacraments,
-        extras,
-        fileStorage,
-        createdOn
-      } = result;
-      personStore.id = id;
-      personStore.nombre = nombre;
-      personStore.apellido = apellido;
-      personStore.apellido2 = apellido2;
-      personStore.email = email;
-      personStore.birthday = birthday.toString();
-      personStore.saint = saint.toString();
-      personStore.dni = dni;
-      personStore.sacraments = sacraments;
-      personStore.extras = extras;
-      personStore.fileStorage = fileStorage;
-      personStore.createdOn = createdOn.toString();
-    });
-
+    let retrievedInfo = getuser.getPersonById(route.query.id);
+    personStore = retrievedInfo;
+    console.log(retrievedInfo);
     return {personStore, personListStore};
   },
 

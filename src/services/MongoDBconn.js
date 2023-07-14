@@ -227,22 +227,24 @@ export default class MongoDBconn {
 
     /**********Lifeteen**********/
 
-    getAllLifeteen() {
+    async getAllLifeteen() {
         const url = baseUrl + 'api/v1/discipuladomenores/all';
+        let discipuladoList;
         try {
-             axios.get(url, {
+            await axios.get(url, {
                 headers: {'Content-Type': 'application/json'},
             }).then((response) => {
                 if (response.status === 500) {
                     return 'Bad Parameters';
                 }
                 if (response.status === 200) {
-                    return response.data;
+                    discipuladoList = response.data;
                 }
             });
         } catch (error) {
             return error;
         }
+        return discipuladoList;
     }
 
     getMonitoresById(id) {
