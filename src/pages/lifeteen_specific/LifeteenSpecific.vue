@@ -1,10 +1,10 @@
 <template>
   <div class="userinfo">
     <div class="userfields stats">
-      <h5>Identificador Lifeteen: {{ discipulado.id }}</h5>
+      <h5>Identificador Lifeteen: {{ discipuladoStore.discipulado.id }}</h5>
 
       <h5>Creado el: {{
-          getDateAndFormat(discipulado.startDate)
+          getDateAndFormat(discipuladoStore.discipulado.startDate)
         }}</h5>
 
       <h5>Archivos:</h5>
@@ -31,9 +31,9 @@
     </div>
     <div class="userfields responsables">
       <p>Total Responsables 0</p>
-      <ul v-if="discipulado.responsables" class="person_grid">
+      <ul v-if="discipuladoStore.discipulado.responsables" class="person_grid">
         <li
-            v-for="person in discipulado.responsables"
+            v-for="person in discipuladoStore.discipulado.responsables"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -49,10 +49,10 @@
     </div>
 
     <div class="userfields inscritos">
-      <p>Total Inscritos {{ discipulado.numInscritos }}</p>
-      <ul v-if="discipulado.idInscritos" class="person_grid">
+      <p>Total Inscritos {{ discipuladoStore.discipulado.numInscritos }}</p>
+      <ul v-if="discipuladoStore.discipulado.idInscritos" class="person_grid">
         <li
-            v-for="person in discipulado.idInscritos"
+            v-for="person in discipuladoStore.discipulado.idInscritos"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -69,9 +69,9 @@
     <div class="userfields monitores">
       <p>Total Monitores 0</p>
 
-      <ul v-if="discipulado.idMonitores" class="person_grid">
+      <ul v-if="discipuladoStore.discipulado.idMonitores" class="person_grid">
         <li
-            v-for="person in discipulado.idMonitores"
+            v-for="person in discipuladoStore.discipulado.idMonitores"
             :key="person.id"
             class="list_item"
             @click="getToPage(person.id)"
@@ -183,25 +183,24 @@ import MongoDBconn from "../../services/MongoDBconn";
 import ListPickerIndividual from "../../components/list_picker/ListPickerIndividual.vue";
 import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 import {useGeneralStore} from "../../stores/useGeneralStore";
+import {useRoute} from 'vue-router';
 
 export default {
   setup() {
     let discipuladoStore = useDiscipuladoStore();
     let generalStore = useGeneralStore();
+
+    const getuser = new MongoDBconn();
+    const route = useRoute();
+
+    getuser.getLifeteenById(route.query.id).then((response) => {
+      discipuladoStore.insertIndividualDiscipulado(response);
+    });
+
     return {discipuladoStore, generalStore};
   },
   name: "LifeteenSpecific",
   components: {ListPicker, MiniPerson, AddLifeteenFields, ListPickerIndividual},
-  computed: {
-    discipulado: {
-      get() {
-        return this.discipuladoStore;
-      },
-      set(value) {
-        this.discipuladoStore = value;
-      },
-    },
-  },
   data() {
     return {
       searchClient: instantMeiliSearch(

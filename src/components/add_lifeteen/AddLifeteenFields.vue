@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
           <input
-              v-model="discipuladoStore.title"
+              v-model="discipuladoStore.discipulado.title"
               class="form-control"
               placeholder="ej: Lifeteen 2022"
               type="text"
@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="row mt-3">
-        <ul v-if="discipuladoStore.responsables">
-          <li v-for="responsable in discipuladoStore.responsables"
+        <ul v-if="discipuladoStore.discipulado.responsables">
+          <li v-for="responsable in discipuladoStore.discipulado.responsables"
               :key="responsable.id">
 
             <div class="col-auto me-auto">
@@ -35,7 +35,7 @@
         <p class="form">Fecha de Inicio</p>
       </div>
       <div class="col-auto">
-        <input v-model="discipuladoStore.startDate" class="form-control" type="date"/>
+        <input v-model="discipuladoStore.discipulado.startDate" class="form-control" type="date"/>
       </div>
     </div>
   </div>
@@ -56,9 +56,6 @@ export default {
     return {personStore, discipuladoStore};
   },
   name: "AddLifeteenFields",
-  components: {
-    // MiniPerson,
-  },
   data() {
     return {
       searchClient: instantMeiliSearch(

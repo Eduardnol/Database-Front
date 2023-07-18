@@ -230,6 +230,26 @@ export default class MongoDBconn {
 
   /**********Lifeteen**********/
 
+  async getLifeteenById(id) {
+    const url = baseUrl + `api/v1/discipuladomenores/${id}`;
+    let discipulado;
+    try {
+      await axios.get(url, {
+        headers: {'Content-Type': 'application/json'},
+      }).then((response) => {
+        if (response.status === 500) {
+          return 'Bad Parameters';
+        }
+        if (response.status === 200) {
+          discipulado = response.data;
+        }
+      });
+    } catch (error) {
+      return error;
+    }
+    return discipulado;
+  }
+
   async getAllLifeteen() {
     const url = baseUrl + 'api/v1/discipuladomenores/all';
     let discipuladoList;
