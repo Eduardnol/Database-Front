@@ -110,7 +110,7 @@ export default {
       }
     },
     saveSelected() {
-      this.discipuladoStore.responables = this.selected;
+      this.discipuladoStore.discipulado.responables = this.selected;
     },
     /**
      * Removes the clicked item from the selected list
@@ -123,7 +123,7 @@ export default {
      * Loads the list of selected users from the vuex store
      */
     loadSelected() {
-      this.selected = this.discipuladoStore.responsables;
+      this.selected = this.discipuladoStore.discipulado.responsables;
     },
   }
 }

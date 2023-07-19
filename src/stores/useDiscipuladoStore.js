@@ -24,6 +24,12 @@ export const useDiscipuladoStore = defineStore('discipulado', {
           console.log(discipulado_info)
           this.discipulado = discipulado_info
         },
+        updateDiscipuladoInscritosList(discipulado_info) {
+          this.discipulado.idInscritos = discipulado_info
+        },
+        updateDiscipuladoMonitorList(discipulado_info) {
+          this.discipulado.idMonitores = discipulado_info
+        },
 
       },
     }

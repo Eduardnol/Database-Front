@@ -23,5 +23,10 @@ export const useDiscipuladoListStore = defineStore('discipuladoList', {
             console.log(newDiscipuladoList);
             this.discipuladoList = newDiscipuladoList;
         },
+        deleteFromArray(discipulado) {
+            const toBeDeleted = this.discipuladoList.map(
+                item => item.id).indexOf(discipulado.id);
+            this.discipuladoList.splice(toBeDeleted, 1);
+        }
     },
 })

@@ -87,7 +87,7 @@ export default {
     sendNewDiscipuladoToDatabase() {
       // this.$refs.addDiscipuladoRef.saveObjectToStore();
       let conn = new MongoDBconn();
-      conn.postDiscipulado(this.discipuladoStore);
+      conn.postDiscipulado(this.discipuladoStore.discipulado);
     },
     cancelUser() {
     },

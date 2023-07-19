@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <!--- Modal Individual-->
+    <!--- Modal Individual Responsables-->
     <div id="exampleModalIndividual" aria-hidden="true" aria-labelledby="exampleModalLabel"
          class="modal fade"
          tabindex="-1">
@@ -151,6 +151,53 @@
 
   </div>
 
+
+  <div id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal"
+       tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Eliminación</h5>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                  type="button"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea eliminar este discipulado?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancelar
+          </button>
+          <button class="btn btn-danger" data-bs-dismiss="modal"
+                  type="button"
+                  @click="deleteDiscipulado">Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dismiss" aria-hidden="true" aria-labelledby="dismiss" class="modal"
+       tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Descarte</h5>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                  type="button"></button>
+        </div>
+        <div class="modal-body">
+          <p>Desea descartar este discipulado?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Seguir Editando
+          </button>
+          <button class="btn btn-warning" data-bs-dismiss="modal"
+                  type="button"
+                  @click="getToPage">Descartar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="button-group">
     <button
         class="btn btn-primary m-1"
@@ -165,8 +212,8 @@
     </button>
     <button
         class="btn btn-danger m-1"
-        data-bs-target="#exampleModal"
         data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
         type="button"
     >
       <i class="bi bi-trash3"></i> Eliminar
@@ -256,12 +303,20 @@ export default {
     //   deleteFile.deleteFile(this.person.id, fileName)
     //   this.$store.commit("deleteFile", fileurl);
     // },
+
+    deleteDiscipulado() {
+      //update database user throught api and automatically the array
+      let deletion = new MongoDBconn();
+      deletion.deleteDiscipulado(this.discipuladoStore.discipulado)
+      this.discipuladoStore.deleteFromArray(this.discipuladoStore.discipulado)
+      this.getToPage();
+    },
     /**
      * Saves the vuex store discipulado into the database
      */
     saveIntoDatabase() {
       let update = new MongoDBconn();
-      update.updateLifeteen(this.discipulado);
+      update.updateLifeteen(this.discipuladoStore.discipulado)
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
     /**
@@ -294,10 +349,9 @@ export default {
       this.$refs.ListPicker.saveSelected();
       this.$refs.ListPickerIndividual.saveSelected();
     },
-    getToPage(identificator) {
+    getToPage() {
       this.$router.push({
-        name: "UserSpecific",
-        params: {id: identificator},
+        name: "AllLifeteen",
       });
     },
     getDateTimeAndFormat(date) {

@@ -80,10 +80,10 @@ export default class MongoDBconn {
     }
   }
 
-  postDiscipulado(discipulado) {
+  async postDiscipulado(discipulado) {
     const url = baseUrl + 'api/v1/discipuladomenores/insert';
     try {
-      axios.post(url, discipulado, {
+      await axios.post(url, discipulado, {
         headers: {'Content-Type': 'application/json'},
       }).then((response) => {
         if (response.status === 500) {
@@ -317,6 +317,25 @@ export default class MongoDBconn {
         }
         if (response.status === 200) {
           return response.data;
+        }
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  deleteDiscipulado(id) {
+    const url = baseUrl + `api/v1/discipuladomenores/delete/${id}`;
+    try {
+      axios.delete(url, {
+        headers: {'Content-Type': 'application/json'},
+      }).then((response) => {
+        console.log(response);
+        if (response.status === 500) {
+          return 'Bad Parameters';
+        }
+        if (response.status === 200) {
+          return true;
         }
       });
     } catch (error) {
