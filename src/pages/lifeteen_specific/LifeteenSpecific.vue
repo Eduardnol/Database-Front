@@ -30,7 +30,7 @@
       <AddLifeteenFields/>
     </div>
     <div class="userfields responsables">
-      <p>Total Responsables 0</p>
+      <p>Total Responsables</p>
       <ul v-if="discipuladoStore.discipulado.responsables" class="person_grid">
         <li
             v-for="person in discipuladoStore.discipulado.responsables"
@@ -67,7 +67,7 @@
       </ul>
     </div>
     <div class="userfields monitores">
-      <p>Total Monitores 0</p>
+      <p>Total Monitores</p>
 
       <ul v-if="discipuladoStore.discipulado.idMonitores" class="person_grid">
         <li
@@ -349,9 +349,11 @@ export default {
       this.$refs.ListPicker.saveSelected();
       this.$refs.ListPickerIndividual.saveSelected();
     },
-    getToPage() {
+    getToPage(identificator) {
       this.$router.push({
-        name: "AllLifeteen",
+        name: "UserSpecific",
+        //params: {id: identificator},
+        query: {id: identificator},
       });
     },
     getDateTimeAndFormat(date) {

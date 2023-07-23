@@ -57,7 +57,6 @@ export default {
       let selectedLifeteen = this.discipuladoListStore.discipuladoList.find(
           (discipulado) => discipulado.id === id,
       );
-      console.log(selectedLifeteen);
       this.discipuladoIndividual = selectedLifeteen;
       this.$router.push({
         name: "LifeteenSpecific",
