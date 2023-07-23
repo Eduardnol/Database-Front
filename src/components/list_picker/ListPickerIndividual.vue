@@ -110,7 +110,7 @@ export default {
       }
     },
     saveSelected() {
-      this.discipuladoStore.discipulado.responables = this.selected;
+      this.discipuladoStore.updateDiscipuladoResponsables(this.selected);
     },
     /**
      * Removes the clicked item from the selected list

@@ -1,8 +1,12 @@
 <template>
   <div>
     <HeaderComponent/>
-    <router-link to="/">All Users</router-link>
-    <router-link to="/all-discipulado">All Lifeteen</router-link>
+    <button id="searchButton" class="all">
+      <router-link to="/">All Users</router-link>
+    </button>
+    <button id="searchButton" class="all">
+      <router-link to="/all-discipulado">All Lifeteen</router-link>
+    </button>
     <!-- Page rendered by router -->
     <router-view/>
   </div>

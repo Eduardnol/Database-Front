@@ -141,9 +141,9 @@ export default {
     loadSelected() {
       console.log("ListPicker mounted");
       if (this.generalStore.isInscritos) {
-        this.selected = this.discipuladoStore.idInscritos;
+        this.selected = this.discipuladoStore.discipulado.idInscritos;
       } else {
-        this.selected = this.discipuladoStore.idMonitores;
+        this.selected = this.discipuladoStore.discipulado.idMonitores;
       }
     },
   }

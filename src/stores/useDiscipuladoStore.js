@@ -30,6 +30,9 @@ export const useDiscipuladoStore = defineStore('discipulado', {
         updateDiscipuladoMonitorList(discipulado_info) {
           this.discipulado.idMonitores = discipulado_info
         },
+        updateDiscipuladoResponsables(responsables) {
+          this.discipulado.responsables = responsables
+        }
 
       },
     }
