@@ -235,8 +235,8 @@ body {
 
 .userinfo {
   display: grid;
-  grid-template-columns: repeat(3, 615px);
-  grid-column-gap: 35px;
+  grid-template-columns: repeat(3, 30%);
+  grid-column-gap: 5%;
   grid-row-gap: 0;
 }
 

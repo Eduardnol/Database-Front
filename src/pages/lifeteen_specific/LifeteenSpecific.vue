@@ -376,9 +376,9 @@ body {
 
 .userinfo {
   display: grid;
-  grid-template-columns: repeat(4, 445px);
-  grid-column-gap: 35px;
-  grid-row-gap: 35px;
+  grid-template-columns: repeat(4, 24%);
+  grid-column-gap: 1%;
+  grid-row-gap: 5%;
 }
 
 .button-group {
