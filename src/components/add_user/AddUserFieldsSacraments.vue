@@ -1,58 +1,14 @@
 <template>
-  <div class="col-auto me-auto">
-    <div class="form-check">
-      <input
-          id="flexCheckDefault"
-          v-model="personStore.person.sacraments.bautismo"
-          checked
-          class="form-check-input"
-          type="checkbox"
-          value=""
-      />
-      <label class="form-check-label" for="flexCheckDefault"> Bautismo </label>
-    </div>
-  </div>
-  <div class="col-auto me-auto">
-    <div class="form-check">
-      <input
-          id="flexCheckDefault"
-          v-model="personStore.person.sacraments.comunion"
-          checked
-          class="form-check-input"
-          type="checkbox"
-          value=""
-      />
-      <label class="form-check-label" for="flexCheckDefault"> Comunión </label>
-    </div>
-  </div>
-  <div class="col-auto me-auto">
-    <div class="form-check">
-      <input
-          id="flexCheckDefault"
-          v-model="personStore.person.sacraments.confirmacion"
-          checked
-          class="form-check-input"
-          type="checkbox"
-          value=""
-      />
-      <label class="form-check-label" for="flexCheckDefault">
-        Confirmación
-      </label>
-    </div>
-  </div>
-  <div class="col-auto me-auto">
-    <div class="form-check">
-      <input
-          id="flexCheckDefault"
-          v-model="personStore.person.sacraments.matrimonio"
-          checked
-          class="form-check-input"
-          type="checkbox"
-          value=""
-      />
-      <label class="form-check-label" for="flexCheckDefault">
-        Matrimonio
-      </label>
+  <div v-for="sacraments in personStore.person.sacraments" :key="sacraments.name">
+    <div class="col-auto me-auto">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ sacraments.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ sacraments.temple }}</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the
+            bulk of the card's content.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

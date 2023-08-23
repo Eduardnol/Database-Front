@@ -10,12 +10,11 @@ export const usePersonStore = defineStore('person', {
       birthday: null,
       saint: null,
       dni: null,
-      sacraments: {
-        bautismo: false,
-        comunion: false,
-        confirmacion: false,
-        matrimonio: false
-      },
+      sacraments: [{
+        name: null,
+        temple: null,
+        date: null
+      }],
       extras: [{
         id: null,
         selected: null,
