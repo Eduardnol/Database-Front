@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080/';
+let authToken = null;
 
 export default class MongoDBconn {
   constructor() {
@@ -10,7 +11,10 @@ export default class MongoDBconn {
     const url = baseUrl + 'api/v1/people/allpeople';
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -29,7 +33,10 @@ export default class MongoDBconn {
     let person;
     try {
       await axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -48,7 +55,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/people/search/${search}`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -66,7 +76,10 @@ export default class MongoDBconn {
     const url = baseUrl + 'api/v1/people/insertnew/';
     try {
       axios.post(url, person, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -84,7 +97,10 @@ export default class MongoDBconn {
     const url = baseUrl + 'api/v1/discipuladomenores/insert';
     try {
       await axios.post(url, discipulado, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -102,7 +118,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/people/deletebyid?id=${personId}`;
     try {
       axios.delete(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -122,7 +141,10 @@ export default class MongoDBconn {
     const url = baseUrl + 'api/v1/people/update/';
     try {
       axios.put(url, person, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -141,7 +163,10 @@ export default class MongoDBconn {
         + `api/v1/people/sort?field=${sortby}&direction=${direction}`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -159,7 +184,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/files/?id=${userid}`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -177,7 +205,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/files/${userid}/${filename}`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -214,7 +245,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/files/${userid}/${filename}`;
     try {
       axios.delete(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -235,7 +269,10 @@ export default class MongoDBconn {
     let discipulado;
     try {
       await axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -255,7 +292,10 @@ export default class MongoDBconn {
     let discipuladoList;
     try {
       await axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -274,7 +314,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/discipuladomenores/${id}/monitores`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -292,7 +335,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/discipuladomenores/${id}/inscritos`;
     try {
       axios.get(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -310,7 +356,10 @@ export default class MongoDBconn {
     const url = baseUrl + 'api/v1/discipuladomenores/update';
     try {
       axios.put(url, lifeteen, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         if (response.status === 500) {
           return 'Bad Parameters';
@@ -328,7 +377,10 @@ export default class MongoDBconn {
     const url = baseUrl + `api/v1/discipuladomenores/delete/${id}`;
     try {
       axios.delete(url, {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
       }).then((response) => {
         console.log(response);
         if (response.status === 500) {
@@ -336,6 +388,47 @@ export default class MongoDBconn {
         }
         if (response.status === 200) {
           return true;
+        }
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  registerAdminUser(registerData) {
+    const url = baseUrl + 'api/v1/auth/register';
+    try {
+      axios.post(url, registerData, {
+        headers: {'Content-Type': 'application/json'},
+      }).then((response) => {
+        if (response.status === 500) {
+          return 'Bad Parameters';
+        }
+        if (response.status === 200) {
+          authToken = response.data.token;
+          return response.data;
+        }
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  loginUser(loginData) {
+    const url = baseUrl + 'api/v1/auth/authenticate';
+    try {
+      axios.post(url, loginData, {
+        headers: {'Content-Type': 'application/json'},
+      }).then((response) => {
+        if (response.status === 500) {
+          return 'Bad Parameters';
+        }
+        if (response.status === 200) {
+          // Save the token
+          console.warn(response.data);
+          authToken = response.data.token;
+          console.log(authToken);
+          return response.data;
         }
       });
     } catch (error) {
