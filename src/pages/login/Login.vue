@@ -29,8 +29,13 @@ export default {
   methods: {
     async login() {
       const db = new MongoDBconn();
-      await db.loginUser({email: this.username, password: this.password});
-      // handle the response
+      await db.loginUser({email: this.username, password: this.password}).then((response) => {
+        if (response === 200) {
+          this.$router.push('/');
+        } else {
+          alert('Invalid credentials');
+        }
+      });
     },
   },
 };

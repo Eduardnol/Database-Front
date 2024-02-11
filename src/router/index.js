@@ -5,6 +5,7 @@ import AllLifeteen from "../pages/lifeteen/AllLifeteen.vue"
 import LifeteenSpecific from "../pages/lifeteen_specific/LifeteenSpecific.vue"
 import Register from "../pages/register/Register.vue";
 import Login from "../pages/login/Login.vue";
+import VueCookies from 'vue-cookies';
 
 const routes = [
   {
@@ -44,6 +45,20 @@ const router = createRouter({
   // https://nklayman.github.io/vue-cli-plugin-electron-builder/guide/commonIssues.html#blank-screen-on-builds-but-works-fine-on-serve
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  // Check if the cookie exists
+  const token = VueCookies.get('token');
+
+  // If the cookie doesn't exist and the user is not trying to access the login page
+  if (!token && to.name !== 'Login') {
+    // Redirect the user to the login page
+    next({ name: 'Login' });
+  } else {
+    // Otherwise, allow the user to access the route
+    next();
+  }
 });
 
 export default router;

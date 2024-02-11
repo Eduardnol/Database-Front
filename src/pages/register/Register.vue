@@ -30,8 +30,13 @@ export default {
     async register() {
       const db = new MongoDBconn();
       await db.registerAdminUser(
-          {email: this.username, password: this.password});
-      // handle the response
+          {email: this.username, password: this.password}).then((response) => {
+        if (response === 200) {
+          this.$router.push('/');
+        } else {
+          alert('Invalid credentials');
+        }
+      });
     },
   },
 };

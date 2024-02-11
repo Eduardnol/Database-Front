@@ -1,10 +1,12 @@
 import axios from 'axios';
+import VueCookies from 'vue-cookies';
 
 const baseUrl = 'http://localhost:8080/';
 let authToken = null;
 
 export default class MongoDBconn {
   constructor() {
+    authToken = VueCookies.get('token');
   }
 
   getAllPeople() {
@@ -406,7 +408,7 @@ export default class MongoDBconn {
         }
         if (response.status === 200) {
           authToken = response.data.token;
-          return response.data;
+          return response.status;
         }
       });
     } catch (error) {
@@ -414,25 +416,24 @@ export default class MongoDBconn {
     }
   }
 
-  loginUser(loginData) {
-    const url = baseUrl + 'api/v1/auth/authenticate';
-    try {
-      axios.post(url, loginData, {
-        headers: {'Content-Type': 'application/json'},
-      }).then((response) => {
-        if (response.status === 500) {
-          return 'Bad Parameters';
-        }
-        if (response.status === 200) {
-          // Save the token
-          console.warn(response.data);
-          authToken = response.data.token;
-          console.log(authToken);
-          return response.data;
-        }
-      });
-    } catch (error) {
-      return error;
-    }
+loginUser(loginData) {
+  const url = baseUrl + 'api/v1/auth/authenticate';
+  try {
+    return axios.post(url, loginData, {
+      headers: {'Content-Type': 'application/json'},
+    }).then((response) => {
+      if (response.status === 500) {
+        return 'Bad Parameters';
+      }
+      if (response.status === 200) {
+        // Save the token
+        VueCookies.set('token', response.data.token, '1d');
+        authToken = response.data.token;
+        return response.status;
+      }
+    });
+  } catch (error) {
+    return error;
   }
+}
 }
