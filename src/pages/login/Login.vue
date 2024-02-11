@@ -26,17 +26,27 @@ export default {
       password: '',
     };
   },
-  methods: {
-    async login() {
-      const db = new MongoDBconn();
-      await db.loginUser({email: this.username, password: this.password}).then((response) => {
-        if (response === 200) {
-          this.$router.push('/');
-        } else {
-          alert('Invalid credentials');
-        }
-      });
-    },
+ methods: {
+  async login() {
+    const db = new MongoDBconn();
+    await db.loginUser({email: this.username, password: this.password}).then((response) => {
+      if (response === 200) {
+        this.$router.push('/');
+      } else {
+        console.error('Invalid credentials')
+        alert('Invalid credentials');
+      }
+    }).catch((error) => {
+      if (error.response && error.response.status === 401) {
+        // The server responded with a status of 401, which means the login credentials were incorrect
+        alert('Wrong email or password');
+      } else {
+        // Some other error occurred
+        console.error(error);
+        alert('An error occurred while trying to log in');
+      }
+    });
   },
+},
 };
 </script>

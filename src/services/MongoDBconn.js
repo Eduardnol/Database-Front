@@ -425,6 +425,9 @@ loginUser(loginData) {
       if (response.status === 500) {
         return 'Bad Parameters';
       }
+      if (response.status === 401){
+        return response.status;
+      }
       if (response.status === 200) {
         // Save the token
         VueCookies.set('token', response.data.token, '1d');
