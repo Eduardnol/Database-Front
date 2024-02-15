@@ -30,19 +30,18 @@
 
 <script>
 
-import MongoDBconn from "../../services/MongoDBconn";
 import Lifeteen from "../../components/all_lifeteen/Lifeteen";
 import AddLifeteen from "../../components/add_lifeteen/AddLifeteen";
 import {useDiscipuladoListStore} from "../../stores/useDiscipuladoListStore";
 import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
+import discipuladoService from "../../services/discipulado-service";
 
 export default {
   setup() {
     let discipuladoListStore = useDiscipuladoListStore();
     let discipuladoIndividual = useDiscipuladoStore();
 
-    let search = new MongoDBconn();
-    let allLifeteen = search.getAllLifeteen();
+    let allLifeteen = discipuladoService.getAllLifeteen();
     allLifeteen.then((value) => discipuladoListStore.addDiscipuladoList(value));
 
     return {discipuladoListStore, discipuladoIndividual};
@@ -54,18 +53,16 @@ export default {
   },
   methods: {
     getToPage(id) {
-      let selectedLifeteen = this.discipuladoListStore.discipuladoList.find(
+      this.discipuladoIndividual = this.discipuladoListStore.discipuladoList.find(
           (discipulado) => discipulado.id === id,
       );
-      this.discipuladoIndividual = selectedLifeteen;
       this.$router.push({
         name: "LifeteenSpecific",
         query: {id: id},
       });
     },
     getAllFromDB() {
-      let search = new MongoDBconn();
-      let allLifeteen = search.getAllLifeteen();
+      let allLifeteen = discipuladoService.getAllLifeteen();
       allLifeteen.then((value) => this.discipuladoListStore.addDiscipuladoList(value));
 
     },

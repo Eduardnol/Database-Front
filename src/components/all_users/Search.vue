@@ -17,9 +17,9 @@
   </div>
 </template>
 <script>
-import MongoDBconn from "../../services/MongoDBconn";
 import {usePersonStore} from "../../stores/usePersonStore";
 import "instantsearch.css/themes/algolia-min.css";
+import peopleService from "../../services/people-service";
 
 export default {
   setup() {
@@ -37,8 +37,7 @@ export default {
   },
   methods: {
     search() {
-      let search = new MongoDBconn();
-      search.searchValue(this.keyword).then((data) => {
+      peopleService.searchValue(this.keyword).then((data) => {
         this.personStore = data;
       });
     },

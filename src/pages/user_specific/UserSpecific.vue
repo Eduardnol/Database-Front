@@ -151,21 +151,21 @@
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
-import MongoDBconn from "../../services/MongoDBconn.js";
 import UserFile from "../../components/file/UserFile.vue";
 import moment from "moment";
 import {usePersonStore} from "../../stores/usePersonStore";
 import {usePersonListStore} from "../../stores/usePersonListStore";
 import {useRoute} from 'vue-router';
+import peopleService from "../../services/people-service";
+import fileService from "../../services/file-service";
 
 export default {
   setup() {
     let personStore = usePersonStore();
     const personListStore = usePersonListStore();
-    const getuser = new MongoDBconn();
     const route = useRoute();
 
-    getuser.getPersonById(route.query.id).then((response) => {
+    peopleService.getPersonById(route.query.id).then((response) => {
       personStore.insertIndividualPerson(response);
     });
     return {personStore, personListStore};
@@ -182,15 +182,13 @@ export default {
     },
     //Saves into the database the user we just updated
     saveIntoDatabase() {
-      let update = new MongoDBconn();
-      update.updatePerson(this.personStore.person);
+      peopleService.updatePerson(this.personStore.person);
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
       this.getToPage();
     },
     deleteuser() {
       //update database user throught api and automatically the array
-      let deletion = new MongoDBconn();
-      deletion.deletePerson(this.personStore.person.id)
+      peopleService.deletePerson(this.personStore.person.id)
       this.personListStore.deleteFromArray(this.personStore.person)
       this.getToPage();
     },
@@ -198,8 +196,7 @@ export default {
       let file = this.$refs.file.files[0];
       if (file != null) {
 
-        let upload = new MongoDBconn();
-        let resultStatus = upload.uploadFile(this.personStore.person.id, file);
+        let resultStatus = fileService.uploadFile(this.personStore.person.id, file);
         resultStatus.then(data => {
           console.log("The data fetched is" + data.details.url);
           let filename = data.details.name;
@@ -213,8 +210,7 @@ export default {
       }
     },
     deleteFile(fileName, fileurl) {
-      let deleteFile = new MongoDBconn();
-      deleteFile.deleteFile(this.personStore.person.id, fileName)
+      fileService.deleteFile(this.personStore.person.id, fileName)
       this.personStore.deleteFile(fileurl)
     },
     getDateTimeAndFormat(date) {

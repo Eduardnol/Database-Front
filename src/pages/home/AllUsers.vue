@@ -67,9 +67,9 @@ import Person from "../../components/all_users/Person.vue";
 import Search from "../../components/all_users/Search.vue";
 import Filters from "../../components/all_users/FiltersComponent.vue";
 import AddUser from "../../components/add_user/AddUser.vue";
-import MongoDBconn from "../../services/MongoDBconn";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import {usePersonListStore} from "../../stores/usePersonListStore";
+import peopleService from "../../services/people-service";
 
 export default {
   setup() {
@@ -104,26 +104,20 @@ export default {
       });
     },
     getall() {
-      let search = new MongoDBconn();
-      this.personList = search.getAllPeople();
+      this.personList = peopleService.getAllPeople();
     },
     orderByName() {
-      console.log("Order By Name");
-      let search = new MongoDBconn();
-      this.personList = search.getAllPeopleOrder("name", "asc");
+      this.personList = peopleService.getAllPeopleOrder("name", "asc");
     },
     orderBySurname() {
-      console.log("Order By Surname");
-      let search = new MongoDBconn();
-      this.personList = search.getAllPeopleOrder("surname", "asc");
+      this.personList = peopleService.getAllPeopleOrder("surname", "asc");
     },
     orderByBirth() {
       console.log("Order by birth");
     },
   },
   beforeMount() {
-    let search = new MongoDBconn();
-    this.personList = search.getAllPeople();
+    this.personList = peopleService.getAllPeople();
   },
 };
 </script>

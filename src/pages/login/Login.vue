@@ -17,7 +17,7 @@
 
 <script>
 
-import MongoDBconn from "../../services/MongoDBconn";
+import authentication from "../../services/Authentication";
 
 export default {
   data() {
@@ -28,8 +28,7 @@ export default {
   },
  methods: {
   async login() {
-    const db = new MongoDBconn();
-    await db.loginUser({email: this.username, password: this.password}).then((response) => {
+    await authentication.loginUser({email: this.username, password: this.password}).then((response) => {
       if (response === 200) {
         this.$router.push('/');
       } else {
