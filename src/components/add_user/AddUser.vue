@@ -64,9 +64,9 @@
 </template>
 <script>
 import AddUserFields from "../../components/add_user/AddUserFields.vue";
-import MongoDBconn from "../../services/MongoDBconn";
 import {usePersonStore} from "../../stores/usePersonStore";
 import {usePersonListStore} from "../../stores/usePersonListStore";
+import peopleService from "../../services/people-service";
 
 export default {
   setup() {
@@ -86,8 +86,7 @@ export default {
   // },
   methods: {
     sendNewUserToDatabase() {
-      let conn = new MongoDBconn();
-      conn.postPerson(this.person_ret);
+      peopleService.postPerson(this.person_ret);
     },
     cancelUser() {
       this.personStore.$reset();

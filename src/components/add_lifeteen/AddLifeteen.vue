@@ -63,10 +63,10 @@
   </div>
 </template>
 <script>
-import MongoDBconn from "../../services/MongoDBconn";
 import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields.vue";
 import {usePersonStore} from "../../stores/usePersonStore";
 import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
+import discipuladoService from "../../services/discipulado-service";
 
 export default {
   setup() {
@@ -86,8 +86,7 @@ export default {
   methods: {
     sendNewDiscipuladoToDatabase() {
       // this.$refs.addDiscipuladoRef.saveObjectToStore();
-      let conn = new MongoDBconn();
-      conn.postDiscipulado(this.discipuladoStore.discipulado);
+      discipuladoService.postDiscipulado(this.discipuladoStore.discipulado);
     },
     cancelUser() {
     },

@@ -226,21 +226,20 @@ import AddLifeteenFields from "../../components/add_lifeteen/AddLifeteenFields";
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 import MiniPerson from "../../components/add_lifeteen/MiniPerson";
 import ListPicker from "../../components/list_picker/ListPicker";
-import MongoDBconn from "../../services/MongoDBconn";
 import ListPickerIndividual from "../../components/list_picker/ListPickerIndividual.vue";
 import {useDiscipuladoStore} from "../../stores/useDiscipuladoStore";
 import {useGeneralStore} from "../../stores/useGeneralStore";
 import {useRoute} from 'vue-router';
+import discipuladoService from "../../services/discipulado-service";
 
 export default {
   setup() {
     let discipuladoStore = useDiscipuladoStore();
     let generalStore = useGeneralStore();
 
-    const getuser = new MongoDBconn();
     const route = useRoute();
 
-    getuser.getLifeteenById(route.query.id).then((response) => {
+    discipuladoService.getLifeteenById(route.query.id).then((response) => {
       discipuladoStore.insertIndividualDiscipulado(response);
     });
 
@@ -306,8 +305,7 @@ export default {
 
     deleteDiscipulado() {
       //update database user throught api and automatically the array
-      let deletion = new MongoDBconn();
-      deletion.deleteDiscipulado(this.discipuladoStore.discipulado)
+      discipuladoService.deleteDiscipulado(this.discipuladoStore.discipulado)
       this.discipuladoStore.deleteFromArray(this.discipuladoStore.discipulado)
       this.getToPage();
     },
@@ -315,8 +313,7 @@ export default {
      * Saves the vuex store discipulado into the database
      */
     saveIntoDatabase() {
-      let update = new MongoDBconn();
-      update.updateLifeteen(this.discipuladoStore.discipulado)
+      discipuladoService.updateLifeteen(this.discipuladoStore.discipulado)
       // this.$store.commit("updateView", this.person); //Updates the view of all results on main page
     },
     /**

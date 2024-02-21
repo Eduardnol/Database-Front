@@ -1,11 +1,11 @@
 <template>
   <div>
     <HeaderComponent/>
-    <button id="searchButton" class="all">
-      <router-link to="/">All Users</router-link>
+    <button id="searchButton" class="btn btn-primary" @click="gotoAllUsers">
+      All Users
     </button>
-    <button id="searchButton" class="all">
-      <router-link to="/all-discipulado">All Lifeteen</router-link>
+    <button id="searchButton" class="btn btn-primary" @click="gotoAllDiscipulado">
+      All Discipulado
     </button>
     <!-- Page rendered by router -->
     <router-view/>
@@ -23,6 +23,14 @@ export default {
   },
   components: {
     HeaderComponent,
+  },
+  methods: {
+    gotoAllUsers() {
+      this.$router.push("/");
+    },
+    gotoAllDiscipulado() {
+      this.$router.push("/all-discipulado");
+    },
   },
 };
 </script>
