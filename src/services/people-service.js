@@ -6,7 +6,7 @@ const HEADERS = API_CONFIG().headers;
 const BASE_URL = baseUrl;
 const PEOPLE = BASE_URL + '/people';
 
-const PERSON = PEOPLE + '/getallpeople';
+const PERSON = PEOPLE + '/allpeople';
 const GET_BY_ID = PEOPLE + '/getbyid';
 const SEARCH = PEOPLE + '/search';
 const INSERT_NEW = PEOPLE + '/insertnew';
@@ -16,7 +16,7 @@ const UPDATE = PEOPLE + '/update';
 
 
 const getAllPeople = async () => {
-  const url = `${PERSON}/allpeople`;
+  const url = `${PERSON}`;
   try {
     axios.get(url, {
       headers: HEADERS,
