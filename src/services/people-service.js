@@ -1,17 +1,18 @@
 import axios from 'axios';
-import API_CONFIG from "./config";
+import {API_CONFIG, baseUrl} from "./config";
 
 
-const HEADERS = API_CONFIG.headers;
-const BASE_URL = API_CONFIG.baseUrl;
+const HEADERS = API_CONFIG().headers;
+const BASE_URL = baseUrl;
+const PEOPLE = BASE_URL + '/people';
 
-const PERSON = BASE_URL + '/people';
-const GET_BY_ID = BASE_URL + '/getbyid';
-const SEARCH = BASE_URL + '/search';
-const INSERT_NEW = BASE_URL + '/insertnew';
-const DELETE_BY_ID = BASE_URL + '/deletebyid';
-const SORT = BASE_URL + '/sort';
-const UPDATE = BASE_URL + '/update';
+const PERSON = PEOPLE + '/getallpeople';
+const GET_BY_ID = PEOPLE + '/getbyid';
+const SEARCH = PEOPLE + '/search';
+const INSERT_NEW = PEOPLE + '/insertnew';
+const DELETE_BY_ID = PEOPLE + '/deletebyid';
+const SORT = PEOPLE + '/sort';
+const UPDATE = PEOPLE + '/update';
 
 
 const getAllPeople = async () => {
@@ -106,8 +107,6 @@ const deletePerson = async (personId) => {
 }
 
 const updatePerson = async (person) => {
-  console.log('update person');
-  console.log(person);
   try {
     axios.put(UPDATE, person, {
       headers: HEADERS,

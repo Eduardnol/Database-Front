@@ -1,24 +1,19 @@
 import VueCookies from 'vue-cookies';
 
-let authToken = null;
+let authToken = VueCookies.get('token');
 
-let API_CONFIG = () => {
+export let API_CONFIG = () => {
   return {
-    baseUrl: 'http://localhost:8080/api/v1',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${authToken}`
+      'Authorization': `Bearer ` + authToken,
+      'Content-Type': 'application/json'
     },
   };
 }
+export const baseUrl = 'http://localhost:8080/api/v1';
 
-function setAuthToken ()  {
-  API_CONFIG().headers.Authorization = `Bearer ${authToken}`;
+export function setAuthToken (token)  {
+  authToken = token;
   VueCookies.set('token', authToken, '1d');
 }
 
-
-export default {
-  API_CONFIG,
-  setAuthToken
-};

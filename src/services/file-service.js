@@ -1,8 +1,8 @@
 import axios from 'axios';
-import API_CONFIG from "./config";
+import {API_CONFIG, baseUrl} from "./config";
 
-const HEADERS = API_CONFIG.headers;
-const BASE_URL = API_CONFIG.baseUrl;
+const HEADERS = API_CONFIG().headers;
+const BASE_URL = baseUrl;
 const GET_ALL_FILES = BASE_URL + '/files/files';
 const UPLOAD_FILE = BASE_URL + '/files/upload';
 const DELETE_FILE = BASE_URL + '/files';

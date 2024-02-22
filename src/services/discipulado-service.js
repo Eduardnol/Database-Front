@@ -1,9 +1,9 @@
 import axios from 'axios';
-import API_CONFIG from "./config";
+import {API_CONFIG, baseUrl} from "./config";
 
 
-const HEADERS = API_CONFIG.headers;
-const BASE_URL = API_CONFIG.baseUrl;
+const HEADERS = API_CONFIG().headers;
+const BASE_URL = baseUrl;
 
 const DISCIPULADO_MENORES = BASE_URL + '/discipuladomenores';
 const POST_DICIPULADO = DISCIPULADO_MENORES +'/insert';
@@ -134,7 +134,6 @@ const deleteDiscipulado = async (id) => {
     axios.delete(url, {
       headers: HEADERS,
     }).then((response) => {
-      console.log(response);
       if (response.status === 500) {
         return 'Bad Parameters';
       }
