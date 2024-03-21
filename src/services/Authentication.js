@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { baseUrl, API_CONFIG, setAuthToken } from "./config";
-import VueCookies from 'vue-cookies';
 
 const HEADERS = API_CONFIG.headers;
 const BASE_URL = baseUrl;
