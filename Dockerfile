@@ -1,10 +1,6 @@
-FROM node:19-alpine
+FROM node:16
 WORKDIR /app
-RUN npm install -g @vue/cli
-COPY package*.json ./
-COPY babel.config.js ./
-ENV NODE_ENV=development
+COPY package.json package-lock.json ./
 RUN npm install
-#COPY . .
-#EXPOSE 8080
+COPY . .
 CMD ["npm", "run", "serve"]
