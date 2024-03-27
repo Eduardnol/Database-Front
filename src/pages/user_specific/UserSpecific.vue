@@ -11,7 +11,6 @@
           }}</h5>
 
         <h5>Archivos:</h5>
-
         <ul>
           <li
               v-for="file in personStore.person.fileStorage"
